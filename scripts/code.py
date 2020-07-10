@@ -11,22 +11,147 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 '''
 
 import logging
+from datetime import datetime
+import os
+from os import path
+import re
+import mmap
 
 logger = logging.getLogger(__name__)
 
+LGPL3_HEADER = '''
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+'''
+
+CODE_EXTENSIONS = set(['h', 'hpp', 'c', 'cpp', 'cc'])
+
+def get_all_source_files(search_dir):
+    result = []
+    for item in os.listdir(search_dir):
+        p = path.join(search_dir, item)
+        if path.isdir(p):
+            result += get_all_source_files(p)
+        elif p.rsplit('.', 1)[-1] in CODE_EXTENSIONS:
+            result.append(p)
+    return result
+
+def struct_regex_string(struct_name):
+    return r'struct\s+' + struct_name + r'\s*\{'
+
 class StructVersion:
-    def __init__(self, version, content):
+    def __init__(self, code_path, version, struct_name):
+        with open(code_path, 'r') as f:
+            source_code = f.read()
         self.version = version
+        self.struct_name = struct_name
+        self.copyright_lines = set(re.findall(r'[Cc]opyright .*(?=\n)', source_code))
+        halves = re.split(struct_regex_string(struct_name), source_code)
+        if len(halves) < 2:
+            raise RuntimeError(struct_name + ' not declared in ' + code_path + ' (even though it was detected)')
+        if len(halves) > 2:
+            raise RuntimeError(struct_name + ' declared multiple times in ' + code_path)
+        content = '{'
+        count = 1
+        for c in halves[1]:
+            content += c
+            if c == '{':
+                count += 1
+            elif c == '}':
+                count -= 1
+            if count <= 0:
+                break
         self.content = content
 
+    def name(self):
+        return self.struct_name + '_' + self.version.c_id()
+
+class Header:
+    def __init__(self, path, code):
+        self.path = path
+        self.code = code
+
 class Struct:
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, typedef):
+        self.typedef = typedef
+        self.struct_name = '_' + typedef
         self.versions = []
+        me = path.relpath(__file__, path.dirname(path.dirname(path.dirname(__file__))))
+        self.copyright_lines = set(['Copyright © ' + str(datetime.now().year) + ' ' + me])
+        self.search_regex = re.compile(bytes(struct_regex_string(self.struct_name), 'utf-8'))
+
+    def header_name(self):
+        result = ''
+        for l in self.typedef:
+            if l.isupper() and result:
+                result += '_'
+            result += l.lower()
+        result += '_espionage.h'
+        return result
 
     def add_version(self, new):
         if self.versions and self.versions[-1].content == new.content:
-            logger.info(self.name + ' ' + str(new.version) + ' is identical to ' + str(self.versions[-1].version) + ', so not adding')
+            logger.info(self.typedef + ' ' + str(new.version) + ' is identical to ' + str(self.versions[-1].version) + ', so not adding')
         else:
-            logger.info('Adding ' + self.name + ' ' + str(new.version))
+            logger.info('Adding ' + self.typedef + ' ' + str(new.version))
             self.versions.append(new)
+        for line in new.copyright_lines:
+            self.copyright_lines.add(line)
+
+    def emit_header(self):
+        result = ''
+        result += '/*\n'
+        result += 'This file is part of gtk3-espionage\n'
+        result += '\n'
+        for line in self.copyright_lines:
+            result += line + '\n'
+        result += LGPL3_HEADER
+        result += '*/\n'
+        result += '\n'
+        result += 'typedef struct ' + self.struct_name + ' ' + self.typedef + '\n'
+        result += '\n'
+        for i in self.versions:
+            result += 'struct ' + i.name() + '\n' + i.content + '\n'
+            result += '\n'
+        return result
+
+class Code:
+    def __init__(self, repo_dir, struct_names):
+        self.repo_dir = repo_dir
+        self.structs = [Struct(name) for name in struct_names]
+
+    def update(self, version):
+        hits = {}
+        source_files = get_all_source_files(self.repo_dir)
+        for i in source_files:
+            with open(i) as f:
+                try:
+                    with mmap.mmap(f.fileno(), 0, access=mmap.ACCESS_READ) as s:
+                        for struct in self.structs:
+                            if struct.search_regex.search(s):
+                                if struct.typedef not in hits:
+                                    hits[struct.typedef] = []
+                                hits[struct.typedef].append(i)
+                                logger.info('Found ' + struct.typedef + ' in ' + i)
+                except ValueError:
+                    pass
+        for struct in self.structs:
+            if not hits.get(struct.typedef):
+                raise RuntimeError('Could not find ' + struct.typedef + ' in ' + str(version))
+            if len(hits.get(struct.typedef)) > 1:
+                raise RuntimeError(struct.typedef + ' implemented multiple places: ' + str(hits.get(struct.typedef)))
+            struct_version = StructVersion(hits[struct.typedef][0], version, struct.struct_name)
+            struct.add_version(struct_version)
+
+    def emit(self):
+        return [Header(struct.header_name(), struct.emit_header()) for struct in self.structs]

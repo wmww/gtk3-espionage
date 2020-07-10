@@ -18,12 +18,11 @@ import sys
 
 from version import parse_tag_list
 from repo import Repo
-import code
+from code import Code
 
 GTK_GIT_URL = 'https://gitlab.gnome.org/GNOME/gtk.git'
 BUILD_DIR = 'build'
 REPO_DIR = path.join(BUILD_DIR, 'gtk')
-OUTPUT_PATH = 'gtk-espionage.h'
 
 STRUCTS = [
     'GdkWindowImplWayland',
@@ -34,9 +33,8 @@ logger = logging.getLogger('build.py')
 logging.basicConfig(level=logging.DEBUG)
 
 def write_output(output_path, code):
-    f = open(output_path, "w")
-    f.write(code)
-    f.close()
+    with open(output_path, "w") as f:
+        f.write(code)
 
 def build():
     if not path.exists(BUILD_DIR):
@@ -45,10 +43,13 @@ def build():
     repo = Repo(GTK_GIT_URL, REPO_DIR)
     tags = repo.get_tags()
     versions = parse_tag_list(tags)
+    code = Code(REPO_DIR, STRUCTS)
     for v in versions:
         repo.checkout(v.tag)
-    code = '\n'.join([str(v) for v in versions]) + '\n'
-    write_output(OUTPUT_PATH, code)
+        code.update(v)
+    output = code.emit()
+    for header in output:
+        write_output(header.path, header.code)
 
 if __name__ == '__main__':
     build()
