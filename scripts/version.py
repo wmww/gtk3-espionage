@@ -15,8 +15,7 @@ import functools
 import re
 
 MIN_SUPPORTED_GTK = '3.22.0' # same format as the tag names
-MAX_SUPPORTED_GTK = '3.24.18' # 3.24.19 changes GdkWindow to GdkSurface -- what?
-#MAX_SUPPORTED_GTK = '3.70.0' # they randomly jumped to 3.89.1 in preperation for 4. ignore that
+MAX_SUPPORTED_GTK = '3.70.0' # they randomly jumped to 3.89.1 in preperation for 4. ignore that
 
 logger = logging.getLogger(__name__)
 
@@ -42,7 +41,10 @@ class Version:
 
     def is_supported(self):
         '''Returns if the version is one we support'''
-        return self >= min_supported_version and self <= max_supported_version
+        return (
+            self >= min_supported_version and
+            self <= max_supported_version and
+            self != bad_release_3_24_19)
 
     def __str__(self):
         return 'v' + self.tag
@@ -53,6 +55,7 @@ class Version:
 
 min_supported_version = Version(MIN_SUPPORTED_GTK)
 max_supported_version = Version(MAX_SUPPORTED_GTK)
+bad_release_3_24_19 = Version('3.24.19') # this is not a good release
 
 def parse_tag_list(tags):
     result = []
