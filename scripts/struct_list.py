@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 '''
 MIT License
 
@@ -12,40 +10,12 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 '''
 
-import logging
-from os import path
-import sys
-
-from version import parse_tag_list
-from repo import Repo
-from code import Code
-from struct_list import STRUCT_LIST
-
-GTK_GIT_URL = 'https://gitlab.gnome.org/GNOME/gtk.git'
-BUILD_DIR = 'build'
-REPO_DIR = path.join(BUILD_DIR, 'gtk')
-
-logger = logging.getLogger('build.py')
-logging.basicConfig(level=logging.DEBUG)
-
-def write_output(output_path, code):
-    with open(output_path, "w") as f:
-        f.write(code)
-
-def build():
-    if not path.exists(BUILD_DIR):
-        logger.info('Creating directory ' + BUILD_DIR)
-        os.makedirs(BUILD_DIR)
-    repo = Repo(GTK_GIT_URL, REPO_DIR)
-    tags = repo.get_tags()
-    versions = parse_tag_list(tags)
-    code = Code(REPO_DIR, STRUCT_LIST)
-    for v in versions:
-        repo.checkout(v.tag)
-        code.update(v)
-    output = code.emit()
-    for header in output:
-        write_output(header.path, header.code)
-
-if __name__ == '__main__':
-    build()
+'''
+The list of GTK structures to build header for
+It is assumed these are the 'typedef' names, and the actual struct names are the same with an underscore prepended
+Adding a name here is all that's needed to start building it's header (searching, naming the header, etc are all done automatically)
+'''
+STRUCT_LIST = [
+    'GdkWindowImplWayland',
+    'GdkWaylandSeat',
+]
