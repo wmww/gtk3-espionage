@@ -45,8 +45,9 @@ class Repo:
 
     def checkout(self, tag):
         '''Checks out a branch or tag'''
-        logger.info('Checking out ' + tag)
+        # logger.info('Checking out ' + tag)
         result = subprocess.run(
             ['git', 'checkout', tag],
-            cwd=self.repo_dir
+            cwd=self.repo_dir,
+            capture_output=True
             ).check_returncode()

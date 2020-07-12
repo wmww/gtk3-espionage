@@ -37,7 +37,9 @@ def build():
     tags = repo.get_tags()
     versions = parse_tag_list(tags)
     code = Code(REPO_DIR, STRUCT_LIST)
-    for v in versions:
+    for i, v in enumerate(versions):
+        percent = int(((i + 1) / len(versions)) * 1000) / 10
+        logger.info('Checking out ' + str(v) + ' [' + str(percent) + '%]')
         repo.checkout(v.tag)
         code.update(v)
     code.write(OUTPUT_DIR)

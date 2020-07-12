@@ -134,7 +134,7 @@ class Struct:
             # logger.info(self.typedef + ' ' + str(new.version) + ' is identical to ' + str(self.versions[-1].version) + ', so not adding')
             pass
         else:
-            logger.info('Adding ' + self.typedef + ' ' + str(new.version))
+            logger.info(self.typedef + ' changed at ' + str(new.version))
             self.versions.append(new)
         self.copyright_lines = self.copyright_lines.union(new.copyright_lines)
 
@@ -192,5 +192,6 @@ class Code:
     def write(self, output_dir):
         for struct in self.structs:
             output_path = path.join(output_dir, struct.header_name())
+            logger.info('Writing ' + str(len(struct.versions)) + ' versions of ' + struct.typedef + ' to ' + output_path)
             with open(output_path, "w") as f:
                 f.write(struct.emit_header())
