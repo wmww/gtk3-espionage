@@ -23,14 +23,11 @@ from struct_list import STRUCT_LIST
 
 GTK_GIT_URL = 'https://gitlab.gnome.org/GNOME/gtk.git'
 BUILD_DIR = 'build'
+OUTPUT_DIR = 'h'
 REPO_DIR = path.join(BUILD_DIR, 'gtk')
 
 logger = logging.getLogger('build.py')
 logging.basicConfig(level=logging.DEBUG)
-
-def write_output(output_path, code):
-    with open(output_path, "w") as f:
-        f.write(code)
 
 def build():
     if not path.exists(BUILD_DIR):
@@ -43,9 +40,7 @@ def build():
     for v in versions:
         repo.checkout(v.tag)
         code.update(v)
-    output = code.emit()
-    for header in output:
-        write_output(header.path, header.code)
+    code.write(OUTPUT_DIR)
 
 if __name__ == '__main__':
     build()
