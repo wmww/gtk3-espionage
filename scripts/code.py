@@ -74,11 +74,15 @@ class StructVersion:
     def __init__(self, code_path, version, struct_name):
         with open(code_path, 'r') as f:
             source_code = f.read()
+        self.code_path = code_path
         self.version = version
         self.struct_name = struct_name
         self.copyright_lines = set(re.findall(r'[Cc]opyright .*(?=\n)', source_code))
         self.body = extract_body(source_code, struct_name)
         self.ast = parse.parse_ast(self.body)
+
+    def get_code_path(self):
+        return self.code_path
 
     def emit_definition(self):
         return 'struct ' + str(self) + '\n{' + self.body + '}\n'
@@ -110,6 +114,12 @@ class Struct:
         self.copyright_lines = set()
         self.search_regex = re.compile(bytes(struct_regex_string(self.struct_name), 'utf-8'))
 
+    def get_code_path(self):
+        if self.versions:
+            return self.versions[-1].get_code_path()
+        else:
+            return None
+
     def header_name(self):
         result = ''
         for l in self.typedef:
@@ -121,7 +131,8 @@ class Struct:
 
     def add_version(self, new):
         if self.versions and self.versions[-1] == new:
-            logger.info(self.typedef + ' ' + str(new.version) + ' is identical to ' + str(self.versions[-1].version) + ', so not adding')
+            # logger.info(self.typedef + ' ' + str(new.version) + ' is identical to ' + str(self.versions[-1].version) + ', so not adding')
+            pass
         else:
             logger.info('Adding ' + self.typedef + ' ' + str(new.version))
             self.versions.append(new)
@@ -145,33 +156,37 @@ class Struct:
             result += '\n'
         return result
 
+def file_contains_byte_regex(source_file, regex):
+    try:
+        with open(source_file) as f:
+            with mmap.mmap(f.fileno(), 0, access=mmap.ACCESS_READ) as s:
+                return bool(regex.search(s))
+    except (ValueError, FileNotFoundError):
+        return False
+
 class Code:
     def __init__(self, repo_dir, struct_names):
         self.repo_dir = repo_dir
         self.structs = [Struct(name) for name in struct_names]
 
     def update(self, version):
-        hits = {}
-        source_files = get_all_source_files(self.repo_dir)
-        for i in source_files:
-            with open(i) as f:
-                try:
-                    with mmap.mmap(f.fileno(), 0, access=mmap.ACCESS_READ) as s:
-                        for struct in self.structs:
-                            if struct.search_regex.search(s):
-                                logger.info('Found ' + struct.typedef + ' in ' + i)
-                                files = hits.get(struct.typedef, set([]))
-                                files.add(i)
-                                hits[struct.typedef] = files
-                except ValueError:
-                    pass
+        source_files = None
         for struct in self.structs:
-            files = hits.get(struct.typedef)
-            if not files:
-                raise RuntimeError('Could not find ' + struct.typedef + ' in ' + str(version))
-            if len(files) > 1:
-                raise RuntimeError(struct.typedef + ' implemented multiple places: ' + str(files))
-            struct_version = StructVersion(list(files)[0], version, struct.struct_name)
+            code_path = struct.get_code_path()
+            search_regex = struct.search_regex
+            if not code_path or not file_contains_byte_regex(code_path, search_regex):
+                if source_files is None:
+                    source_files = get_all_source_files(self.repo_dir)
+                files = set([])
+                for source_file in source_files:
+                    if file_contains_byte_regex(source_file, search_regex):
+                        files.add(source_file)
+                if not files:
+                    raise RuntimeError('Could not find ' + struct.typedef + ' in ' + str(version))
+                if len(files) > 1:
+                    raise RuntimeError(struct.typedef + ' implemented multiple places: ' + str(files))
+                code_path = list(files)[0]
+            struct_version = StructVersion(code_path, version, struct.struct_name)
             struct.add_version(struct_version)
 
     def write(self, output_dir):
