@@ -49,6 +49,13 @@ def get_all_source_files(search_dir):
             result.append(p)
     return result
 
+def remove_headers_from_dir(header_dir):
+    logger.info('Clearing header files out of ' + header_dir)
+    for item in os.listdir(header_dir):
+        p = path.join(header_dir, item)
+        if p.rsplit('.', 1)[-1] == 'h':
+            os.remove(p)
+
 def struct_regex_string(struct_name):
     return r'struct\s+' + struct_name + r'\s*\{'
 
@@ -190,6 +197,7 @@ class Code:
             struct.add_version(struct_version)
 
     def write(self, output_dir):
+        remove_headers_from_dir(output_dir)
         for struct in self.structs:
             output_path = path.join(output_dir, struct.header_name())
             logger.info('Writing ' + str(len(struct.versions)) + ' versions of ' + struct.typedef + ' to ' + output_path)
