@@ -20,6 +20,7 @@
 
 typedef struct _GdkWindowImplClass GdkWindowImplClass
 
+// Valid for GTK v3.22.0 - v3.24.21
 struct _GdkWindowImplClass_v3_22_0
 {
   GObjectClass parent_class;

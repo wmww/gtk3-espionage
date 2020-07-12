@@ -20,6 +20,7 @@
 
 typedef struct _GdkWindowImplWaylandClass GdkWindowImplWaylandClass
 
+// Valid for GTK v3.22.0 - v3.24.21
 struct _GdkWindowImplWaylandClass_v3_22_0
 {
   GdkWindowImplClass parent_class;

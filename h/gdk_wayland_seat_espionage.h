@@ -20,6 +20,7 @@
 
 typedef struct _GdkWaylandSeat GdkWaylandSeat
 
+// Valid for GTK v3.22.0 - v3.22.8
 struct _GdkWaylandSeat_v3_22_0
 {
   GdkSeat parent_instance;
@@ -88,6 +89,7 @@ struct _GdkWaylandSeat_v3_22_0
   GdkCursor *grab_cursor;
 }
 
+// Valid for GTK v3.22.9 - v3.22.15
 struct _GdkWaylandSeat_v3_22_9
 {
   GdkSeat parent_instance;
@@ -157,6 +159,7 @@ struct _GdkWaylandSeat_v3_22_9
   GdkCursor *grab_cursor;
 }
 
+// Valid for GTK v3.22.16 - v3.24.21
 struct _GdkWaylandSeat_v3_22_16
 {
   GdkSeat parent_instance;

@@ -82,7 +82,8 @@ class StructVersion:
         with open(code_path, 'r') as f:
             source_code = f.read()
         self.code_path = code_path
-        self.version = version
+        self.first_version = version
+        self.last_version = version
         self.struct_name = struct_name
         self.copyright_lines = set(re.findall(r'[Cc]opyright .*(?=\n)', source_code))
         self.body = extract_body(source_code, struct_name)
@@ -91,18 +92,30 @@ class StructVersion:
     def get_code_path(self):
         return self.code_path
 
+    def version_range_str(self):
+        if self.first_version == self.last_version:
+            return str(self.first_version)
+        else:
+            return str(self.first_version) + ' - ' + str(self.last_version)
+
     def emit_definition(self):
-        return 'struct ' + str(self) + '\n{' + self.body + '}\n'
+        result = ''
+        result += '// Valid for GTK ' + self.version_range_str() + '\n'
+        result += 'struct ' + str(self) + '\n{'
+        result += self.body
+        result += '}\n'
+        return result
 
     def generate_definition(self):
-        return (
-            'struct ' + str(self) +
-            '\n{\n' +
-            parse.INDENT + ('\n' + parse.INDENT).join(str(self.ast).splitlines()) +
-            '\n}\n')
+        result = ''
+        result += '// Valid for GTK ' + self.version_range_str() + '\n'
+        result += 'struct ' + str(self) + '\n{\n'
+        result += parse.INDENT + ('\n' + parse.INDENT).join(str(self.ast).splitlines())
+        result += '\n}\n'
+        return result
 
     def __str__(self):
-        return self.struct_name + '_' + self.version.c_id()
+        return self.struct_name + '_' + self.first_version.c_id()
 
     def __eq__(self, other):
         assert isinstance(other, StructVersion)
@@ -138,10 +151,11 @@ class Struct:
 
     def add_version(self, new):
         if self.versions and self.versions[-1] == new:
+            self.versions[-1].last_version = new.last_version
             # logger.info(self.typedef + ' ' + str(new.version) + ' is identical to ' + str(self.versions[-1].version) + ', so not adding')
             pass
         else:
-            logger.info(self.typedef + ' changed at ' + str(new.version))
+            logger.info(self.typedef + ' changed at ' + str(new.first_version))
             self.versions.append(new)
         self.copyright_lines = self.copyright_lines.union(new.copyright_lines)
 
@@ -159,7 +173,7 @@ class Struct:
         result += 'typedef struct ' + self.struct_name + ' ' + self.typedef + '\n'
         result += '\n'
         for i in self.versions:
-            result += i.generate_definition()
+            result += i.emit_definition()
             result += '\n'
         return result
 
