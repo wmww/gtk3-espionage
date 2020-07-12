@@ -106,7 +106,7 @@ class StructVersion:
 
     def __eq__(self, other):
         assert isinstance(other, StructVersion)
-        return self.body == other.body
+        return self.ast == other.ast
 
 class Header:
     def __init__(self, path, code):

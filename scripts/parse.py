@@ -46,6 +46,9 @@ class CType:
     def str_right(self):
         return ''
 
+    def __eq__(self, other):
+        return str(self) == str(other)
+
 class StdType(CType):
     def __init__(self, name):
         assert isinstance(name, str)
@@ -129,7 +132,8 @@ class ArrayType(CType):
         return '[' + self.size + ']' + self.inner.str_right()
 
 class AstNode:
-    pass
+    def __eq__(self, other):
+        return str(self) == str(other)
 
 class PropertyNode(AstNode):
     def __init__(self, c_type, name, bit_field = None):
