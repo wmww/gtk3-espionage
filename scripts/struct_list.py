@@ -17,5 +17,8 @@ Adding a name here is all that's needed to start building it's header (searching
 '''
 STRUCT_LIST = [
     'GdkWindowImplWayland',
+    'GdkWindowImplWaylandClass',
+    'GdkWindowImpl',
+    'GdkWindowImplClass',
     'GdkWaylandSeat',
 ]
