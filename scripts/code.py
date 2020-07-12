@@ -74,8 +74,15 @@ class StructVersion:
                 break
         self.content = content
 
-    def name(self):
+    def emit_definition(self):
+        return 'struct ' + str(self) + '\n' + self.content + '\n'
+
+    def __str__(self):
         return self.struct_name + '_' + self.version.c_id()
+
+    def __eq__(self, other):
+        assert isinstance(other, StructVersion)
+        return self.content == other.content
 
 class Header:
     def __init__(self, path, code):
@@ -87,8 +94,7 @@ class Struct:
         self.typedef = typedef
         self.struct_name = '_' + typedef
         self.versions = []
-        me = path.relpath(__file__, path.dirname(path.dirname(path.dirname(__file__))))
-        self.copyright_lines = set(['Copyright © ' + str(datetime.now().year) + ' ' + me])
+        self.copyright_lines = set()
         self.search_regex = re.compile(bytes(struct_regex_string(self.struct_name), 'utf-8'))
 
     def header_name(self):
@@ -101,28 +107,28 @@ class Struct:
         return result
 
     def add_version(self, new):
-        if self.versions and self.versions[-1].content == new.content:
+        if self.versions and self.versions[-1] == new:
             logger.info(self.typedef + ' ' + str(new.version) + ' is identical to ' + str(self.versions[-1].version) + ', so not adding')
         else:
             logger.info('Adding ' + self.typedef + ' ' + str(new.version))
             self.versions.append(new)
-        for line in new.copyright_lines:
-            self.copyright_lines.add(line)
+        self.copyright_lines = self.copyright_lines.union(new.copyright_lines)
 
     def emit_header(self):
         result = ''
-        result += '/*\n'
-        result += 'This file is part of gtk3-espionage\n'
-        result += '\n'
-        for line in self.copyright_lines:
-            result += line + '\n'
-        result += LGPL3_HEADER
-        result += '*/\n'
+        result += '/* This file is part of gtk3-espionage\n'
+        result += ' *\n'
+        me = path.relpath(__file__, path.dirname(path.dirname(path.dirname(__file__))))
+        my_copyright_line = 'Copyright © ' + str(datetime.now().year) + ' ' + me
+        for line in list(self.copyright_lines) + [my_copyright_line]:
+            result += ' * ' + line + '\n'
+        result += ' * ' + '\n * '.join(LGPL3_HEADER.splitlines())
+        result += '\n */\n'
         result += '\n'
         result += 'typedef struct ' + self.struct_name + ' ' + self.typedef + '\n'
         result += '\n'
         for i in self.versions:
-            result += 'struct ' + i.name() + '\n' + i.content + '\n'
+            result += i.emit_definition()
             result += '\n'
         return result
 
