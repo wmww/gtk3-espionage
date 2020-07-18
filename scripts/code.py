@@ -18,6 +18,7 @@ import re
 import mmap
 
 import parse
+from config import FORMAT_EMITTED_CODE
 
 logger = logging.getLogger(__name__)
 
@@ -98,20 +99,18 @@ class StructVersion:
         else:
             return str(self.first_version) + ' - ' + str(self.last_version)
 
-    def emit_definition(self):
+    def emit_definition(self, generated):
         result = ''
         result += '// Valid for GTK ' + self.version_range_str() + '\n'
         result += 'struct ' + str(self) + '\n{'
-        result += self.body
+        if generated:
+            result += (
+                '\n' + parse.INDENT +
+                ('\n' + parse.INDENT).join(str(self.ast).splitlines()) +
+                '\n')
+        else:
+            result += self.body
         result += '}\n'
-        return result
-
-    def generate_definition(self):
-        result = ''
-        result += '// Valid for GTK ' + self.version_range_str() + '\n'
-        result += 'struct ' + str(self) + '\n{\n'
-        result += parse.INDENT + ('\n' + parse.INDENT).join(str(self.ast).splitlines())
-        result += '\n}\n'
         return result
 
     def __str__(self):
@@ -159,7 +158,7 @@ class Struct:
             self.versions.append(new)
         self.copyright_lines = self.copyright_lines.union(new.copyright_lines)
 
-    def emit_header(self):
+    def emit_header(self, generated):
         result = ''
         result += '/* This file is part of gtk3-espionage\n'
         result += ' *\n'
@@ -173,7 +172,7 @@ class Struct:
         result += 'typedef struct ' + self.struct_name + ' ' + self.typedef + '\n'
         result += '\n'
         for i in self.versions:
-            result += i.emit_definition()
+            result += i.emit_definition(generated)
             result += '\n'
         return result
 
@@ -216,4 +215,4 @@ class Code:
             output_path = path.join(output_dir, struct.header_name())
             logger.info('Writing ' + str(len(struct.versions)) + ' versions of ' + struct.typedef + ' to ' + output_path)
             with open(output_path, "w") as f:
-                f.write(struct.emit_header())
+                f.write(struct.emit_header(FORMAT_EMITTED_CODE))
