@@ -22,3 +22,6 @@ STRUCT_LIST = [
     'GdkWindowImplClass',
     'GdkWaylandSeat',
 ]
+
+MIN_SUPPORTED_GTK = '3.22.0' # same format as the tag names
+MAX_SUPPORTED_GTK = '3.70.0' # they randomly jumped to 3.89.1 for beta 4.0 releases

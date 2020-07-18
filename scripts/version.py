@@ -14,8 +14,7 @@ import logging
 import functools
 import re
 
-MIN_SUPPORTED_GTK = '3.22.0' # same format as the tag names
-MAX_SUPPORTED_GTK = '3.70.0' # they randomly jumped to 3.89.1 in preperation for 4. ignore that
+from config import MIN_SUPPORTED_GTK, MAX_SUPPORTED_GTK
 
 logger = logging.getLogger(__name__)
 
