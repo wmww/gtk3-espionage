@@ -224,10 +224,15 @@ def parse_property(code):
     normal = re.search(r'^((\w+\s*[^\w\,])+(\*\s*)*)([\w\s\,]*)$', code)
     if normal:
         c_type = parse_type(normal.group(1))
-        name = normal.group(4)
-        if name == '':
-            name = None
-        return PropertyNode(c_type, name, bit_field)
+        names = normal.group(4).split(',')
+        names = [name.strip() for name in names if name.strip()]
+        if len(names) > 1:
+            nodes = [PropertyNode(c_type, name, None) for name in names]
+            return ListNode(nodes)
+        elif len(names) == 1:
+            return PropertyNode(c_type, names[0], bit_field)
+        else:
+            return PropertyNode(c_type, None, bit_field)
     assert False, 'Could not parse property `' + code + '`'
 
 def parse_token_list(tokens, i):
