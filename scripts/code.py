@@ -110,7 +110,7 @@ class StructVersion:
                 '\n')
         else:
             result += self.body
-        result += '}\n'
+        result += '};\n'
         return result
 
     def __str__(self):
@@ -169,7 +169,7 @@ class Struct:
         result += '\n * '.join(LGPL3_HEADER.splitlines())
         result += '\n */\n'
         result += '\n'
-        result += 'typedef struct ' + self.struct_name + ' ' + self.typedef + '\n'
+        result += 'typedef struct ' + self.struct_name + ' ' + self.typedef + ';\n'
         result += '\n'
         for i in self.versions:
             result += i.emit_definition(generated)
