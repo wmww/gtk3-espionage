@@ -108,7 +108,7 @@ class FpType(CType):
         assert isinstance(return_type, CType)
         assert isinstance(arg_list, list)
         for i in arg_list:
-            assert isinstance(i, PropertyNode)
+            assert isinstance(i, PropertyNode), str(i) + ' is not a property node'
         self.return_type = return_type
         self.arg_list = arg_list
 
@@ -205,6 +205,9 @@ def parse_property(code):
         assert bit_field is None
         ret = parse_type(fp.group(1))
         pointer_count = fp.group(2).count('*') - 1
+        assert pointer_count == 0, (
+            'Function pointers with multiple levels of indirection not supported '
+            '(indirection count: ' + str(pointer_count) + ' for ' + code + ')')
         name = fp.group(3)
         if name == '':
             name = None
@@ -213,7 +216,12 @@ def parse_property(code):
             args.append(parse_property(i))
         c_type = FpType(ret, args)
         return PropertyNode(c_type, name)
-    normal = re.search(r'^((\w+\s*\W)+(\*\s*)*)(\w*)$', code)
+    array = re.search(r'^(.*)\[(.*)\]$', code)
+    if array:
+        prop = parse_property(array.group(1))
+        prop.c_type = ArrayType(prop.c_type, array.group(2).strip())
+        return prop
+    normal = re.search(r'^((\w+\s*[^\w\,])+(\*\s*)*)([\w\s\,]*)$', code)
     if normal:
         c_type = parse_type(normal.group(1))
         name = normal.group(4)
