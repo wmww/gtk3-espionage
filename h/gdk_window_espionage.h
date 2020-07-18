@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-typedef struct _GdkWindow GdkWindow
+typedef struct _GdkWindow GdkWindow;
 
 // Valid for GTK v3.22.0 - v3.22.18
 struct _GdkWindow_v3_22_0
@@ -211,7 +211,7 @@ struct _GdkWindow_v3_22_0
   GdkWindowInvalidateHandlerFunc invalidate_handler;
 
   GdkDrawingContext *drawing_context;
-}
+};
 
 // Valid for GTK v3.22.19 - v3.24.10
 struct _GdkWindow_v3_22_19
@@ -406,7 +406,7 @@ struct _GdkWindow_v3_22_19
   GdkDrawingContext *drawing_context;
 
   cairo_region_t *opaque_region;
-}
+};
 
 // Valid for GTK v3.24.11 - v3.24.21
 struct _GdkWindow_v3_24_11
@@ -602,5 +602,5 @@ struct _GdkWindow_v3_24_11
   GdkDrawingContext *drawing_context;
 
   cairo_region_t *opaque_region;
-}
+};
 

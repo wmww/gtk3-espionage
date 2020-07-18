@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-typedef struct _GdkWindowImplClass GdkWindowImplClass
+typedef struct _GdkWindowImplClass GdkWindowImplClass;
 
 // Valid for GTK v3.22.0 - v3.24.21
 struct _GdkWindowImplClass_v3_22_0
@@ -291,5 +291,5 @@ struct _GdkWindowImplClass_v3_22_0
                                                const cairo_region_t *region);
   void               (* destroy_draw_context) (GdkWindow            *window,
                                                GdkDrawingContext    *context);
-}
+};
 

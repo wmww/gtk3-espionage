@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-typedef struct _GdkWaylandSeat GdkWaylandSeat
+typedef struct _GdkWaylandSeat GdkWaylandSeat;
 
 // Valid for GTK v3.22.0 - v3.22.8
 struct _GdkWaylandSeat_v3_22_0
@@ -87,7 +87,7 @@ struct _GdkWaylandSeat_v3_22_0
   gdouble gesture_scale;
 
   GdkCursor *grab_cursor;
-}
+};
 
 // Valid for GTK v3.22.9 - v3.22.15
 struct _GdkWaylandSeat_v3_22_9
@@ -157,7 +157,7 @@ struct _GdkWaylandSeat_v3_22_9
   gdouble gesture_scale;
 
   GdkCursor *grab_cursor;
-}
+};
 
 // Valid for GTK v3.22.16 - v3.24.21
 struct _GdkWaylandSeat_v3_22_16
@@ -226,5 +226,5 @@ struct _GdkWaylandSeat_v3_22_16
   gdouble gesture_scale;
 
   GdkCursor *grab_cursor;
-}
+};
 
