@@ -16,6 +16,7 @@ It is assumed these are the 'typedef' names, and the actual struct names are the
 Adding a name here is all that's needed to start building it's header (searching, naming the header, etc are all done automatically)
 '''
 STRUCT_LIST = [
+    'GdkWindow',
     'GdkWindowImplWayland',
     'GdkWindowImplWaylandClass',
     'GdkWindowImpl',
