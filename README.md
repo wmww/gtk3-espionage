@@ -24,7 +24,7 @@ Requirements:
 To build, run `./scripts/build.py`
 
 This script will
-- Load the list of structures from [scripts/struct_list.py](scripts/struct_list.py)
+- Load the list of structures from [scripts/config.py](scripts/config.py)
 - Clone the official GTK git repository
 - Detect all supported versions of GTK
 - Check out and extract data from each version

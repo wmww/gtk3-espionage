@@ -19,7 +19,7 @@ import sys
 from version import parse_tag_list
 from repo import Repo
 from code import Code
-from struct_list import STRUCT_LIST
+from config import STRUCT_LIST
 
 GTK_GIT_URL = 'https://gitlab.gnome.org/GNOME/gtk.git'
 BUILD_DIR = 'build'
