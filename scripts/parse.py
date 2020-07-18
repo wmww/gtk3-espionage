@@ -200,13 +200,6 @@ def parse_property(code):
     if len(bit_field_split) > 1:
         code = bit_field_split[0].strip()
         bit_field = int(bit_field_split[1].strip())
-    normal = re.search(r'^((\w+\s*\W)+(\*\s*)*)(\w*)$', code)
-    if normal:
-        c_type = parse_type(normal.group(1))
-        name = normal.group(4)
-        if name == '':
-            name = None
-        return PropertyNode(c_type, name, bit_field)
     fp = re.search(r'^(.*)\(\s*(\*\s*)+(\w*)\s*\)\s*\((.*)\)$', code)
     if fp:
         assert bit_field is None
@@ -220,6 +213,13 @@ def parse_property(code):
             args.append(parse_property(i))
         c_type = FpType(ret, args)
         return PropertyNode(c_type, name)
+    normal = re.search(r'^((\w+\s*\W)+(\*\s*)*)(\w*)$', code)
+    if normal:
+        c_type = parse_type(normal.group(1))
+        name = normal.group(4)
+        if name == '':
+            name = None
+        return PropertyNode(c_type, name, bit_field)
     assert False, 'Could not parse property `' + code + '`'
 
 def parse_token_list(tokens, i):
