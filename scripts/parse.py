@@ -61,17 +61,22 @@ class StdType(CType):
 class CustomType(CType):
     def __init__(self, name):
         assert isinstance(name, str)
-        explicit_struct = False
+        self.explicit_struct = False
         if name.startswith('struct'):
             name = name[6:].strip()
-            explicit_struct = True
+            self.explicit_struct = True
+        self.explicit_enum = False
+        if name.startswith('enum'):
+            name = name[4:].strip()
+            self.explicit_enum = True
         self.name = name
-        self.explicit_struct = explicit_struct
 
     def str_left(self):
         result = ''
         if self.explicit_struct:
             result += 'struct '
+        if self.explicit_enum:
+            result += 'enum '
         result += self.name
         return result
 
@@ -188,7 +193,7 @@ def parse_type(code):
         return ConstType(parse_type(code[:5]))
     elif is_std_type(code):
         return StdType(code)
-    elif re.search(r'^(struct\s+)?\w+$', code):
+    elif re.search(r'^((struct|enum)\s+)?\w+$', code):
         return CustomType(code)
     else:
         assert False, 'Unknown type `' + code + '`'
