@@ -24,27 +24,21 @@ typedef struct _GdkWindowImplWayland GdkWindowImplWayland;
 struct _GdkWindowImplWayland_v3_22_0
 {
   GdkWindowImpl parent_instance;
-
   GdkWindow *wrapper;
-
   struct {
-    /* The wl_outputs that this window currently touches */
-    GSList               *outputs;
-
-    struct wl_surface    *wl_surface;
+    GSList *outputs;
+    struct wl_surface *wl_surface;
     struct zxdg_surface_v6 *xdg_surface;
     struct zxdg_toplevel_v6 *xdg_toplevel;
     struct zxdg_popup_v6 *xdg_popup;
-    struct gtk_surface1  *gtk_surface;
+    struct gtk_surface1 *gtk_surface;
     struct wl_subsurface *wl_subsurface;
     struct wl_egl_window *egl_window;
     struct wl_egl_window *dummy_egl_window;
     struct zxdg_exported_v1 *xdg_exported;
   } display_server;
-
   EGLSurface egl_surface;
   EGLSurface dummy_egl_surface;
-
   unsigned int initial_configure_received : 1;
   unsigned int mapped : 1;
   unsigned int use_custom_surface : 1;
@@ -55,19 +49,14 @@ struct _GdkWindowImplWayland_v3_22_0
   GdkWindow *transient_for;
   GdkWindow *popup_parent;
   PositionMethod position_method;
-
   cairo_surface_t *staging_cairo_surface;
   cairo_surface_t *committed_cairo_surface;
   cairo_surface_t *backfill_cairo_surface;
-
   int pending_buffer_offset_x;
   int pending_buffer_offset_y;
-
   gchar *title;
-
   struct {
     gboolean was_set;
-
     gchar *application_id;
     gchar *app_menu_path;
     gchar *menubar_path;
@@ -75,36 +64,25 @@ struct _GdkWindowImplWayland_v3_22_0
     gchar *application_object_path;
     gchar *unique_bus_name;
   } application;
-
   GdkGeometry geometry_hints;
   GdkWindowHints geometry_mask;
-
   GdkSeat *grab_input_seat;
-
   gint64 pending_frame_counter;
   guint32 scale;
-
   int margin_left;
   int margin_right;
   int margin_top;
   int margin_bottom;
   gboolean margin_dirty;
-
   int initial_fullscreen_monitor;
-
   cairo_region_t *opaque_region;
   gboolean opaque_region_dirty;
-
   cairo_region_t *input_region;
   gboolean input_region_dirty;
-
   cairo_region_t *staged_updates_region;
-
   int saved_width;
   int saved_height;
-
   gulong parent_surface_committed_handler;
-
   struct {
     GdkRectangle rect;
     GdkGravity rect_anchor;
@@ -113,19 +91,16 @@ struct _GdkWindowImplWayland_v3_22_0
     gint rect_anchor_dx;
     gint rect_anchor_dy;
   } pending_move_to_rect;
-
   struct {
     int width;
     int height;
     GdkWindowState state;
   } pending;
-
   struct {
     GdkWaylandWindowExported callback;
     gpointer user_data;
     GDestroyNotify destroy_func;
   } exported;
-
   struct zxdg_imported_v1 *imported_transient_for;
 };
 
@@ -133,27 +108,21 @@ struct _GdkWindowImplWayland_v3_22_0
 struct _GdkWindowImplWayland_v3_22_16
 {
   GdkWindowImpl parent_instance;
-
   GdkWindow *wrapper;
-
   struct {
-    /* The wl_outputs that this window currently touches */
-    GSList               *outputs;
-
-    struct wl_surface    *wl_surface;
+    GSList *outputs;
+    struct wl_surface *wl_surface;
     struct zxdg_surface_v6 *xdg_surface;
     struct zxdg_toplevel_v6 *xdg_toplevel;
     struct zxdg_popup_v6 *xdg_popup;
-    struct gtk_surface1  *gtk_surface;
+    struct gtk_surface1 *gtk_surface;
     struct wl_subsurface *wl_subsurface;
     struct wl_egl_window *egl_window;
     struct wl_egl_window *dummy_egl_window;
     struct zxdg_exported_v1 *xdg_exported;
   } display_server;
-
   EGLSurface egl_surface;
   EGLSurface dummy_egl_surface;
-
   unsigned int initial_configure_received : 1;
   unsigned int mapped : 1;
   unsigned int use_custom_surface : 1;
@@ -164,19 +133,14 @@ struct _GdkWindowImplWayland_v3_22_16
   GdkWindow *transient_for;
   GdkWindow *popup_parent;
   PositionMethod position_method;
-
   cairo_surface_t *staging_cairo_surface;
   cairo_surface_t *committed_cairo_surface;
   cairo_surface_t *backfill_cairo_surface;
-
   int pending_buffer_offset_x;
   int pending_buffer_offset_y;
-
   gchar *title;
-
   struct {
     gboolean was_set;
-
     gchar *application_id;
     gchar *app_menu_path;
     gchar *menubar_path;
@@ -184,36 +148,25 @@ struct _GdkWindowImplWayland_v3_22_16
     gchar *application_object_path;
     gchar *unique_bus_name;
   } application;
-
   GdkGeometry geometry_hints;
   GdkWindowHints geometry_mask;
-
   GdkSeat *grab_input_seat;
-
   gint64 pending_frame_counter;
   guint32 scale;
-
   int margin_left;
   int margin_right;
   int margin_top;
   int margin_bottom;
   gboolean margin_dirty;
-
   int initial_fullscreen_monitor;
-
   cairo_region_t *opaque_region;
   gboolean opaque_region_dirty;
-
   cairo_region_t *input_region;
   gboolean input_region_dirty;
-
   cairo_region_t *staged_updates_region;
-
   int saved_width;
   int saved_height;
-
   gulong parent_surface_committed_handler;
-
   struct {
     GdkRectangle rect;
     GdkGravity rect_anchor;
@@ -222,20 +175,17 @@ struct _GdkWindowImplWayland_v3_22_16
     gint rect_anchor_dx;
     gint rect_anchor_dy;
   } pending_move_to_rect;
-
   struct {
     int width;
     int height;
     GdkWindowState state;
   } pending;
-
   struct {
     char *handle;
     int export_count;
     GList *closures;
     guint idle_source_id;
   } exported;
-
   struct zxdg_imported_v1 *imported_transient_for;
 };
 
@@ -243,27 +193,21 @@ struct _GdkWindowImplWayland_v3_22_16
 struct _GdkWindowImplWayland_v3_22_18
 {
   GdkWindowImpl parent_instance;
-
   GdkWindow *wrapper;
-
   struct {
-    /* The wl_outputs that this window currently touches */
-    GSList               *outputs;
-
-    struct wl_surface    *wl_surface;
+    GSList *outputs;
+    struct wl_surface *wl_surface;
     struct zxdg_surface_v6 *xdg_surface;
     struct zxdg_toplevel_v6 *xdg_toplevel;
     struct zxdg_popup_v6 *xdg_popup;
-    struct gtk_surface1  *gtk_surface;
+    struct gtk_surface1 *gtk_surface;
     struct wl_subsurface *wl_subsurface;
     struct wl_egl_window *egl_window;
     struct wl_egl_window *dummy_egl_window;
     struct zxdg_exported_v1 *xdg_exported;
   } display_server;
-
   EGLSurface egl_surface;
   EGLSurface dummy_egl_surface;
-
   unsigned int initial_configure_received : 1;
   unsigned int mapped : 1;
   unsigned int use_custom_surface : 1;
@@ -274,19 +218,14 @@ struct _GdkWindowImplWayland_v3_22_18
   GdkWindow *transient_for;
   GdkWindow *popup_parent;
   PositionMethod position_method;
-
   cairo_surface_t *staging_cairo_surface;
   cairo_surface_t *committed_cairo_surface;
   cairo_surface_t *backfill_cairo_surface;
-
   int pending_buffer_offset_x;
   int pending_buffer_offset_y;
-
   gchar *title;
-
   struct {
     gboolean was_set;
-
     gchar *application_id;
     gchar *app_menu_path;
     gchar *menubar_path;
@@ -294,36 +233,25 @@ struct _GdkWindowImplWayland_v3_22_18
     gchar *application_object_path;
     gchar *unique_bus_name;
   } application;
-
   GdkGeometry geometry_hints;
   GdkWindowHints geometry_mask;
-
   GdkSeat *grab_input_seat;
-
   gint64 pending_frame_counter;
   guint32 scale;
-
   int margin_left;
   int margin_right;
   int margin_top;
   int margin_bottom;
   gboolean margin_dirty;
-
   int initial_fullscreen_monitor;
-
   cairo_region_t *opaque_region;
   gboolean opaque_region_dirty;
-
   cairo_region_t *input_region;
   gboolean input_region_dirty;
-
   cairo_region_t *staged_updates_region;
-
   int saved_width;
   int saved_height;
-
   gulong parent_surface_committed_handler;
-
   struct {
     GdkRectangle rect;
     GdkGravity rect_anchor;
@@ -332,20 +260,17 @@ struct _GdkWindowImplWayland_v3_22_18
     gint rect_anchor_dx;
     gint rect_anchor_dy;
   } pending_move_to_rect;
-
   struct {
     int width;
     int height;
     GdkWindowState state;
   } pending;
-
   struct {
     char *handle;
     int export_count;
     GList *closures;
     guint idle_source_id;
   } exported;
-
   struct zxdg_imported_v1 *imported_transient_for;
   GHashTable *shortcuts_inhibitors;
 };
@@ -354,28 +279,22 @@ struct _GdkWindowImplWayland_v3_22_18
 struct _GdkWindowImplWayland_v3_22_25
 {
   GdkWindowImpl parent_instance;
-
   GdkWindow *wrapper;
-
   struct {
-    /* The wl_outputs that this window currently touches */
-    GSList               *outputs;
-
-    struct wl_surface    *wl_surface;
+    GSList *outputs;
+    struct wl_surface *wl_surface;
     struct zxdg_surface_v6 *xdg_surface;
     struct zxdg_toplevel_v6 *xdg_toplevel;
     struct zxdg_popup_v6 *xdg_popup;
-    struct gtk_surface1  *gtk_surface;
+    struct gtk_surface1 *gtk_surface;
     struct wl_subsurface *wl_subsurface;
     struct wl_egl_window *egl_window;
     struct wl_egl_window *dummy_egl_window;
     struct zxdg_exported_v1 *xdg_exported;
     struct org_kde_kwin_server_decoration *server_decoration;
   } display_server;
-
   EGLSurface egl_surface;
   EGLSurface dummy_egl_surface;
-
   unsigned int initial_configure_received : 1;
   unsigned int mapped : 1;
   unsigned int use_custom_surface : 1;
@@ -386,19 +305,14 @@ struct _GdkWindowImplWayland_v3_22_25
   GdkWindow *transient_for;
   GdkWindow *popup_parent;
   PositionMethod position_method;
-
   cairo_surface_t *staging_cairo_surface;
   cairo_surface_t *committed_cairo_surface;
   cairo_surface_t *backfill_cairo_surface;
-
   int pending_buffer_offset_x;
   int pending_buffer_offset_y;
-
   gchar *title;
-
   struct {
     gboolean was_set;
-
     gchar *application_id;
     gchar *app_menu_path;
     gchar *menubar_path;
@@ -406,36 +320,25 @@ struct _GdkWindowImplWayland_v3_22_25
     gchar *application_object_path;
     gchar *unique_bus_name;
   } application;
-
   GdkGeometry geometry_hints;
   GdkWindowHints geometry_mask;
-
   GdkSeat *grab_input_seat;
-
   gint64 pending_frame_counter;
   guint32 scale;
-
   int margin_left;
   int margin_right;
   int margin_top;
   int margin_bottom;
   gboolean margin_dirty;
-
   int initial_fullscreen_monitor;
-
   cairo_region_t *opaque_region;
   gboolean opaque_region_dirty;
-
   cairo_region_t *input_region;
   gboolean input_region_dirty;
-
   cairo_region_t *staged_updates_region;
-
   int saved_width;
   int saved_height;
-
   gulong parent_surface_committed_handler;
-
   struct {
     GdkRectangle rect;
     GdkGravity rect_anchor;
@@ -444,20 +347,17 @@ struct _GdkWindowImplWayland_v3_22_25
     gint rect_anchor_dx;
     gint rect_anchor_dy;
   } pending_move_to_rect;
-
   struct {
     int width;
     int height;
     GdkWindowState state;
   } pending;
-
   struct {
     char *handle;
     int export_count;
     GList *closures;
     guint idle_source_id;
   } exported;
-
   struct zxdg_imported_v1 *imported_transient_for;
   GHashTable *shortcuts_inhibitors;
 };
@@ -466,35 +366,25 @@ struct _GdkWindowImplWayland_v3_22_25
 struct _GdkWindowImplWayland_v3_22_30
 {
   GdkWindowImpl parent_instance;
-
   GdkWindow *wrapper;
-
   struct {
-    /* The wl_outputs that this window currently touches */
-    GSList               *outputs;
-
-    struct wl_surface    *wl_surface;
-
+    GSList *outputs;
+    struct wl_surface *wl_surface;
     struct xdg_surface *xdg_surface;
     struct xdg_toplevel *xdg_toplevel;
     struct xdg_popup *xdg_popup;
-
-    /* Legacy xdg-shell unstable v6 fallback support */
     struct zxdg_surface_v6 *zxdg_surface_v6;
     struct zxdg_toplevel_v6 *zxdg_toplevel_v6;
     struct zxdg_popup_v6 *zxdg_popup_v6;
-
-    struct gtk_surface1  *gtk_surface;
+    struct gtk_surface1 *gtk_surface;
     struct wl_subsurface *wl_subsurface;
     struct wl_egl_window *egl_window;
     struct wl_egl_window *dummy_egl_window;
     struct zxdg_exported_v1 *xdg_exported;
     struct org_kde_kwin_server_decoration *server_decoration;
   } display_server;
-
   EGLSurface egl_surface;
   EGLSurface dummy_egl_surface;
-
   unsigned int initial_configure_received : 1;
   unsigned int mapped : 1;
   unsigned int use_custom_surface : 1;
@@ -505,19 +395,14 @@ struct _GdkWindowImplWayland_v3_22_30
   GdkWindow *transient_for;
   GdkWindow *popup_parent;
   PositionMethod position_method;
-
   cairo_surface_t *staging_cairo_surface;
   cairo_surface_t *committed_cairo_surface;
   cairo_surface_t *backfill_cairo_surface;
-
   int pending_buffer_offset_x;
   int pending_buffer_offset_y;
-
   gchar *title;
-
   struct {
     gboolean was_set;
-
     gchar *application_id;
     gchar *app_menu_path;
     gchar *menubar_path;
@@ -525,36 +410,25 @@ struct _GdkWindowImplWayland_v3_22_30
     gchar *application_object_path;
     gchar *unique_bus_name;
   } application;
-
   GdkGeometry geometry_hints;
   GdkWindowHints geometry_mask;
-
   GdkSeat *grab_input_seat;
-
   gint64 pending_frame_counter;
   guint32 scale;
-
   int margin_left;
   int margin_right;
   int margin_top;
   int margin_bottom;
   gboolean margin_dirty;
-
   int initial_fullscreen_monitor;
-
   cairo_region_t *opaque_region;
   gboolean opaque_region_dirty;
-
   cairo_region_t *input_region;
   gboolean input_region_dirty;
-
   cairo_region_t *staged_updates_region;
-
   int saved_width;
   int saved_height;
-
   gulong parent_surface_committed_handler;
-
   struct {
     GdkRectangle rect;
     GdkGravity rect_anchor;
@@ -563,20 +437,17 @@ struct _GdkWindowImplWayland_v3_22_30
     gint rect_anchor_dx;
     gint rect_anchor_dy;
   } pending_move_to_rect;
-
   struct {
     int width;
     int height;
     GdkWindowState state;
   } pending;
-
   struct {
     char *handle;
     int export_count;
     GList *closures;
     guint idle_source_id;
   } exported;
-
   struct zxdg_imported_v1 *imported_transient_for;
   GHashTable *shortcuts_inhibitors;
 };
@@ -585,35 +456,25 @@ struct _GdkWindowImplWayland_v3_22_30
 struct _GdkWindowImplWayland_v3_23_1
 {
   GdkWindowImpl parent_instance;
-
   GdkWindow *wrapper;
-
   struct {
-    /* The wl_outputs that this window currently touches */
-    GSList               *outputs;
-
-    struct wl_surface    *wl_surface;
-
+    GSList *outputs;
+    struct wl_surface *wl_surface;
     struct xdg_surface *xdg_surface;
     struct xdg_toplevel *xdg_toplevel;
     struct xdg_popup *xdg_popup;
-
-    /* Legacy xdg-shell unstable v6 fallback support */
     struct zxdg_surface_v6 *zxdg_surface_v6;
     struct zxdg_toplevel_v6 *zxdg_toplevel_v6;
     struct zxdg_popup_v6 *zxdg_popup_v6;
-
-    struct gtk_surface1  *gtk_surface;
+    struct gtk_surface1 *gtk_surface;
     struct wl_subsurface *wl_subsurface;
     struct wl_egl_window *egl_window;
     struct wl_egl_window *dummy_egl_window;
     struct zxdg_exported_v1 *xdg_exported;
     struct org_kde_kwin_server_decoration *server_decoration;
   } display_server;
-
   EGLSurface egl_surface;
   EGLSurface dummy_egl_surface;
-
   unsigned int initial_configure_received : 1;
   unsigned int mapped : 1;
   unsigned int use_custom_surface : 1;
@@ -625,19 +486,14 @@ struct _GdkWindowImplWayland_v3_23_1
   GdkWindow *transient_for;
   GdkWindow *popup_parent;
   PositionMethod position_method;
-
   cairo_surface_t *staging_cairo_surface;
   cairo_surface_t *committed_cairo_surface;
   cairo_surface_t *backfill_cairo_surface;
-
   int pending_buffer_offset_x;
   int pending_buffer_offset_y;
-
   gchar *title;
-
   struct {
     gboolean was_set;
-
     gchar *application_id;
     gchar *app_menu_path;
     gchar *menubar_path;
@@ -645,36 +501,25 @@ struct _GdkWindowImplWayland_v3_23_1
     gchar *application_object_path;
     gchar *unique_bus_name;
   } application;
-
   GdkGeometry geometry_hints;
   GdkWindowHints geometry_mask;
-
   GdkSeat *grab_input_seat;
-
   gint64 pending_frame_counter;
   guint32 scale;
-
   int margin_left;
   int margin_right;
   int margin_top;
   int margin_bottom;
   gboolean margin_dirty;
-
   int initial_fullscreen_monitor;
-
   cairo_region_t *opaque_region;
   gboolean opaque_region_dirty;
-
   cairo_region_t *input_region;
   gboolean input_region_dirty;
-
   cairo_region_t *staged_updates_region;
-
   int saved_width;
   int saved_height;
-
   gulong parent_surface_committed_handler;
-
   struct {
     GdkRectangle rect;
     GdkGravity rect_anchor;
@@ -683,20 +528,17 @@ struct _GdkWindowImplWayland_v3_23_1
     gint rect_anchor_dx;
     gint rect_anchor_dy;
   } pending_move_to_rect;
-
   struct {
     int width;
     int height;
     GdkWindowState state;
   } pending;
-
   struct {
     char *handle;
     int export_count;
     GList *closures;
     guint idle_source_id;
   } exported;
-
   struct zxdg_imported_v1 *imported_transient_for;
   GHashTable *shortcuts_inhibitors;
 };
@@ -705,35 +547,25 @@ struct _GdkWindowImplWayland_v3_23_1
 struct _GdkWindowImplWayland_v3_23_3
 {
   GdkWindowImpl parent_instance;
-
   GdkWindow *wrapper;
-
   struct {
-    /* The wl_outputs that this window currently touches */
-    GSList               *outputs;
-
-    struct wl_surface    *wl_surface;
-
+    GSList *outputs;
+    struct wl_surface *wl_surface;
     struct xdg_surface *xdg_surface;
     struct xdg_toplevel *xdg_toplevel;
     struct xdg_popup *xdg_popup;
-
-    /* Legacy xdg-shell unstable v6 fallback support */
     struct zxdg_surface_v6 *zxdg_surface_v6;
     struct zxdg_toplevel_v6 *zxdg_toplevel_v6;
     struct zxdg_popup_v6 *zxdg_popup_v6;
-
-    struct gtk_surface1  *gtk_surface;
+    struct gtk_surface1 *gtk_surface;
     struct wl_subsurface *wl_subsurface;
     struct wl_egl_window *egl_window;
     struct wl_egl_window *dummy_egl_window;
     struct zxdg_exported_v1 *xdg_exported;
     struct org_kde_kwin_server_decoration *server_decoration;
   } display_server;
-
   EGLSurface egl_surface;
   EGLSurface dummy_egl_surface;
-
   unsigned int initial_configure_received : 1;
   unsigned int mapped : 1;
   unsigned int use_custom_surface : 1;
@@ -745,22 +577,16 @@ struct _GdkWindowImplWayland_v3_23_3
   GdkWindow *transient_for;
   GdkWindow *popup_parent;
   PositionMethod position_method;
-
   cairo_surface_t *staging_cairo_surface;
   cairo_surface_t *committed_cairo_surface;
   cairo_surface_t *backfill_cairo_surface;
-
   int pending_buffer_offset_x;
   int pending_buffer_offset_y;
-
   int subsurface_x;
   int subsurface_y;
-
   gchar *title;
-
   struct {
     gboolean was_set;
-
     gchar *application_id;
     gchar *app_menu_path;
     gchar *menubar_path;
@@ -768,36 +594,25 @@ struct _GdkWindowImplWayland_v3_23_3
     gchar *application_object_path;
     gchar *unique_bus_name;
   } application;
-
   GdkGeometry geometry_hints;
   GdkWindowHints geometry_mask;
-
   GdkSeat *grab_input_seat;
-
   gint64 pending_frame_counter;
   guint32 scale;
-
   int margin_left;
   int margin_right;
   int margin_top;
   int margin_bottom;
   gboolean margin_dirty;
-
   int initial_fullscreen_monitor;
-
   cairo_region_t *opaque_region;
   gboolean opaque_region_dirty;
-
   cairo_region_t *input_region;
   gboolean input_region_dirty;
-
   cairo_region_t *staged_updates_region;
-
   int saved_width;
   int saved_height;
-
   gulong parent_surface_committed_handler;
-
   struct {
     GdkRectangle rect;
     GdkGravity rect_anchor;
@@ -806,20 +621,17 @@ struct _GdkWindowImplWayland_v3_23_3
     gint rect_anchor_dx;
     gint rect_anchor_dy;
   } pending_move_to_rect;
-
   struct {
     int width;
     int height;
     GdkWindowState state;
   } pending;
-
   struct {
     char *handle;
     int export_count;
     GList *closures;
     guint idle_source_id;
   } exported;
-
   struct zxdg_imported_v1 *imported_transient_for;
   GHashTable *shortcuts_inhibitors;
 };
@@ -828,35 +640,25 @@ struct _GdkWindowImplWayland_v3_23_3
 struct _GdkWindowImplWayland_v3_24_4
 {
   GdkWindowImpl parent_instance;
-
   GdkWindow *wrapper;
-
   struct {
-    /* The wl_outputs that this window currently touches */
-    GSList               *outputs;
-
-    struct wl_surface    *wl_surface;
-
+    GSList *outputs;
+    struct wl_surface *wl_surface;
     struct xdg_surface *xdg_surface;
     struct xdg_toplevel *xdg_toplevel;
     struct xdg_popup *xdg_popup;
-
-    /* Legacy xdg-shell unstable v6 fallback support */
     struct zxdg_surface_v6 *zxdg_surface_v6;
     struct zxdg_toplevel_v6 *zxdg_toplevel_v6;
     struct zxdg_popup_v6 *zxdg_popup_v6;
-
-    struct gtk_surface1  *gtk_surface;
+    struct gtk_surface1 *gtk_surface;
     struct wl_subsurface *wl_subsurface;
     struct wl_egl_window *egl_window;
     struct wl_egl_window *dummy_egl_window;
     struct zxdg_exported_v1 *xdg_exported;
     struct org_kde_kwin_server_decoration *server_decoration;
   } display_server;
-
   EGLSurface egl_surface;
   EGLSurface dummy_egl_surface;
-
   unsigned int initial_configure_received : 1;
   unsigned int configuring_popup : 1;
   unsigned int mapped : 1;
@@ -869,22 +671,16 @@ struct _GdkWindowImplWayland_v3_24_4
   GdkWindow *transient_for;
   GdkWindow *popup_parent;
   PositionMethod position_method;
-
   cairo_surface_t *staging_cairo_surface;
   cairo_surface_t *committed_cairo_surface;
   cairo_surface_t *backfill_cairo_surface;
-
   int pending_buffer_offset_x;
   int pending_buffer_offset_y;
-
   int subsurface_x;
   int subsurface_y;
-
   gchar *title;
-
   struct {
     gboolean was_set;
-
     gchar *application_id;
     gchar *app_menu_path;
     gchar *menubar_path;
@@ -892,36 +688,25 @@ struct _GdkWindowImplWayland_v3_24_4
     gchar *application_object_path;
     gchar *unique_bus_name;
   } application;
-
   GdkGeometry geometry_hints;
   GdkWindowHints geometry_mask;
-
   GdkSeat *grab_input_seat;
-
   gint64 pending_frame_counter;
   guint32 scale;
-
   int margin_left;
   int margin_right;
   int margin_top;
   int margin_bottom;
   gboolean margin_dirty;
-
   int initial_fullscreen_monitor;
-
   cairo_region_t *opaque_region;
   gboolean opaque_region_dirty;
-
   cairo_region_t *input_region;
   gboolean input_region_dirty;
-
   cairo_region_t *staged_updates_region;
-
   int saved_width;
   int saved_height;
-
   gulong parent_surface_committed_handler;
-
   struct {
     GdkRectangle rect;
     GdkGravity rect_anchor;
@@ -930,20 +715,17 @@ struct _GdkWindowImplWayland_v3_24_4
     gint rect_anchor_dx;
     gint rect_anchor_dy;
   } pending_move_to_rect;
-
   struct {
     int width;
     int height;
     GdkWindowState state;
   } pending;
-
   struct {
     char *handle;
     int export_count;
     GList *closures;
     guint idle_source_id;
   } exported;
-
   struct zxdg_imported_v1 *imported_transient_for;
   GHashTable *shortcuts_inhibitors;
 };
@@ -952,35 +734,25 @@ struct _GdkWindowImplWayland_v3_24_4
 struct _GdkWindowImplWayland_v3_24_17
 {
   GdkWindowImpl parent_instance;
-
   GdkWindow *wrapper;
-
   struct {
-    /* The wl_outputs that this window currently touches */
-    GSList               *outputs;
-
-    struct wl_surface    *wl_surface;
-
+    GSList *outputs;
+    struct wl_surface *wl_surface;
     struct xdg_surface *xdg_surface;
     struct xdg_toplevel *xdg_toplevel;
     struct xdg_popup *xdg_popup;
-
-    /* Legacy xdg-shell unstable v6 fallback support */
     struct zxdg_surface_v6 *zxdg_surface_v6;
     struct zxdg_toplevel_v6 *zxdg_toplevel_v6;
     struct zxdg_popup_v6 *zxdg_popup_v6;
-
-    struct gtk_surface1  *gtk_surface;
+    struct gtk_surface1 *gtk_surface;
     struct wl_subsurface *wl_subsurface;
     struct wl_egl_window *egl_window;
     struct wl_egl_window *dummy_egl_window;
     struct zxdg_exported_v1 *xdg_exported;
     struct org_kde_kwin_server_decoration *server_decoration;
   } display_server;
-
   EGLSurface egl_surface;
   EGLSurface dummy_egl_surface;
-
   unsigned int initial_configure_received : 1;
   unsigned int configuring_popup : 1;
   unsigned int mapped : 1;
@@ -993,22 +765,16 @@ struct _GdkWindowImplWayland_v3_24_17
   GdkWindow *transient_for;
   GdkWindow *popup_parent;
   PositionMethod position_method;
-
   cairo_surface_t *staging_cairo_surface;
   cairo_surface_t *committed_cairo_surface;
   cairo_surface_t *backfill_cairo_surface;
-
   int pending_buffer_offset_x;
   int pending_buffer_offset_y;
-
   int subsurface_x;
   int subsurface_y;
-
   gchar *title;
-
   struct {
     gboolean was_set;
-
     gchar *application_id;
     gchar *app_menu_path;
     gchar *menubar_path;
@@ -1016,42 +782,29 @@ struct _GdkWindowImplWayland_v3_24_17
     gchar *application_object_path;
     gchar *unique_bus_name;
   } application;
-
   GdkGeometry geometry_hints;
   GdkWindowHints geometry_mask;
-
   GdkSeat *grab_input_seat;
-
   gint64 pending_frame_counter;
   guint32 scale;
-
   int margin_left;
   int margin_right;
   int margin_top;
   int margin_bottom;
   gboolean margin_dirty;
-
   int initial_fullscreen_monitor;
-
   cairo_region_t *opaque_region;
   gboolean opaque_region_dirty;
-
   cairo_region_t *input_region;
   gboolean input_region_dirty;
-
   cairo_region_t *staged_updates_region;
-
   int saved_width;
   int saved_height;
-
   int unconfigured_width;
   int unconfigured_height;
-
   int fixed_size_width;
   int fixed_size_height;
-
   gulong parent_surface_committed_handler;
-
   struct {
     GdkRectangle rect;
     GdkGravity rect_anchor;
@@ -1060,20 +813,17 @@ struct _GdkWindowImplWayland_v3_24_17
     gint rect_anchor_dx;
     gint rect_anchor_dy;
   } pending_move_to_rect;
-
   struct {
     int width;
     int height;
     GdkWindowState state;
   } pending;
-
   struct {
     char *handle;
     int export_count;
     GList *closures;
     guint idle_source_id;
   } exported;
-
   struct zxdg_imported_v1 *imported_transient_for;
   GHashTable *shortcuts_inhibitors;
 };

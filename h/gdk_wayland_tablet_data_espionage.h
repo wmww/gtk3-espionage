@@ -28,18 +28,14 @@ struct _GdkWaylandTabletData_v3_22_0
   gchar *path;
   uint32_t vid;
   uint32_t pid;
-
   GdkDevice *master;
   GdkDevice *stylus_device;
   GdkDevice *eraser_device;
   GdkDevice *current_device;
   GdkSeat *seat;
   GdkWaylandPointerData pointer_info;
-
   GList *pads;
-
   GdkWaylandTabletToolData *current_tool;
-
   gint axis_indices[GDK_AXIS_LAST];
   gdouble *axes;
 };

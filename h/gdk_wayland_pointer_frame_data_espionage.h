@@ -24,10 +24,10 @@ typedef struct _GdkWaylandPointerFrameData GdkWaylandPointerFrameData;
 struct _GdkWaylandPointerFrameData_v3_22_0
 {
   GdkEvent *event;
-
-  /* Specific to the scroll event */
-  gdouble delta_x, delta_y;
-  int32_t discrete_x, discrete_y;
+  gdouble delta_x;
+  gdouble delta_y;;
+  int32_t discrete_x;
+  int32_t discrete_y;;
   gint8 is_scroll_stop;
   enum wl_pointer_axis_source source;
 };

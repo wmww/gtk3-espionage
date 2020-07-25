@@ -18,7 +18,6 @@ import re
 import mmap
 
 import parse
-from config import FORMAT_EMITTED_CODE
 
 logger = logging.getLogger(__name__)
 
@@ -215,4 +214,4 @@ class Code:
             output_path = path.join(output_dir, struct.header_name())
             logger.info('Writing ' + str(len(struct.versions)) + ' versions of ' + struct.typedef + ' to ' + output_path)
             with open(output_path, "w") as f:
-                f.write(struct.emit_header(FORMAT_EMITTED_CODE))
+                f.write(struct.emit_header(True))

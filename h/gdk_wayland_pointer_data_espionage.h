@@ -24,28 +24,21 @@ typedef struct _GdkWaylandPointerData GdkWaylandPointerData;
 struct _GdkWaylandPointerData_v3_22_0
 {
   GdkWindow *focus;
-
-  double surface_x, surface_y;
-
+  double surface_x;
+  double surface_y;;
   GdkModifierType button_modifiers;
-
   uint32_t time;
   uint32_t enter_serial;
   uint32_t press_serial;
-
   GdkWindow *grab_window;
   uint32_t grab_time;
-
   struct wl_surface *pointer_surface;
   GdkCursor *cursor;
   guint cursor_timeout_id;
   guint cursor_image_index;
   guint cursor_image_delay;
-
   guint current_output_scale;
   GSList *pointer_surface_outputs;
-
-  /* Accumulated event data for a pointer frame */
   GdkWaylandPointerFrameData frame;
 };
 
