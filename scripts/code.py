@@ -39,6 +39,9 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 CODE_EXTENSIONS = set(['h', 'hpp', 'c', 'cpp', 'cc'])
 
+def typdef_to_struct_name(typedef):
+    return '_' + typedef
+
 def get_all_source_files(search_dir):
     result = []
     for item in os.listdir(search_dir):
@@ -127,7 +130,7 @@ class Header:
 class Struct:
     def __init__(self, typedef):
         self.typedef = typedef
-        self.struct_name = '_' + typedef
+        self.struct_name = typdef_to_struct_name(typedef)
         self.versions = []
         self.copyright_lines = set()
         self.search_regex = re.compile(bytes(struct_regex_string(self.struct_name), 'utf-8'))
@@ -184,34 +187,36 @@ def file_contains_byte_regex(source_file, regex):
         return False
 
 class Code:
-    def __init__(self, repo_dir, struct_names):
+    def __init__(self, repo_dir, typedef_names):
         self.repo_dir = repo_dir
-        self.structs = [Struct(name) for name in struct_names]
+        structs = [Struct(typedef) for typedef in typedef_names]
+        self.typedefs = {struct.typedef: struct for struct in structs}
+        self.struct_names = {struct.struct_name: struct for struct in structs}
 
     def update(self, version):
         source_files = None
-        for struct in self.structs:
+        for typedef, struct in self.typedefs.items():
             code_path = struct.get_code_path()
             search_regex = struct.search_regex
             if not code_path or not file_contains_byte_regex(code_path, search_regex):
                 if source_files is None:
                     source_files = get_all_source_files(self.repo_dir)
-                files = set([])
+                files = set()
                 for source_file in source_files:
                     if file_contains_byte_regex(source_file, search_regex):
                         files.add(source_file)
                 if not files:
-                    raise RuntimeError('Could not find ' + struct.typedef + ' in ' + str(version))
+                    raise RuntimeError('Could not find ' + typedef + ' in ' + str(version))
                 if len(files) > 1:
-                    raise RuntimeError(struct.typedef + ' implemented multiple places: ' + str(files))
+                    raise RuntimeError(typedef + ' implemented multiple places: ' + str(files))
                 code_path = list(files)[0]
             struct_version = StructVersion(code_path, version, struct.struct_name)
             struct.add_version(struct_version)
 
     def write(self, output_dir):
         remove_headers_from_dir(output_dir)
-        for struct in self.structs:
+        for typedef, struct in self.typedefs.items():
             output_path = path.join(output_dir, struct.header_name())
-            logger.info('Writing ' + str(len(struct.versions)) + ' versions of ' + struct.typedef + ' to ' + output_path)
+            logger.info('Writing ' + str(len(struct.versions)) + ' versions of ' + typedef + ' to ' + output_path)
             with open(output_path, "w") as f:
                 f.write(struct.emit_header(True))
