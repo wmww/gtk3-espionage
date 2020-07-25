@@ -80,17 +80,34 @@ def extract_body(file_content, struct_name):
         body += c
     return body
 
+class ResolveContext:
+    def __init__(self, project, struct, version):
+        self.project = project
+        self.struct = struct
+        self.version = version
+        # If we are behind at least one layer of indirection (such as a pointer) and thus can use undefined types
+        self.indirect = False
+
+    def get_indirect(self):
+        if self.indirect:
+            return self
+        else:
+            ctx = ResolveContext(self.project, self.struct, self.version)
+            ctx.indirect = True
+            return ctx
+
 class StructVersion:
-    def __init__(self, code_path, version, struct_name):
+    def __init__(self, code_path, project, struct, version):
         with open(code_path, 'r') as f:
             source_code = f.read()
         self.code_path = code_path
         self.first_version = version
         self.last_version = version
-        self.struct_name = struct_name
+        self.struct_name = struct.struct_name
         self.copyright_lines = set(re.findall(r'[Cc]opyright .*(?=\n)', source_code))
-        self.body = extract_body(source_code, struct_name)
+        self.body = extract_body(source_code, self.struct_name)
         self.ast = parse.parse_ast(self.body)
+        self.ast.resolve(ResolveContext(project, struct, version))
 
     def get_code_path(self):
         return self.code_path
@@ -115,17 +132,18 @@ class StructVersion:
         result += '};\n'
         return result
 
-    def __str__(self):
+    def is_valid_for(self, version):
+        return version >= self.first_version and version <= self.last_version
+
+    def versioned_struct_name(self):
         return self.struct_name + '_' + self.first_version.c_id()
+
+    def __str__(self):
+        return self.versioned_struct_name()
 
     def __eq__(self, other):
         assert isinstance(other, StructVersion)
         return self.ast == other.ast
-
-class Header:
-    def __init__(self, path, code):
-        self.path = path
-        self.code = code
 
 class Struct:
     def __init__(self, typedef):
@@ -134,6 +152,11 @@ class Struct:
         self.versions = []
         self.copyright_lines = set()
         self.search_regex = re.compile(bytes(struct_regex_string(self.struct_name), 'utf-8'))
+
+    def lookup_version(self, version):
+        for i in self.versions:
+            if i.is_valid_for(version):
+                return i
 
     def get_code_path(self):
         if self.versions:
@@ -151,13 +174,7 @@ class Struct:
         return result
 
     def add_version(self, new):
-        if self.versions and self.versions[-1] == new:
-            self.versions[-1].last_version = new.last_version
-            # logger.info(self.typedef + ' ' + str(new.version) + ' is identical to ' + str(self.versions[-1].version) + ', so not adding')
-            pass
-        else:
-            logger.info(self.typedef + ' changed at ' + str(new.first_version))
-            self.versions.append(new)
+        self.versions.append(new)
         self.copyright_lines = self.copyright_lines.union(new.copyright_lines)
 
     def emit_header(self, generated):
@@ -186,12 +203,18 @@ def file_contains_byte_regex(source_file, regex):
     except (ValueError, FileNotFoundError):
         return False
 
-class Code:
+class Project:
     def __init__(self, repo_dir, typedef_names):
         self.repo_dir = repo_dir
         structs = [Struct(typedef) for typedef in typedef_names]
         self.typedefs = {struct.typedef: struct for struct in structs}
         self.struct_names = {struct.struct_name: struct for struct in structs}
+
+    def lookup_struct_name(self, struct_name):
+        return self.struct_names.get(struct_name)
+
+    def lookup_typedef(self, typedef):
+        return self.typedefs.get(typedef)
 
     def update(self, version):
         source_files = None
@@ -210,7 +233,7 @@ class Code:
                 if len(files) > 1:
                     raise RuntimeError(typedef + ' implemented multiple places: ' + str(files))
                 code_path = list(files)[0]
-            struct_version = StructVersion(code_path, version, struct.struct_name)
+            struct_version = StructVersion(code_path, self, struct, version)
             struct.add_version(struct_version)
 
     def write(self, output_dir):

@@ -18,7 +18,7 @@ import sys
 
 from version import parse_tag_list
 from repo import Repo
-from code import Code
+from code import Project
 from config import STRUCT_LIST
 
 GTK_GIT_URL = 'https://gitlab.gnome.org/GNOME/gtk.git'
@@ -36,13 +36,13 @@ def build():
     repo = Repo(GTK_GIT_URL, REPO_DIR)
     tags = repo.get_tags()
     versions = parse_tag_list(tags)
-    code = Code(REPO_DIR, STRUCT_LIST)
+    project = Project(REPO_DIR, STRUCT_LIST)
     for i, v in enumerate(versions):
         percent = int(((i + 1) / len(versions)) * 1000) / 10
         logger.info('Checking out ' + str(v) + ' [' + str(percent) + '%]')
         repo.checkout(v.tag)
-        code.update(v)
-    code.write(OUTPUT_DIR)
+        project.update(v)
+    project.write(OUTPUT_DIR)
 
 if __name__ == '__main__':
     build()
