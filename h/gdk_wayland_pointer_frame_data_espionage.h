@@ -1,6 +1,6 @@
 /* This file is part of gtk3-espionage
  *
- * Copyright © 2010 Intel Corporation
+ * Copyright (C) 2009 Carlos Garnacho <carlosg@gnome.org>
  * Copyright © 2020 gtk3-espionage/scripts/code.py
 
  * This program is free software; you can redistribute it and/or
@@ -18,11 +18,17 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-typedef struct _GdkWindowImplWaylandClass GdkWindowImplWaylandClass;
+typedef struct _GdkWaylandPointerFrameData GdkWaylandPointerFrameData;
 
 // Valid for GTK v3.22.0 - v3.24.21
-struct _GdkWindowImplWaylandClass_v3_22_0
+struct _GdkWaylandPointerFrameData_v3_22_0
 {
-  GdkWindowImplClass parent_class;
+  GdkEvent *event;
+
+  /* Specific to the scroll event */
+  gdouble delta_x, delta_y;
+  int32_t discrete_x, discrete_y;
+  gint8 is_scroll_stop;
+  enum wl_pointer_axis_source source;
 };
 

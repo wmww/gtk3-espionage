@@ -1,7 +1,7 @@
 /* This file is part of gtk3-espionage
  *
  * Copyright (C) 1995-1997 Peter Mattis, Spencer Kimball and Josh MacDonald
- * Copyright © 2020 gtk-espionage/scripts/code.py
+ * Copyright © 2020 gtk3-espionage/scripts/code.py
 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public

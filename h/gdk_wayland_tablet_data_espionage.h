@@ -1,6 +1,6 @@
 /* This file is part of gtk3-espionage
  *
- * Copyright © 2010 Intel Corporation
+ * Copyright (C) 2009 Carlos Garnacho <carlosg@gnome.org>
  * Copyright © 2020 gtk3-espionage/scripts/code.py
 
  * This program is free software; you can redistribute it and/or
@@ -18,11 +18,29 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-typedef struct _GdkWindowImplWaylandClass GdkWindowImplWaylandClass;
+typedef struct _GdkWaylandTabletData GdkWaylandTabletData;
 
 // Valid for GTK v3.22.0 - v3.24.21
-struct _GdkWindowImplWaylandClass_v3_22_0
+struct _GdkWaylandTabletData_v3_22_0
 {
-  GdkWindowImplClass parent_class;
+  struct zwp_tablet_v2 *wp_tablet;
+  gchar *name;
+  gchar *path;
+  uint32_t vid;
+  uint32_t pid;
+
+  GdkDevice *master;
+  GdkDevice *stylus_device;
+  GdkDevice *eraser_device;
+  GdkDevice *current_device;
+  GdkSeat *seat;
+  GdkWaylandPointerData pointer_info;
+
+  GList *pads;
+
+  GdkWaylandTabletToolData *current_tool;
+
+  gint axis_indices[GDK_AXIS_LAST];
+  gdouble *axes;
 };
 

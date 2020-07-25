@@ -22,6 +22,10 @@ STRUCT_LIST = [
     'GdkWindowImpl',
     'GdkWindowImplClass',
     'GdkWaylandSeat',
+    'GdkWaylandPointerData',
+    'GdkWaylandPointerFrameData',
+    'GdkWaylandTouchData',
+    'GdkWaylandTabletData',
 ]
 
 MIN_SUPPORTED_GTK = '3.22.0' # same format as the tag names
