@@ -80,6 +80,18 @@ def extract_body(file_content, struct_name):
         body += c
     return body
 
+def camel_case_to_words(name):
+    result = []
+    word = ''
+    for l in name:
+        if l.isupper() and word:
+            result.append(word)
+            word = ''
+        word += l.lower()
+    if word:
+        result.append(word)
+    return result
+
 class ResolveContext:
     def __init__(self, project, struct, version):
         self.project = project
@@ -165,13 +177,10 @@ class Struct:
             return None
 
     def header_name(self):
-        result = ''
-        for l in self.typedef:
-            if l.isupper() and result:
-                result += '_'
-            result += l.lower()
-        result += '_espionage.h'
-        return result
+        return '_'.join(camel_case_to_words(self.typedef)) + '_espionage.h'
+
+    def macro_name(self):
+        return self.header_name().replace('.', '_').upper()
 
     def add_version(self, new):
         self.versions.append(new)
@@ -203,11 +212,15 @@ class Struct:
         result += '\n * '.join(LGPL3_HEADER.splitlines())
         result += '\n */\n'
         result += '\n'
+        result += '#ifndef ' + self.macro_name() + '\n'
+        result += '#define ' + self.macro_name() + '\n'
+        result += '\n'
         result += 'typedef struct ' + self.struct_name + ' ' + self.typedef + ';\n'
         result += '\n'
         for i in self.versions:
             result += i.emit_definition(generated)
             result += '\n'
+        result += '#endif // ' + self.macro_name() + '\n'
         return result
 
 def file_contains_byte_regex(source_file, regex):
