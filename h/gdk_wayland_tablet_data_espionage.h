@@ -33,7 +33,7 @@ struct _GdkWaylandTabletData_v3_22_0
   GdkDevice *eraser_device;
   GdkDevice *current_device;
   GdkSeat *seat;
-  GdkWaylandPointerData pointer_info;
+  struct _GdkWaylandPointerData_v3_22_0 pointer_info;
   GList *pads;
   GdkWaylandTabletToolData *current_tool;
   gint axis_indices[GDK_AXIS_LAST];

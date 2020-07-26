@@ -39,6 +39,6 @@ struct _GdkWaylandPointerData_v3_22_0
   guint cursor_image_delay;
   guint current_output_scale;
   GSList *pointer_surface_outputs;
-  GdkWaylandPointerFrameData frame;
+  struct _GdkWaylandPointerFrameData_v3_22_0 frame;
 };
 

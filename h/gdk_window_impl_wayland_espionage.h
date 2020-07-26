@@ -23,7 +23,7 @@ typedef struct _GdkWindowImplWayland GdkWindowImplWayland;
 // Valid for GTK v3.22.0 - v3.22.15
 struct _GdkWindowImplWayland_v3_22_0
 {
-  GdkWindowImpl parent_instance;
+  struct _GdkWindowImpl_v3_22_0 parent_instance;
   GdkWindow *wrapper;
   struct {
     GSList *outputs;
@@ -107,7 +107,7 @@ struct _GdkWindowImplWayland_v3_22_0
 // Valid for GTK v3.22.16 - v3.22.17
 struct _GdkWindowImplWayland_v3_22_16
 {
-  GdkWindowImpl parent_instance;
+  struct _GdkWindowImpl_v3_22_0 parent_instance;
   GdkWindow *wrapper;
   struct {
     GSList *outputs;
@@ -192,7 +192,7 @@ struct _GdkWindowImplWayland_v3_22_16
 // Valid for GTK v3.22.18 - v3.22.24
 struct _GdkWindowImplWayland_v3_22_18
 {
-  GdkWindowImpl parent_instance;
+  struct _GdkWindowImpl_v3_22_0 parent_instance;
   GdkWindow *wrapper;
   struct {
     GSList *outputs;
@@ -278,7 +278,7 @@ struct _GdkWindowImplWayland_v3_22_18
 // Valid for GTK v3.22.25 - v3.22.29
 struct _GdkWindowImplWayland_v3_22_25
 {
-  GdkWindowImpl parent_instance;
+  struct _GdkWindowImpl_v3_22_0 parent_instance;
   GdkWindow *wrapper;
   struct {
     GSList *outputs;
@@ -365,7 +365,7 @@ struct _GdkWindowImplWayland_v3_22_25
 // Valid for GTK v3.22.30 - v3.23.0
 struct _GdkWindowImplWayland_v3_22_30
 {
-  GdkWindowImpl parent_instance;
+  struct _GdkWindowImpl_v3_22_0 parent_instance;
   GdkWindow *wrapper;
   struct {
     GSList *outputs;
@@ -455,7 +455,7 @@ struct _GdkWindowImplWayland_v3_22_30
 // Valid for GTK v3.23.1 - v3.23.2
 struct _GdkWindowImplWayland_v3_23_1
 {
-  GdkWindowImpl parent_instance;
+  struct _GdkWindowImpl_v3_22_0 parent_instance;
   GdkWindow *wrapper;
   struct {
     GSList *outputs;
@@ -546,7 +546,7 @@ struct _GdkWindowImplWayland_v3_23_1
 // Valid for GTK v3.23.3 - v3.24.3
 struct _GdkWindowImplWayland_v3_23_3
 {
-  GdkWindowImpl parent_instance;
+  struct _GdkWindowImpl_v3_22_0 parent_instance;
   GdkWindow *wrapper;
   struct {
     GSList *outputs;
@@ -639,7 +639,7 @@ struct _GdkWindowImplWayland_v3_23_3
 // Valid for GTK v3.24.4 - v3.24.16
 struct _GdkWindowImplWayland_v3_24_4
 {
-  GdkWindowImpl parent_instance;
+  struct _GdkWindowImpl_v3_22_0 parent_instance;
   GdkWindow *wrapper;
   struct {
     GSList *outputs;
@@ -733,7 +733,7 @@ struct _GdkWindowImplWayland_v3_24_4
 // Valid for GTK v3.24.17 - v3.24.21
 struct _GdkWindowImplWayland_v3_24_17
 {
-  GdkWindowImpl parent_instance;
+  struct _GdkWindowImpl_v3_22_0 parent_instance;
   GdkWindow *wrapper;
   struct {
     GSList *outputs;

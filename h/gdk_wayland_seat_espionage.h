@@ -49,8 +49,8 @@ struct _GdkWaylandSeat_v3_22_0
   GList *tablets;
   GList *tablet_tools;
   GList *tablet_pads;
-  GdkWaylandPointerData pointer_info;
-  GdkWaylandPointerData touch_info;
+  struct _GdkWaylandPointerData_v3_22_0 pointer_info;
+  struct _GdkWaylandPointerData_v3_22_0 touch_info;
   GdkModifierType key_modifiers;
   GdkWindow *keyboard_focus;
   GdkAtom pending_selection;
@@ -105,8 +105,8 @@ struct _GdkWaylandSeat_v3_22_9
   GList *tablets;
   GList *tablet_tools;
   GList *tablet_pads;
-  GdkWaylandPointerData pointer_info;
-  GdkWaylandPointerData touch_info;
+  struct _GdkWaylandPointerData_v3_22_0 pointer_info;
+  struct _GdkWaylandPointerData_v3_22_0 touch_info;
   GdkModifierType key_modifiers;
   GdkWindow *keyboard_focus;
   GdkAtom pending_selection;
@@ -162,8 +162,8 @@ struct _GdkWaylandSeat_v3_22_16
   GList *tablets;
   GList *tablet_tools;
   GList *tablet_pads;
-  GdkWaylandPointerData pointer_info;
-  GdkWaylandPointerData touch_info;
+  struct _GdkWaylandPointerData_v3_22_0 pointer_info;
+  struct _GdkWaylandPointerData_v3_22_0 touch_info;
   GdkModifierType key_modifiers;
   GdkWindow *keyboard_focus;
   GdkAtom pending_selection;
