@@ -39,9 +39,10 @@ def build():
     project = Project(REPO_DIR, STRUCT_LIST)
     for i, v in enumerate(versions):
         percent = int(((i + 1) / len(versions)) * 1000) / 10
-        logger.info('Checking out ' + str(v) + ' [' + str(percent) + '%]')
+        logger.info('[' + str(percent) + '%] Checking out ' + str(v))
         repo.checkout(v.tag)
         project.update(v)
+    project.simplify()
     project.write(OUTPUT_DIR)
 
 if __name__ == '__main__':

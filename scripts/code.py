@@ -177,6 +177,21 @@ class Struct:
         self.versions.append(new)
         self.copyright_lines = self.copyright_lines.union(new.copyright_lines)
 
+    # Returns if any changes were made
+    def simplify(self):
+        new_versions = []
+        dropped_versions = 0
+        for v in self.versions:
+            if new_versions and new_versions[-1] == v:
+                dropped_versions += 1
+                new_versions[-1].last_version = v.last_version
+            else:
+                new_versions.append(v)
+        if dropped_versions > 0:
+            logger.info('Found ' + str(dropped_versions) + ' unnecessary versions of ' + self.typedef);
+        self.versions = new_versions
+        return dropped_versions > 0
+
     def emit_header(self, generated):
         result = ''
         result += '/* This file is part of gtk3-espionage\n'
@@ -235,6 +250,18 @@ class Project:
                 code_path = list(files)[0]
             struct_version = StructVersion(code_path, self, struct, version)
             struct.add_version(struct_version)
+
+    def simplify(self):
+        i = 1;
+        while True:
+            logger.info('Detecting identical versions, round ' + str(i))
+            i += 1
+            made_change = False
+            for _, struct in self.typedefs.items():
+                if struct.simplify():
+                    made_change = True
+            if not made_change:
+                break
 
     def write(self, output_dir):
         remove_headers_from_dir(output_dir)
