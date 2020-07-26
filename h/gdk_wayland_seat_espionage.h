@@ -18,6 +18,9 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#ifndef GDK_WAYLAND_SEAT_ESPIONAGE_H
+#define GDK_WAYLAND_SEAT_ESPIONAGE_H
+
 typedef struct _GdkWaylandSeat GdkWaylandSeat;
 
 // Valid for GTK v3.22.0 - v3.22.8
@@ -189,3 +192,4 @@ struct _GdkWaylandSeat_v3_22_16
   GdkCursor *grab_cursor;
 };
 
+#endif // GDK_WAYLAND_SEAT_ESPIONAGE_H

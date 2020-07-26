@@ -18,6 +18,9 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#ifndef GDK_WINDOW_IMPL_WAYLAND_ESPIONAGE_H
+#define GDK_WINDOW_IMPL_WAYLAND_ESPIONAGE_H
+
 typedef struct _GdkWindowImplWayland GdkWindowImplWayland;
 
 // Valid for GTK v3.22.0 - v3.22.15
@@ -828,3 +831,4 @@ struct _GdkWindowImplWayland_v3_24_17
   GHashTable *shortcuts_inhibitors;
 };
 
+#endif // GDK_WINDOW_IMPL_WAYLAND_ESPIONAGE_H

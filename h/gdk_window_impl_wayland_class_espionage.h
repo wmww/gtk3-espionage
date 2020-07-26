@@ -18,6 +18,9 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#ifndef GDK_WINDOW_IMPL_WAYLAND_CLASS_ESPIONAGE_H
+#define GDK_WINDOW_IMPL_WAYLAND_CLASS_ESPIONAGE_H
+
 typedef struct _GdkWindowImplWaylandClass GdkWindowImplWaylandClass;
 
 // Valid for GTK v3.22.0 - v3.24.21
@@ -26,3 +29,4 @@ struct _GdkWindowImplWaylandClass_v3_22_0
   struct _GdkWindowImplClass_v3_22_0 parent_class;
 };
 
+#endif // GDK_WINDOW_IMPL_WAYLAND_CLASS_ESPIONAGE_H

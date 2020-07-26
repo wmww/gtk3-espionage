@@ -18,6 +18,9 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#ifndef GDK_WAYLAND_POINTER_FRAME_DATA_ESPIONAGE_H
+#define GDK_WAYLAND_POINTER_FRAME_DATA_ESPIONAGE_H
+
 typedef struct _GdkWaylandPointerFrameData GdkWaylandPointerFrameData;
 
 // Valid for GTK v3.22.0 - v3.24.21
@@ -32,3 +35,4 @@ struct _GdkWaylandPointerFrameData_v3_22_0
   enum wl_pointer_axis_source source;
 };
 
+#endif // GDK_WAYLAND_POINTER_FRAME_DATA_ESPIONAGE_H

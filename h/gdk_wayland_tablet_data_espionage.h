@@ -18,6 +18,9 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#ifndef GDK_WAYLAND_TABLET_DATA_ESPIONAGE_H
+#define GDK_WAYLAND_TABLET_DATA_ESPIONAGE_H
+
 typedef struct _GdkWaylandTabletData GdkWaylandTabletData;
 
 // Valid for GTK v3.22.0 - v3.24.21
@@ -40,3 +43,4 @@ struct _GdkWaylandTabletData_v3_22_0
   gdouble *axes;
 };
 
+#endif // GDK_WAYLAND_TABLET_DATA_ESPIONAGE_H

@@ -18,6 +18,9 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#ifndef GDK_WINDOW_IMPL_CLASS_ESPIONAGE_H
+#define GDK_WINDOW_IMPL_CLASS_ESPIONAGE_H
+
 typedef struct _GdkWindowImplClass GdkWindowImplClass;
 
 // Valid for GTK v3.22.0 - v3.24.21
@@ -117,3 +120,4 @@ struct _GdkWindowImplClass_v3_22_0
   void (* destroy_draw_context) (GdkWindow *window, GdkDrawingContext *context);
 };
 
+#endif // GDK_WINDOW_IMPL_CLASS_ESPIONAGE_H
