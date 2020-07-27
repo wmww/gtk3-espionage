@@ -168,10 +168,16 @@ class ArrayType(CType):
         self.inner.resolve(ctx)
 
     def str_left(self, resolved):
-        return self.inner.str_left(resolved)
+        if resolved:
+            return self.inner.str_left(True)
+        else:
+            return self.inner.str_left(False) + '*'
 
     def str_right(self, resolved):
-        return '[' + self.size + ']' + self.inner.str_right(resolved)
+        if resolved:
+            return '[' + self.size + ']' + self.inner.str_right(True)
+        else:
+            return self.inner.str_right(False)
 
 class AstNode:
     def __eq__(self, other):
@@ -188,6 +194,9 @@ class PropertyNode(AstNode):
 
     def resolve(self, ctx):
         self.c_type.resolve(ctx)
+
+    def get_property_list(self, prefix):
+        return [(self.c_type, prefix + self.name)]
 
     def __str__(self):
         result = self.c_type.str_left(True)
@@ -211,6 +220,12 @@ class ListNode(AstNode):
         for node in self.nodes:
             node.resolve(ctx)
 
+    def get_property_list(self, prefix):
+        result = []
+        for node in self.nodes:
+            result += node.get_property_list(prefix)
+        return result
+
     def __str__(self):
         return '\n'.join(str(node) + ';' for node in self.nodes)
 
@@ -223,6 +238,9 @@ class SubStructNode(AstNode):
 
     def resolve(self, ctx):
         self.content.resolve(ctx)
+
+    def get_property_list(self, prefix):
+        return self.content.get_property_list(prefix + self.name + '.')
 
     def __str__(self):
         return (

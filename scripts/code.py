@@ -114,6 +114,9 @@ class StructVersion:
     def get_code_path(self):
         return self.code_path
 
+    def get_property_list(self):
+        return self.ast.get_property_list('')
+
     def version_range_str(self):
         if self.first_version == self.last_version:
             return str(self.first_version)
@@ -146,6 +149,26 @@ class StructVersion:
     def __eq__(self, other):
         assert isinstance(other, StructVersion)
         return self.ast == other.ast
+
+class Property:
+    def __init__(self, struct, c_type, name, unsupported_versions):
+        assert isinstance(struct, Struct)
+        assert isinstance(c_type, parse.CType)
+        assert isinstance(name, str)
+        assert isinstance(unsupported_versions, list)
+        self.struct = struct
+        self.c_type = c_type
+        self.name = name
+        self.unsupported_versions = unsupported_versions
+
+    def emit_getter(self):
+        fn_name = '_'.join(camel_case_to_words(self.struct.typedef)) + '_extract_' + self.name.replace('.', '_')
+        versioned_name = 'struct ' + self.struct.versions[-1].versioned_struct_name()
+        result = ''
+        result += str(self.c_type) + ' ' + fn_name + '(' + self.struct.typedef + '* self) {\n'
+        result += parse.INDENT + 'return ((' + versioned_name + '*)self)->' + self.name + ';\n'
+        result += '}\n'
+        return result
 
 class Struct:
     def __init__(self, typedef):
@@ -191,6 +214,11 @@ class Struct:
         self.versions = new_versions
         return dropped_versions > 0
 
+    def setup_properties(self):
+        self.properties = []
+        for c_type, name in self.versions[-1].get_property_list():
+            self.properties.append(Property(self, c_type, name, []))
+
     def emit_header(self, generated):
         result = ''
         result += '/* This file is part of gtk3-espionage\n'
@@ -209,6 +237,9 @@ class Struct:
         result += '\n'
         for i in self.versions:
             result += i.emit_definition(generated)
+            result += '\n'
+        for p in self.properties:
+            result += p.emit_getter()
             result += '\n'
         result += '#endif // ' + self.macro_name() + '\n'
         return result
@@ -265,6 +296,8 @@ class Project:
                     made_change = True
             if not made_change:
                 break
+        for _, struct in self.typedefs.items():
+            struct.setup_properties()
 
     def write(self, output_dir):
         remove_headers_from_dir(output_dir)
