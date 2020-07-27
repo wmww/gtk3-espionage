@@ -831,336 +831,774 @@ struct _GdkWindowImplWayland_v3_24_17
   GHashTable *shortcuts_inhibitors;
 };
 
-GdkWindowImpl gdk_window_impl_wayland_extract_parent_instance(GdkWindowImplWayland* self) {
-  return ((struct _GdkWindowImplWayland_v3_24_17*)self)->parent_instance;
+// GdkWindowImplWayland::parent_instance
+
+GdkWindowImpl * gdk_window_impl_wayland_espionage_get_parent_instance_ptr(GdkWindowImplWayland * self) {
+  return (GdkWindowImpl *)&((struct _GdkWindowImplWayland_v3_24_17*)self)->parent_instance;
 }
 
-GdkWindow * gdk_window_impl_wayland_extract_wrapper(GdkWindowImplWayland* self) {
+// GdkWindowImplWayland::wrapper
+
+GdkWindow * gdk_window_impl_wayland_espionage_get_wrapper(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->wrapper;
 }
 
-GSList * gdk_window_impl_wayland_extract_display_server_outputs(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_wrapper(GdkWindowImplWayland * self, GdkWindow * wrapper) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->wrapper = wrapper;
+}
+
+// GdkWindowImplWayland::display_server.outputs
+
+GSList * gdk_window_impl_wayland_espionage_get_display_server_outputs(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->display_server.outputs;
 }
 
-struct wl_surface * gdk_window_impl_wayland_extract_display_server_wl_surface(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_display_server_outputs(GdkWindowImplWayland * self, GSList * display_server_outputs) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->display_server.outputs = display_server_outputs;
+}
+
+// GdkWindowImplWayland::display_server.wl_surface
+
+struct wl_surface * gdk_window_impl_wayland_espionage_get_display_server_wl_surface(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->display_server.wl_surface;
 }
 
-struct xdg_surface * gdk_window_impl_wayland_extract_display_server_xdg_surface(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_display_server_wl_surface(GdkWindowImplWayland * self, struct wl_surface * display_server_wl_surface) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->display_server.wl_surface = display_server_wl_surface;
+}
+
+// GdkWindowImplWayland::display_server.xdg_surface
+
+struct xdg_surface * gdk_window_impl_wayland_espionage_get_display_server_xdg_surface(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->display_server.xdg_surface;
 }
 
-struct xdg_toplevel * gdk_window_impl_wayland_extract_display_server_xdg_toplevel(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_display_server_xdg_surface(GdkWindowImplWayland * self, struct xdg_surface * display_server_xdg_surface) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->display_server.xdg_surface = display_server_xdg_surface;
+}
+
+// GdkWindowImplWayland::display_server.xdg_toplevel
+
+struct xdg_toplevel * gdk_window_impl_wayland_espionage_get_display_server_xdg_toplevel(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->display_server.xdg_toplevel;
 }
 
-struct xdg_popup * gdk_window_impl_wayland_extract_display_server_xdg_popup(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_display_server_xdg_toplevel(GdkWindowImplWayland * self, struct xdg_toplevel * display_server_xdg_toplevel) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->display_server.xdg_toplevel = display_server_xdg_toplevel;
+}
+
+// GdkWindowImplWayland::display_server.xdg_popup
+
+struct xdg_popup * gdk_window_impl_wayland_espionage_get_display_server_xdg_popup(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->display_server.xdg_popup;
 }
 
-struct zxdg_surface_v6 * gdk_window_impl_wayland_extract_display_server_zxdg_surface_v6(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_display_server_xdg_popup(GdkWindowImplWayland * self, struct xdg_popup * display_server_xdg_popup) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->display_server.xdg_popup = display_server_xdg_popup;
+}
+
+// GdkWindowImplWayland::display_server.zxdg_surface_v6
+
+struct zxdg_surface_v6 * gdk_window_impl_wayland_espionage_get_display_server_zxdg_surface_v6(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->display_server.zxdg_surface_v6;
 }
 
-struct zxdg_toplevel_v6 * gdk_window_impl_wayland_extract_display_server_zxdg_toplevel_v6(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_display_server_zxdg_surface_v6(GdkWindowImplWayland * self, struct zxdg_surface_v6 * display_server_zxdg_surface_v6) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->display_server.zxdg_surface_v6 = display_server_zxdg_surface_v6;
+}
+
+// GdkWindowImplWayland::display_server.zxdg_toplevel_v6
+
+struct zxdg_toplevel_v6 * gdk_window_impl_wayland_espionage_get_display_server_zxdg_toplevel_v6(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->display_server.zxdg_toplevel_v6;
 }
 
-struct zxdg_popup_v6 * gdk_window_impl_wayland_extract_display_server_zxdg_popup_v6(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_display_server_zxdg_toplevel_v6(GdkWindowImplWayland * self, struct zxdg_toplevel_v6 * display_server_zxdg_toplevel_v6) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->display_server.zxdg_toplevel_v6 = display_server_zxdg_toplevel_v6;
+}
+
+// GdkWindowImplWayland::display_server.zxdg_popup_v6
+
+struct zxdg_popup_v6 * gdk_window_impl_wayland_espionage_get_display_server_zxdg_popup_v6(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->display_server.zxdg_popup_v6;
 }
 
-struct gtk_surface1 * gdk_window_impl_wayland_extract_display_server_gtk_surface(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_display_server_zxdg_popup_v6(GdkWindowImplWayland * self, struct zxdg_popup_v6 * display_server_zxdg_popup_v6) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->display_server.zxdg_popup_v6 = display_server_zxdg_popup_v6;
+}
+
+// GdkWindowImplWayland::display_server.gtk_surface
+
+struct gtk_surface1 * gdk_window_impl_wayland_espionage_get_display_server_gtk_surface(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->display_server.gtk_surface;
 }
 
-struct wl_subsurface * gdk_window_impl_wayland_extract_display_server_wl_subsurface(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_display_server_gtk_surface(GdkWindowImplWayland * self, struct gtk_surface1 * display_server_gtk_surface) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->display_server.gtk_surface = display_server_gtk_surface;
+}
+
+// GdkWindowImplWayland::display_server.wl_subsurface
+
+struct wl_subsurface * gdk_window_impl_wayland_espionage_get_display_server_wl_subsurface(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->display_server.wl_subsurface;
 }
 
-struct wl_egl_window * gdk_window_impl_wayland_extract_display_server_egl_window(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_display_server_wl_subsurface(GdkWindowImplWayland * self, struct wl_subsurface * display_server_wl_subsurface) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->display_server.wl_subsurface = display_server_wl_subsurface;
+}
+
+// GdkWindowImplWayland::display_server.egl_window
+
+struct wl_egl_window * gdk_window_impl_wayland_espionage_get_display_server_egl_window(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->display_server.egl_window;
 }
 
-struct wl_egl_window * gdk_window_impl_wayland_extract_display_server_dummy_egl_window(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_display_server_egl_window(GdkWindowImplWayland * self, struct wl_egl_window * display_server_egl_window) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->display_server.egl_window = display_server_egl_window;
+}
+
+// GdkWindowImplWayland::display_server.dummy_egl_window
+
+struct wl_egl_window * gdk_window_impl_wayland_espionage_get_display_server_dummy_egl_window(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->display_server.dummy_egl_window;
 }
 
-struct zxdg_exported_v1 * gdk_window_impl_wayland_extract_display_server_xdg_exported(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_display_server_dummy_egl_window(GdkWindowImplWayland * self, struct wl_egl_window * display_server_dummy_egl_window) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->display_server.dummy_egl_window = display_server_dummy_egl_window;
+}
+
+// GdkWindowImplWayland::display_server.xdg_exported
+
+struct zxdg_exported_v1 * gdk_window_impl_wayland_espionage_get_display_server_xdg_exported(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->display_server.xdg_exported;
 }
 
-struct org_kde_kwin_server_decoration * gdk_window_impl_wayland_extract_display_server_server_decoration(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_display_server_xdg_exported(GdkWindowImplWayland * self, struct zxdg_exported_v1 * display_server_xdg_exported) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->display_server.xdg_exported = display_server_xdg_exported;
+}
+
+// GdkWindowImplWayland::display_server.server_decoration
+
+struct org_kde_kwin_server_decoration * gdk_window_impl_wayland_espionage_get_display_server_server_decoration(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->display_server.server_decoration;
 }
 
-EGLSurface gdk_window_impl_wayland_extract_egl_surface(GdkWindowImplWayland* self) {
-  return ((struct _GdkWindowImplWayland_v3_24_17*)self)->egl_surface;
+void gdk_window_impl_wayland_espionage_set_display_server_server_decoration(GdkWindowImplWayland * self, struct org_kde_kwin_server_decoration * display_server_server_decoration) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->display_server.server_decoration = display_server_server_decoration;
 }
 
-EGLSurface gdk_window_impl_wayland_extract_dummy_egl_surface(GdkWindowImplWayland* self) {
-  return ((struct _GdkWindowImplWayland_v3_24_17*)self)->dummy_egl_surface;
+// GdkWindowImplWayland::egl_surface
+
+EGLSurface * gdk_window_impl_wayland_espionage_get_egl_surface_ptr(GdkWindowImplWayland * self) {
+  return (EGLSurface *)&((struct _GdkWindowImplWayland_v3_24_17*)self)->egl_surface;
 }
 
-unsigned int gdk_window_impl_wayland_extract_initial_configure_received(GdkWindowImplWayland* self) {
+// GdkWindowImplWayland::dummy_egl_surface
+
+EGLSurface * gdk_window_impl_wayland_espionage_get_dummy_egl_surface_ptr(GdkWindowImplWayland * self) {
+  return (EGLSurface *)&((struct _GdkWindowImplWayland_v3_24_17*)self)->dummy_egl_surface;
+}
+
+// GdkWindowImplWayland::initial_configure_received
+
+unsigned int gdk_window_impl_wayland_espionage_get_initial_configure_received(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->initial_configure_received;
 }
 
-unsigned int gdk_window_impl_wayland_extract_configuring_popup(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_initial_configure_received(GdkWindowImplWayland * self, unsigned int initial_configure_received) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->initial_configure_received = initial_configure_received;
+}
+
+// GdkWindowImplWayland::configuring_popup
+
+unsigned int gdk_window_impl_wayland_espionage_get_configuring_popup(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->configuring_popup;
 }
 
-unsigned int gdk_window_impl_wayland_extract_mapped(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_configuring_popup(GdkWindowImplWayland * self, unsigned int configuring_popup) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->configuring_popup = configuring_popup;
+}
+
+// GdkWindowImplWayland::mapped
+
+unsigned int gdk_window_impl_wayland_espionage_get_mapped(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->mapped;
 }
 
-unsigned int gdk_window_impl_wayland_extract_use_custom_surface(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_mapped(GdkWindowImplWayland * self, unsigned int mapped) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->mapped = mapped;
+}
+
+// GdkWindowImplWayland::use_custom_surface
+
+unsigned int gdk_window_impl_wayland_espionage_get_use_custom_surface(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->use_custom_surface;
 }
 
-unsigned int gdk_window_impl_wayland_extract_pending_buffer_attached(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_use_custom_surface(GdkWindowImplWayland * self, unsigned int use_custom_surface) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->use_custom_surface = use_custom_surface;
+}
+
+// GdkWindowImplWayland::pending_buffer_attached
+
+unsigned int gdk_window_impl_wayland_espionage_get_pending_buffer_attached(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->pending_buffer_attached;
 }
 
-unsigned int gdk_window_impl_wayland_extract_pending_commit(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_pending_buffer_attached(GdkWindowImplWayland * self, unsigned int pending_buffer_attached) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->pending_buffer_attached = pending_buffer_attached;
+}
+
+// GdkWindowImplWayland::pending_commit
+
+unsigned int gdk_window_impl_wayland_espionage_get_pending_commit(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->pending_commit;
 }
 
-unsigned int gdk_window_impl_wayland_extract_awaiting_frame(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_pending_commit(GdkWindowImplWayland * self, unsigned int pending_commit) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->pending_commit = pending_commit;
+}
+
+// GdkWindowImplWayland::awaiting_frame
+
+unsigned int gdk_window_impl_wayland_espionage_get_awaiting_frame(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->awaiting_frame;
 }
 
-unsigned int gdk_window_impl_wayland_extract_using_csd(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_awaiting_frame(GdkWindowImplWayland * self, unsigned int awaiting_frame) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->awaiting_frame = awaiting_frame;
+}
+
+// GdkWindowImplWayland::using_csd
+
+unsigned int gdk_window_impl_wayland_espionage_get_using_csd(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->using_csd;
 }
 
-GdkWindowTypeHint gdk_window_impl_wayland_extract_hint(GdkWindowImplWayland* self) {
-  return ((struct _GdkWindowImplWayland_v3_24_17*)self)->hint;
+void gdk_window_impl_wayland_espionage_set_using_csd(GdkWindowImplWayland * self, unsigned int using_csd) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->using_csd = using_csd;
 }
 
-GdkWindow * gdk_window_impl_wayland_extract_transient_for(GdkWindowImplWayland* self) {
+// GdkWindowImplWayland::hint
+
+GdkWindowTypeHint * gdk_window_impl_wayland_espionage_get_hint_ptr(GdkWindowImplWayland * self) {
+  return (GdkWindowTypeHint *)&((struct _GdkWindowImplWayland_v3_24_17*)self)->hint;
+}
+
+// GdkWindowImplWayland::transient_for
+
+GdkWindow * gdk_window_impl_wayland_espionage_get_transient_for(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->transient_for;
 }
 
-GdkWindow * gdk_window_impl_wayland_extract_popup_parent(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_transient_for(GdkWindowImplWayland * self, GdkWindow * transient_for) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->transient_for = transient_for;
+}
+
+// GdkWindowImplWayland::popup_parent
+
+GdkWindow * gdk_window_impl_wayland_espionage_get_popup_parent(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->popup_parent;
 }
 
-PositionMethod gdk_window_impl_wayland_extract_position_method(GdkWindowImplWayland* self) {
-  return ((struct _GdkWindowImplWayland_v3_24_17*)self)->position_method;
+void gdk_window_impl_wayland_espionage_set_popup_parent(GdkWindowImplWayland * self, GdkWindow * popup_parent) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->popup_parent = popup_parent;
 }
 
-cairo_surface_t * gdk_window_impl_wayland_extract_staging_cairo_surface(GdkWindowImplWayland* self) {
+// GdkWindowImplWayland::position_method
+
+PositionMethod * gdk_window_impl_wayland_espionage_get_position_method_ptr(GdkWindowImplWayland * self) {
+  return (PositionMethod *)&((struct _GdkWindowImplWayland_v3_24_17*)self)->position_method;
+}
+
+// GdkWindowImplWayland::staging_cairo_surface
+
+cairo_surface_t * gdk_window_impl_wayland_espionage_get_staging_cairo_surface(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->staging_cairo_surface;
 }
 
-cairo_surface_t * gdk_window_impl_wayland_extract_committed_cairo_surface(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_staging_cairo_surface(GdkWindowImplWayland * self, cairo_surface_t * staging_cairo_surface) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->staging_cairo_surface = staging_cairo_surface;
+}
+
+// GdkWindowImplWayland::committed_cairo_surface
+
+cairo_surface_t * gdk_window_impl_wayland_espionage_get_committed_cairo_surface(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->committed_cairo_surface;
 }
 
-cairo_surface_t * gdk_window_impl_wayland_extract_backfill_cairo_surface(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_committed_cairo_surface(GdkWindowImplWayland * self, cairo_surface_t * committed_cairo_surface) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->committed_cairo_surface = committed_cairo_surface;
+}
+
+// GdkWindowImplWayland::backfill_cairo_surface
+
+cairo_surface_t * gdk_window_impl_wayland_espionage_get_backfill_cairo_surface(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->backfill_cairo_surface;
 }
 
-int gdk_window_impl_wayland_extract_pending_buffer_offset_x(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_backfill_cairo_surface(GdkWindowImplWayland * self, cairo_surface_t * backfill_cairo_surface) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->backfill_cairo_surface = backfill_cairo_surface;
+}
+
+// GdkWindowImplWayland::pending_buffer_offset_x
+
+int gdk_window_impl_wayland_espionage_get_pending_buffer_offset_x(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->pending_buffer_offset_x;
 }
 
-int gdk_window_impl_wayland_extract_pending_buffer_offset_y(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_pending_buffer_offset_x(GdkWindowImplWayland * self, int pending_buffer_offset_x) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->pending_buffer_offset_x = pending_buffer_offset_x;
+}
+
+// GdkWindowImplWayland::pending_buffer_offset_y
+
+int gdk_window_impl_wayland_espionage_get_pending_buffer_offset_y(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->pending_buffer_offset_y;
 }
 
-int gdk_window_impl_wayland_extract_subsurface_x(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_pending_buffer_offset_y(GdkWindowImplWayland * self, int pending_buffer_offset_y) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->pending_buffer_offset_y = pending_buffer_offset_y;
+}
+
+// GdkWindowImplWayland::subsurface_x
+
+int gdk_window_impl_wayland_espionage_get_subsurface_x(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->subsurface_x;
 }
 
-int gdk_window_impl_wayland_extract_subsurface_y(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_subsurface_x(GdkWindowImplWayland * self, int subsurface_x) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->subsurface_x = subsurface_x;
+}
+
+// GdkWindowImplWayland::subsurface_y
+
+int gdk_window_impl_wayland_espionage_get_subsurface_y(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->subsurface_y;
 }
 
-gchar * gdk_window_impl_wayland_extract_title(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_subsurface_y(GdkWindowImplWayland * self, int subsurface_y) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->subsurface_y = subsurface_y;
+}
+
+// GdkWindowImplWayland::title
+
+gchar * gdk_window_impl_wayland_espionage_get_title(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->title;
 }
 
-gboolean gdk_window_impl_wayland_extract_application_was_set(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_title(GdkWindowImplWayland * self, gchar * title) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->title = title;
+}
+
+// GdkWindowImplWayland::application.was_set
+
+gboolean gdk_window_impl_wayland_espionage_get_application_was_set(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->application.was_set;
 }
 
-gchar * gdk_window_impl_wayland_extract_application_application_id(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_application_was_set(GdkWindowImplWayland * self, gboolean application_was_set) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->application.was_set = application_was_set;
+}
+
+// GdkWindowImplWayland::application.application_id
+
+gchar * gdk_window_impl_wayland_espionage_get_application_application_id(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->application.application_id;
 }
 
-gchar * gdk_window_impl_wayland_extract_application_app_menu_path(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_application_application_id(GdkWindowImplWayland * self, gchar * application_application_id) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->application.application_id = application_application_id;
+}
+
+// GdkWindowImplWayland::application.app_menu_path
+
+gchar * gdk_window_impl_wayland_espionage_get_application_app_menu_path(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->application.app_menu_path;
 }
 
-gchar * gdk_window_impl_wayland_extract_application_menubar_path(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_application_app_menu_path(GdkWindowImplWayland * self, gchar * application_app_menu_path) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->application.app_menu_path = application_app_menu_path;
+}
+
+// GdkWindowImplWayland::application.menubar_path
+
+gchar * gdk_window_impl_wayland_espionage_get_application_menubar_path(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->application.menubar_path;
 }
 
-gchar * gdk_window_impl_wayland_extract_application_window_object_path(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_application_menubar_path(GdkWindowImplWayland * self, gchar * application_menubar_path) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->application.menubar_path = application_menubar_path;
+}
+
+// GdkWindowImplWayland::application.window_object_path
+
+gchar * gdk_window_impl_wayland_espionage_get_application_window_object_path(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->application.window_object_path;
 }
 
-gchar * gdk_window_impl_wayland_extract_application_application_object_path(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_application_window_object_path(GdkWindowImplWayland * self, gchar * application_window_object_path) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->application.window_object_path = application_window_object_path;
+}
+
+// GdkWindowImplWayland::application.application_object_path
+
+gchar * gdk_window_impl_wayland_espionage_get_application_application_object_path(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->application.application_object_path;
 }
 
-gchar * gdk_window_impl_wayland_extract_application_unique_bus_name(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_application_application_object_path(GdkWindowImplWayland * self, gchar * application_application_object_path) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->application.application_object_path = application_application_object_path;
+}
+
+// GdkWindowImplWayland::application.unique_bus_name
+
+gchar * gdk_window_impl_wayland_espionage_get_application_unique_bus_name(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->application.unique_bus_name;
 }
 
-GdkGeometry gdk_window_impl_wayland_extract_geometry_hints(GdkWindowImplWayland* self) {
-  return ((struct _GdkWindowImplWayland_v3_24_17*)self)->geometry_hints;
+void gdk_window_impl_wayland_espionage_set_application_unique_bus_name(GdkWindowImplWayland * self, gchar * application_unique_bus_name) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->application.unique_bus_name = application_unique_bus_name;
 }
 
-GdkWindowHints gdk_window_impl_wayland_extract_geometry_mask(GdkWindowImplWayland* self) {
-  return ((struct _GdkWindowImplWayland_v3_24_17*)self)->geometry_mask;
+// GdkWindowImplWayland::geometry_hints
+
+GdkGeometry * gdk_window_impl_wayland_espionage_get_geometry_hints_ptr(GdkWindowImplWayland * self) {
+  return (GdkGeometry *)&((struct _GdkWindowImplWayland_v3_24_17*)self)->geometry_hints;
 }
 
-GdkSeat * gdk_window_impl_wayland_extract_grab_input_seat(GdkWindowImplWayland* self) {
+// GdkWindowImplWayland::geometry_mask
+
+GdkWindowHints * gdk_window_impl_wayland_espionage_get_geometry_mask_ptr(GdkWindowImplWayland * self) {
+  return (GdkWindowHints *)&((struct _GdkWindowImplWayland_v3_24_17*)self)->geometry_mask;
+}
+
+// GdkWindowImplWayland::grab_input_seat
+
+GdkSeat * gdk_window_impl_wayland_espionage_get_grab_input_seat(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->grab_input_seat;
 }
 
-gint64 gdk_window_impl_wayland_extract_pending_frame_counter(GdkWindowImplWayland* self) {
-  return ((struct _GdkWindowImplWayland_v3_24_17*)self)->pending_frame_counter;
+void gdk_window_impl_wayland_espionage_set_grab_input_seat(GdkWindowImplWayland * self, GdkSeat * grab_input_seat) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->grab_input_seat = grab_input_seat;
 }
 
-guint32 gdk_window_impl_wayland_extract_scale(GdkWindowImplWayland* self) {
-  return ((struct _GdkWindowImplWayland_v3_24_17*)self)->scale;
+// GdkWindowImplWayland::pending_frame_counter
+
+gint64 * gdk_window_impl_wayland_espionage_get_pending_frame_counter_ptr(GdkWindowImplWayland * self) {
+  return (gint64 *)&((struct _GdkWindowImplWayland_v3_24_17*)self)->pending_frame_counter;
 }
 
-int gdk_window_impl_wayland_extract_margin_left(GdkWindowImplWayland* self) {
+// GdkWindowImplWayland::scale
+
+guint32 * gdk_window_impl_wayland_espionage_get_scale_ptr(GdkWindowImplWayland * self) {
+  return (guint32 *)&((struct _GdkWindowImplWayland_v3_24_17*)self)->scale;
+}
+
+// GdkWindowImplWayland::margin_left
+
+int gdk_window_impl_wayland_espionage_get_margin_left(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->margin_left;
 }
 
-int gdk_window_impl_wayland_extract_margin_right(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_margin_left(GdkWindowImplWayland * self, int margin_left) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->margin_left = margin_left;
+}
+
+// GdkWindowImplWayland::margin_right
+
+int gdk_window_impl_wayland_espionage_get_margin_right(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->margin_right;
 }
 
-int gdk_window_impl_wayland_extract_margin_top(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_margin_right(GdkWindowImplWayland * self, int margin_right) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->margin_right = margin_right;
+}
+
+// GdkWindowImplWayland::margin_top
+
+int gdk_window_impl_wayland_espionage_get_margin_top(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->margin_top;
 }
 
-int gdk_window_impl_wayland_extract_margin_bottom(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_margin_top(GdkWindowImplWayland * self, int margin_top) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->margin_top = margin_top;
+}
+
+// GdkWindowImplWayland::margin_bottom
+
+int gdk_window_impl_wayland_espionage_get_margin_bottom(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->margin_bottom;
 }
 
-gboolean gdk_window_impl_wayland_extract_margin_dirty(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_margin_bottom(GdkWindowImplWayland * self, int margin_bottom) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->margin_bottom = margin_bottom;
+}
+
+// GdkWindowImplWayland::margin_dirty
+
+gboolean gdk_window_impl_wayland_espionage_get_margin_dirty(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->margin_dirty;
 }
 
-int gdk_window_impl_wayland_extract_initial_fullscreen_monitor(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_margin_dirty(GdkWindowImplWayland * self, gboolean margin_dirty) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->margin_dirty = margin_dirty;
+}
+
+// GdkWindowImplWayland::initial_fullscreen_monitor
+
+int gdk_window_impl_wayland_espionage_get_initial_fullscreen_monitor(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->initial_fullscreen_monitor;
 }
 
-cairo_region_t * gdk_window_impl_wayland_extract_opaque_region(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_initial_fullscreen_monitor(GdkWindowImplWayland * self, int initial_fullscreen_monitor) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->initial_fullscreen_monitor = initial_fullscreen_monitor;
+}
+
+// GdkWindowImplWayland::opaque_region
+
+cairo_region_t * gdk_window_impl_wayland_espionage_get_opaque_region(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->opaque_region;
 }
 
-gboolean gdk_window_impl_wayland_extract_opaque_region_dirty(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_opaque_region(GdkWindowImplWayland * self, cairo_region_t * opaque_region) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->opaque_region = opaque_region;
+}
+
+// GdkWindowImplWayland::opaque_region_dirty
+
+gboolean gdk_window_impl_wayland_espionage_get_opaque_region_dirty(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->opaque_region_dirty;
 }
 
-cairo_region_t * gdk_window_impl_wayland_extract_input_region(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_opaque_region_dirty(GdkWindowImplWayland * self, gboolean opaque_region_dirty) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->opaque_region_dirty = opaque_region_dirty;
+}
+
+// GdkWindowImplWayland::input_region
+
+cairo_region_t * gdk_window_impl_wayland_espionage_get_input_region(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->input_region;
 }
 
-gboolean gdk_window_impl_wayland_extract_input_region_dirty(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_input_region(GdkWindowImplWayland * self, cairo_region_t * input_region) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->input_region = input_region;
+}
+
+// GdkWindowImplWayland::input_region_dirty
+
+gboolean gdk_window_impl_wayland_espionage_get_input_region_dirty(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->input_region_dirty;
 }
 
-cairo_region_t * gdk_window_impl_wayland_extract_staged_updates_region(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_input_region_dirty(GdkWindowImplWayland * self, gboolean input_region_dirty) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->input_region_dirty = input_region_dirty;
+}
+
+// GdkWindowImplWayland::staged_updates_region
+
+cairo_region_t * gdk_window_impl_wayland_espionage_get_staged_updates_region(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->staged_updates_region;
 }
 
-int gdk_window_impl_wayland_extract_saved_width(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_staged_updates_region(GdkWindowImplWayland * self, cairo_region_t * staged_updates_region) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->staged_updates_region = staged_updates_region;
+}
+
+// GdkWindowImplWayland::saved_width
+
+int gdk_window_impl_wayland_espionage_get_saved_width(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->saved_width;
 }
 
-int gdk_window_impl_wayland_extract_saved_height(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_saved_width(GdkWindowImplWayland * self, int saved_width) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->saved_width = saved_width;
+}
+
+// GdkWindowImplWayland::saved_height
+
+int gdk_window_impl_wayland_espionage_get_saved_height(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->saved_height;
 }
 
-int gdk_window_impl_wayland_extract_unconfigured_width(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_saved_height(GdkWindowImplWayland * self, int saved_height) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->saved_height = saved_height;
+}
+
+// GdkWindowImplWayland::unconfigured_width
+
+int gdk_window_impl_wayland_espionage_get_unconfigured_width(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->unconfigured_width;
 }
 
-int gdk_window_impl_wayland_extract_unconfigured_height(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_unconfigured_width(GdkWindowImplWayland * self, int unconfigured_width) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->unconfigured_width = unconfigured_width;
+}
+
+// GdkWindowImplWayland::unconfigured_height
+
+int gdk_window_impl_wayland_espionage_get_unconfigured_height(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->unconfigured_height;
 }
 
-int gdk_window_impl_wayland_extract_fixed_size_width(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_unconfigured_height(GdkWindowImplWayland * self, int unconfigured_height) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->unconfigured_height = unconfigured_height;
+}
+
+// GdkWindowImplWayland::fixed_size_width
+
+int gdk_window_impl_wayland_espionage_get_fixed_size_width(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->fixed_size_width;
 }
 
-int gdk_window_impl_wayland_extract_fixed_size_height(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_fixed_size_width(GdkWindowImplWayland * self, int fixed_size_width) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->fixed_size_width = fixed_size_width;
+}
+
+// GdkWindowImplWayland::fixed_size_height
+
+int gdk_window_impl_wayland_espionage_get_fixed_size_height(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->fixed_size_height;
 }
 
-gulong gdk_window_impl_wayland_extract_parent_surface_committed_handler(GdkWindowImplWayland* self) {
-  return ((struct _GdkWindowImplWayland_v3_24_17*)self)->parent_surface_committed_handler;
+void gdk_window_impl_wayland_espionage_set_fixed_size_height(GdkWindowImplWayland * self, int fixed_size_height) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->fixed_size_height = fixed_size_height;
 }
 
-GdkRectangle gdk_window_impl_wayland_extract_pending_move_to_rect_rect(GdkWindowImplWayland* self) {
-  return ((struct _GdkWindowImplWayland_v3_24_17*)self)->pending_move_to_rect.rect;
+// GdkWindowImplWayland::parent_surface_committed_handler
+
+gulong * gdk_window_impl_wayland_espionage_get_parent_surface_committed_handler_ptr(GdkWindowImplWayland * self) {
+  return (gulong *)&((struct _GdkWindowImplWayland_v3_24_17*)self)->parent_surface_committed_handler;
 }
 
-GdkGravity gdk_window_impl_wayland_extract_pending_move_to_rect_rect_anchor(GdkWindowImplWayland* self) {
-  return ((struct _GdkWindowImplWayland_v3_24_17*)self)->pending_move_to_rect.rect_anchor;
+// GdkWindowImplWayland::pending_move_to_rect.rect
+
+GdkRectangle * gdk_window_impl_wayland_espionage_get_pending_move_to_rect_rect_ptr(GdkWindowImplWayland * self) {
+  return (GdkRectangle *)&((struct _GdkWindowImplWayland_v3_24_17*)self)->pending_move_to_rect.rect;
 }
 
-GdkGravity gdk_window_impl_wayland_extract_pending_move_to_rect_window_anchor(GdkWindowImplWayland* self) {
-  return ((struct _GdkWindowImplWayland_v3_24_17*)self)->pending_move_to_rect.window_anchor;
+// GdkWindowImplWayland::pending_move_to_rect.rect_anchor
+
+GdkGravity * gdk_window_impl_wayland_espionage_get_pending_move_to_rect_rect_anchor_ptr(GdkWindowImplWayland * self) {
+  return (GdkGravity *)&((struct _GdkWindowImplWayland_v3_24_17*)self)->pending_move_to_rect.rect_anchor;
 }
 
-GdkAnchorHints gdk_window_impl_wayland_extract_pending_move_to_rect_anchor_hints(GdkWindowImplWayland* self) {
-  return ((struct _GdkWindowImplWayland_v3_24_17*)self)->pending_move_to_rect.anchor_hints;
+// GdkWindowImplWayland::pending_move_to_rect.window_anchor
+
+GdkGravity * gdk_window_impl_wayland_espionage_get_pending_move_to_rect_window_anchor_ptr(GdkWindowImplWayland * self) {
+  return (GdkGravity *)&((struct _GdkWindowImplWayland_v3_24_17*)self)->pending_move_to_rect.window_anchor;
 }
 
-gint gdk_window_impl_wayland_extract_pending_move_to_rect_rect_anchor_dx(GdkWindowImplWayland* self) {
+// GdkWindowImplWayland::pending_move_to_rect.anchor_hints
+
+GdkAnchorHints * gdk_window_impl_wayland_espionage_get_pending_move_to_rect_anchor_hints_ptr(GdkWindowImplWayland * self) {
+  return (GdkAnchorHints *)&((struct _GdkWindowImplWayland_v3_24_17*)self)->pending_move_to_rect.anchor_hints;
+}
+
+// GdkWindowImplWayland::pending_move_to_rect.rect_anchor_dx
+
+gint gdk_window_impl_wayland_espionage_get_pending_move_to_rect_rect_anchor_dx(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->pending_move_to_rect.rect_anchor_dx;
 }
 
-gint gdk_window_impl_wayland_extract_pending_move_to_rect_rect_anchor_dy(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_pending_move_to_rect_rect_anchor_dx(GdkWindowImplWayland * self, gint pending_move_to_rect_rect_anchor_dx) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->pending_move_to_rect.rect_anchor_dx = pending_move_to_rect_rect_anchor_dx;
+}
+
+// GdkWindowImplWayland::pending_move_to_rect.rect_anchor_dy
+
+gint gdk_window_impl_wayland_espionage_get_pending_move_to_rect_rect_anchor_dy(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->pending_move_to_rect.rect_anchor_dy;
 }
 
-int gdk_window_impl_wayland_extract_pending_width(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_pending_move_to_rect_rect_anchor_dy(GdkWindowImplWayland * self, gint pending_move_to_rect_rect_anchor_dy) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->pending_move_to_rect.rect_anchor_dy = pending_move_to_rect_rect_anchor_dy;
+}
+
+// GdkWindowImplWayland::pending.width
+
+int gdk_window_impl_wayland_espionage_get_pending_width(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->pending.width;
 }
 
-int gdk_window_impl_wayland_extract_pending_height(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_pending_width(GdkWindowImplWayland * self, int pending_width) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->pending.width = pending_width;
+}
+
+// GdkWindowImplWayland::pending.height
+
+int gdk_window_impl_wayland_espionage_get_pending_height(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->pending.height;
 }
 
-GdkWindowState gdk_window_impl_wayland_extract_pending_state(GdkWindowImplWayland* self) {
-  return ((struct _GdkWindowImplWayland_v3_24_17*)self)->pending.state;
+void gdk_window_impl_wayland_espionage_set_pending_height(GdkWindowImplWayland * self, int pending_height) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->pending.height = pending_height;
 }
 
-char * gdk_window_impl_wayland_extract_exported_handle(GdkWindowImplWayland* self) {
+// GdkWindowImplWayland::pending.state
+
+GdkWindowState * gdk_window_impl_wayland_espionage_get_pending_state_ptr(GdkWindowImplWayland * self) {
+  return (GdkWindowState *)&((struct _GdkWindowImplWayland_v3_24_17*)self)->pending.state;
+}
+
+// GdkWindowImplWayland::exported.handle
+
+char * gdk_window_impl_wayland_espionage_get_exported_handle(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->exported.handle;
 }
 
-int gdk_window_impl_wayland_extract_exported_export_count(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_exported_handle(GdkWindowImplWayland * self, char * exported_handle) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->exported.handle = exported_handle;
+}
+
+// GdkWindowImplWayland::exported.export_count
+
+int gdk_window_impl_wayland_espionage_get_exported_export_count(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->exported.export_count;
 }
 
-GList * gdk_window_impl_wayland_extract_exported_closures(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_exported_export_count(GdkWindowImplWayland * self, int exported_export_count) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->exported.export_count = exported_export_count;
+}
+
+// GdkWindowImplWayland::exported.closures
+
+GList * gdk_window_impl_wayland_espionage_get_exported_closures(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->exported.closures;
 }
 
-guint gdk_window_impl_wayland_extract_exported_idle_source_id(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_exported_closures(GdkWindowImplWayland * self, GList * exported_closures) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->exported.closures = exported_closures;
+}
+
+// GdkWindowImplWayland::exported.idle_source_id
+
+guint gdk_window_impl_wayland_espionage_get_exported_idle_source_id(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->exported.idle_source_id;
 }
 
-struct zxdg_imported_v1 * gdk_window_impl_wayland_extract_imported_transient_for(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_exported_idle_source_id(GdkWindowImplWayland * self, guint exported_idle_source_id) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->exported.idle_source_id = exported_idle_source_id;
+}
+
+// GdkWindowImplWayland::imported_transient_for
+
+struct zxdg_imported_v1 * gdk_window_impl_wayland_espionage_get_imported_transient_for(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->imported_transient_for;
 }
 
-GHashTable * gdk_window_impl_wayland_extract_shortcuts_inhibitors(GdkWindowImplWayland* self) {
+void gdk_window_impl_wayland_espionage_set_imported_transient_for(GdkWindowImplWayland * self, struct zxdg_imported_v1 * imported_transient_for) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->imported_transient_for = imported_transient_for;
+}
+
+// GdkWindowImplWayland::shortcuts_inhibitors
+
+GHashTable * gdk_window_impl_wayland_espionage_get_shortcuts_inhibitors(GdkWindowImplWayland * self) {
   return ((struct _GdkWindowImplWayland_v3_24_17*)self)->shortcuts_inhibitors;
+}
+
+void gdk_window_impl_wayland_espionage_set_shortcuts_inhibitors(GdkWindowImplWayland * self, GHashTable * shortcuts_inhibitors) {
+  ((struct _GdkWindowImplWayland_v3_24_17*)self)->shortcuts_inhibitors = shortcuts_inhibitors;
 }
 
 #endif // GDK_WINDOW_IMPL_WAYLAND_ESPIONAGE_H

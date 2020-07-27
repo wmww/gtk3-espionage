@@ -35,32 +35,50 @@ struct _GdkWaylandPointerFrameData_v3_22_0
   enum wl_pointer_axis_source source;
 };
 
-GdkEvent * gdk_wayland_pointer_frame_data_extract_event(GdkWaylandPointerFrameData* self) {
+// GdkWaylandPointerFrameData::event
+
+GdkEvent * gdk_wayland_pointer_frame_data_espionage_get_event(GdkWaylandPointerFrameData * self) {
   return ((struct _GdkWaylandPointerFrameData_v3_22_0*)self)->event;
 }
 
-gdouble gdk_wayland_pointer_frame_data_extract_delta_x(GdkWaylandPointerFrameData* self) {
-  return ((struct _GdkWaylandPointerFrameData_v3_22_0*)self)->delta_x;
+void gdk_wayland_pointer_frame_data_espionage_set_event(GdkWaylandPointerFrameData * self, GdkEvent * event) {
+  ((struct _GdkWaylandPointerFrameData_v3_22_0*)self)->event = event;
 }
 
-gdouble gdk_wayland_pointer_frame_data_extract_delta_y(GdkWaylandPointerFrameData* self) {
-  return ((struct _GdkWaylandPointerFrameData_v3_22_0*)self)->delta_y;
+// GdkWaylandPointerFrameData::delta_x
+
+gdouble * gdk_wayland_pointer_frame_data_espionage_get_delta_x_ptr(GdkWaylandPointerFrameData * self) {
+  return (gdouble *)&((struct _GdkWaylandPointerFrameData_v3_22_0*)self)->delta_x;
 }
 
-int32_t gdk_wayland_pointer_frame_data_extract_discrete_x(GdkWaylandPointerFrameData* self) {
-  return ((struct _GdkWaylandPointerFrameData_v3_22_0*)self)->discrete_x;
+// GdkWaylandPointerFrameData::delta_y
+
+gdouble * gdk_wayland_pointer_frame_data_espionage_get_delta_y_ptr(GdkWaylandPointerFrameData * self) {
+  return (gdouble *)&((struct _GdkWaylandPointerFrameData_v3_22_0*)self)->delta_y;
 }
 
-int32_t gdk_wayland_pointer_frame_data_extract_discrete_y(GdkWaylandPointerFrameData* self) {
-  return ((struct _GdkWaylandPointerFrameData_v3_22_0*)self)->discrete_y;
+// GdkWaylandPointerFrameData::discrete_x
+
+int32_t * gdk_wayland_pointer_frame_data_espionage_get_discrete_x_ptr(GdkWaylandPointerFrameData * self) {
+  return (int32_t *)&((struct _GdkWaylandPointerFrameData_v3_22_0*)self)->discrete_x;
 }
 
-gint8 gdk_wayland_pointer_frame_data_extract_is_scroll_stop(GdkWaylandPointerFrameData* self) {
-  return ((struct _GdkWaylandPointerFrameData_v3_22_0*)self)->is_scroll_stop;
+// GdkWaylandPointerFrameData::discrete_y
+
+int32_t * gdk_wayland_pointer_frame_data_espionage_get_discrete_y_ptr(GdkWaylandPointerFrameData * self) {
+  return (int32_t *)&((struct _GdkWaylandPointerFrameData_v3_22_0*)self)->discrete_y;
 }
 
-enum wl_pointer_axis_source gdk_wayland_pointer_frame_data_extract_source(GdkWaylandPointerFrameData* self) {
-  return ((struct _GdkWaylandPointerFrameData_v3_22_0*)self)->source;
+// GdkWaylandPointerFrameData::is_scroll_stop
+
+gint8 * gdk_wayland_pointer_frame_data_espionage_get_is_scroll_stop_ptr(GdkWaylandPointerFrameData * self) {
+  return (gint8 *)&((struct _GdkWaylandPointerFrameData_v3_22_0*)self)->is_scroll_stop;
+}
+
+// GdkWaylandPointerFrameData::source
+
+enum wl_pointer_axis_source * gdk_wayland_pointer_frame_data_espionage_get_source_ptr(GdkWaylandPointerFrameData * self) {
+  return (enum wl_pointer_axis_source *)&((struct _GdkWaylandPointerFrameData_v3_22_0*)self)->source;
 }
 
 #endif // GDK_WAYLAND_POINTER_FRAME_DATA_ESPIONAGE_H

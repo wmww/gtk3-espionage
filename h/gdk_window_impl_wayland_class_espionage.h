@@ -29,8 +29,10 @@ struct _GdkWindowImplWaylandClass_v3_22_0
   struct _GdkWindowImplClass_v3_22_0 parent_class;
 };
 
-GdkWindowImplClass gdk_window_impl_wayland_class_extract_parent_class(GdkWindowImplWaylandClass* self) {
-  return ((struct _GdkWindowImplWaylandClass_v3_22_0*)self)->parent_class;
+// GdkWindowImplWaylandClass::parent_class
+
+GdkWindowImplClass * gdk_window_impl_wayland_class_espionage_get_parent_class_ptr(GdkWindowImplWaylandClass * self) {
+  return (GdkWindowImplClass *)&((struct _GdkWindowImplWaylandClass_v3_22_0*)self)->parent_class;
 }
 
 #endif // GDK_WINDOW_IMPL_WAYLAND_CLASS_ESPIONAGE_H

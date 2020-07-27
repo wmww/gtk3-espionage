@@ -34,28 +34,56 @@ struct _GdkWaylandTouchData_v3_22_0
   guint initial_touch : 1;
 };
 
-uint32_t gdk_wayland_touch_data_extract_id(GdkWaylandTouchData* self) {
+// GdkWaylandTouchData::id
+
+uint32_t gdk_wayland_touch_data_espionage_get_id(GdkWaylandTouchData * self) {
   return ((struct _GdkWaylandTouchData_v3_22_0*)self)->id;
 }
 
-gdouble gdk_wayland_touch_data_extract_x(GdkWaylandTouchData* self) {
-  return ((struct _GdkWaylandTouchData_v3_22_0*)self)->x;
+void gdk_wayland_touch_data_espionage_set_id(GdkWaylandTouchData * self, uint32_t id) {
+  ((struct _GdkWaylandTouchData_v3_22_0*)self)->id = id;
 }
 
-gdouble gdk_wayland_touch_data_extract_y(GdkWaylandTouchData* self) {
-  return ((struct _GdkWaylandTouchData_v3_22_0*)self)->y;
+// GdkWaylandTouchData::x
+
+gdouble * gdk_wayland_touch_data_espionage_get_x_ptr(GdkWaylandTouchData * self) {
+  return (gdouble *)&((struct _GdkWaylandTouchData_v3_22_0*)self)->x;
 }
 
-GdkWindow * gdk_wayland_touch_data_extract_window(GdkWaylandTouchData* self) {
+// GdkWaylandTouchData::y
+
+gdouble * gdk_wayland_touch_data_espionage_get_y_ptr(GdkWaylandTouchData * self) {
+  return (gdouble *)&((struct _GdkWaylandTouchData_v3_22_0*)self)->y;
+}
+
+// GdkWaylandTouchData::window
+
+GdkWindow * gdk_wayland_touch_data_espionage_get_window(GdkWaylandTouchData * self) {
   return ((struct _GdkWaylandTouchData_v3_22_0*)self)->window;
 }
 
-uint32_t gdk_wayland_touch_data_extract_touch_down_serial(GdkWaylandTouchData* self) {
+void gdk_wayland_touch_data_espionage_set_window(GdkWaylandTouchData * self, GdkWindow * window) {
+  ((struct _GdkWaylandTouchData_v3_22_0*)self)->window = window;
+}
+
+// GdkWaylandTouchData::touch_down_serial
+
+uint32_t gdk_wayland_touch_data_espionage_get_touch_down_serial(GdkWaylandTouchData * self) {
   return ((struct _GdkWaylandTouchData_v3_22_0*)self)->touch_down_serial;
 }
 
-guint gdk_wayland_touch_data_extract_initial_touch(GdkWaylandTouchData* self) {
+void gdk_wayland_touch_data_espionage_set_touch_down_serial(GdkWaylandTouchData * self, uint32_t touch_down_serial) {
+  ((struct _GdkWaylandTouchData_v3_22_0*)self)->touch_down_serial = touch_down_serial;
+}
+
+// GdkWaylandTouchData::initial_touch
+
+guint gdk_wayland_touch_data_espionage_get_initial_touch(GdkWaylandTouchData * self) {
   return ((struct _GdkWaylandTouchData_v3_22_0*)self)->initial_touch;
+}
+
+void gdk_wayland_touch_data_espionage_set_initial_touch(GdkWaylandTouchData * self, guint initial_touch) {
+  ((struct _GdkWaylandTouchData_v3_22_0*)self)->initial_touch = initial_touch;
 }
 
 #endif // GDK_WAYLAND_TOUCH_DATA_ESPIONAGE_H
