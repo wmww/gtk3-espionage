@@ -45,4 +45,72 @@ struct _GdkWaylandPointerData_v3_22_0
   struct _GdkWaylandPointerFrameData_v3_22_0 frame;
 };
 
+GdkWindow * gdk_wayland_pointer_data_extract_focus(GdkWaylandPointerData* self) {
+  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->focus;
+}
+
+double gdk_wayland_pointer_data_extract_surface_x(GdkWaylandPointerData* self) {
+  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->surface_x;
+}
+
+double gdk_wayland_pointer_data_extract_surface_y(GdkWaylandPointerData* self) {
+  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->surface_y;
+}
+
+GdkModifierType gdk_wayland_pointer_data_extract_button_modifiers(GdkWaylandPointerData* self) {
+  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->button_modifiers;
+}
+
+uint32_t gdk_wayland_pointer_data_extract_time(GdkWaylandPointerData* self) {
+  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->time;
+}
+
+uint32_t gdk_wayland_pointer_data_extract_enter_serial(GdkWaylandPointerData* self) {
+  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->enter_serial;
+}
+
+uint32_t gdk_wayland_pointer_data_extract_press_serial(GdkWaylandPointerData* self) {
+  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->press_serial;
+}
+
+GdkWindow * gdk_wayland_pointer_data_extract_grab_window(GdkWaylandPointerData* self) {
+  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->grab_window;
+}
+
+uint32_t gdk_wayland_pointer_data_extract_grab_time(GdkWaylandPointerData* self) {
+  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->grab_time;
+}
+
+struct wl_surface * gdk_wayland_pointer_data_extract_pointer_surface(GdkWaylandPointerData* self) {
+  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->pointer_surface;
+}
+
+GdkCursor * gdk_wayland_pointer_data_extract_cursor(GdkWaylandPointerData* self) {
+  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->cursor;
+}
+
+guint gdk_wayland_pointer_data_extract_cursor_timeout_id(GdkWaylandPointerData* self) {
+  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->cursor_timeout_id;
+}
+
+guint gdk_wayland_pointer_data_extract_cursor_image_index(GdkWaylandPointerData* self) {
+  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->cursor_image_index;
+}
+
+guint gdk_wayland_pointer_data_extract_cursor_image_delay(GdkWaylandPointerData* self) {
+  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->cursor_image_delay;
+}
+
+guint gdk_wayland_pointer_data_extract_current_output_scale(GdkWaylandPointerData* self) {
+  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->current_output_scale;
+}
+
+GSList * gdk_wayland_pointer_data_extract_pointer_surface_outputs(GdkWaylandPointerData* self) {
+  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->pointer_surface_outputs;
+}
+
+GdkWaylandPointerFrameData gdk_wayland_pointer_data_extract_frame(GdkWaylandPointerData* self) {
+  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->frame;
+}
+
 #endif // GDK_WAYLAND_POINTER_DATA_ESPIONAGE_H

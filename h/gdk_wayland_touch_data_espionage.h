@@ -34,4 +34,28 @@ struct _GdkWaylandTouchData_v3_22_0
   guint initial_touch : 1;
 };
 
+uint32_t gdk_wayland_touch_data_extract_id(GdkWaylandTouchData* self) {
+  return ((struct _GdkWaylandTouchData_v3_22_0*)self)->id;
+}
+
+gdouble gdk_wayland_touch_data_extract_x(GdkWaylandTouchData* self) {
+  return ((struct _GdkWaylandTouchData_v3_22_0*)self)->x;
+}
+
+gdouble gdk_wayland_touch_data_extract_y(GdkWaylandTouchData* self) {
+  return ((struct _GdkWaylandTouchData_v3_22_0*)self)->y;
+}
+
+GdkWindow * gdk_wayland_touch_data_extract_window(GdkWaylandTouchData* self) {
+  return ((struct _GdkWaylandTouchData_v3_22_0*)self)->window;
+}
+
+uint32_t gdk_wayland_touch_data_extract_touch_down_serial(GdkWaylandTouchData* self) {
+  return ((struct _GdkWaylandTouchData_v3_22_0*)self)->touch_down_serial;
+}
+
+guint gdk_wayland_touch_data_extract_initial_touch(GdkWaylandTouchData* self) {
+  return ((struct _GdkWaylandTouchData_v3_22_0*)self)->initial_touch;
+}
+
 #endif // GDK_WAYLAND_TOUCH_DATA_ESPIONAGE_H

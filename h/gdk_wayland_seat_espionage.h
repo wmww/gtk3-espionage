@@ -192,4 +192,208 @@ struct _GdkWaylandSeat_v3_22_16
   GdkCursor *grab_cursor;
 };
 
+GdkSeat gdk_wayland_seat_extract_parent_instance(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->parent_instance;
+}
+
+guint32 gdk_wayland_seat_extract_id(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->id;
+}
+
+struct wl_seat * gdk_wayland_seat_extract_wl_seat(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->wl_seat;
+}
+
+struct wl_pointer * gdk_wayland_seat_extract_wl_pointer(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->wl_pointer;
+}
+
+struct wl_keyboard * gdk_wayland_seat_extract_wl_keyboard(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->wl_keyboard;
+}
+
+struct wl_touch * gdk_wayland_seat_extract_wl_touch(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->wl_touch;
+}
+
+struct zwp_pointer_gesture_swipe_v1 * gdk_wayland_seat_extract_wp_pointer_gesture_swipe(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->wp_pointer_gesture_swipe;
+}
+
+struct zwp_pointer_gesture_pinch_v1 * gdk_wayland_seat_extract_wp_pointer_gesture_pinch(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->wp_pointer_gesture_pinch;
+}
+
+struct zwp_tablet_seat_v2 * gdk_wayland_seat_extract_wp_tablet_seat(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->wp_tablet_seat;
+}
+
+GdkDisplay * gdk_wayland_seat_extract_display(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->display;
+}
+
+GdkDeviceManager * gdk_wayland_seat_extract_device_manager(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->device_manager;
+}
+
+GdkDevice * gdk_wayland_seat_extract_master_pointer(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->master_pointer;
+}
+
+GdkDevice * gdk_wayland_seat_extract_master_keyboard(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->master_keyboard;
+}
+
+GdkDevice * gdk_wayland_seat_extract_pointer(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->pointer;
+}
+
+GdkDevice * gdk_wayland_seat_extract_wheel_scrolling(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->wheel_scrolling;
+}
+
+GdkDevice * gdk_wayland_seat_extract_finger_scrolling(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->finger_scrolling;
+}
+
+GdkDevice * gdk_wayland_seat_extract_continuous_scrolling(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->continuous_scrolling;
+}
+
+GdkDevice * gdk_wayland_seat_extract_keyboard(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->keyboard;
+}
+
+GdkDevice * gdk_wayland_seat_extract_touch_master(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->touch_master;
+}
+
+GdkDevice * gdk_wayland_seat_extract_touch(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->touch;
+}
+
+GdkCursor * gdk_wayland_seat_extract_cursor(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->cursor;
+}
+
+GdkKeymap * gdk_wayland_seat_extract_keymap(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->keymap;
+}
+
+GHashTable * gdk_wayland_seat_extract_touches(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->touches;
+}
+
+GList * gdk_wayland_seat_extract_tablets(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->tablets;
+}
+
+GList * gdk_wayland_seat_extract_tablet_tools(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->tablet_tools;
+}
+
+GList * gdk_wayland_seat_extract_tablet_pads(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->tablet_pads;
+}
+
+GdkWaylandPointerData gdk_wayland_seat_extract_pointer_info(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->pointer_info;
+}
+
+GdkWaylandPointerData gdk_wayland_seat_extract_touch_info(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->touch_info;
+}
+
+GdkModifierType gdk_wayland_seat_extract_key_modifiers(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->key_modifiers;
+}
+
+GdkWindow * gdk_wayland_seat_extract_keyboard_focus(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->keyboard_focus;
+}
+
+GdkAtom gdk_wayland_seat_extract_pending_selection(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->pending_selection;
+}
+
+GdkWindow * gdk_wayland_seat_extract_grab_window(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->grab_window;
+}
+
+uint32_t gdk_wayland_seat_extract_grab_time(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->grab_time;
+}
+
+gboolean gdk_wayland_seat_extract_have_server_repeat(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->have_server_repeat;
+}
+
+uint32_t gdk_wayland_seat_extract_server_repeat_rate(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->server_repeat_rate;
+}
+
+uint32_t gdk_wayland_seat_extract_server_repeat_delay(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->server_repeat_delay;
+}
+
+struct wl_callback * gdk_wayland_seat_extract_repeat_callback(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->repeat_callback;
+}
+
+guint32 gdk_wayland_seat_extract_repeat_timer(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->repeat_timer;
+}
+
+guint32 gdk_wayland_seat_extract_repeat_key(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->repeat_key;
+}
+
+guint32 gdk_wayland_seat_extract_repeat_count(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->repeat_count;
+}
+
+gint64 gdk_wayland_seat_extract_repeat_deadline(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->repeat_deadline;
+}
+
+GSettings * gdk_wayland_seat_extract_keyboard_settings(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->keyboard_settings;
+}
+
+uint32_t gdk_wayland_seat_extract_keyboard_time(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->keyboard_time;
+}
+
+uint32_t gdk_wayland_seat_extract_keyboard_key_serial(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->keyboard_key_serial;
+}
+
+struct gtk_primary_selection_device * gdk_wayland_seat_extract_primary_data_device(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->primary_data_device;
+}
+
+struct wl_data_device * gdk_wayland_seat_extract_data_device(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->data_device;
+}
+
+GdkDragContext * gdk_wayland_seat_extract_drop_context(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->drop_context;
+}
+
+GdkWindow * gdk_wayland_seat_extract_foreign_dnd_window(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->foreign_dnd_window;
+}
+
+guint gdk_wayland_seat_extract_gesture_n_fingers(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->gesture_n_fingers;
+}
+
+gdouble gdk_wayland_seat_extract_gesture_scale(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->gesture_scale;
+}
+
+GdkCursor * gdk_wayland_seat_extract_grab_cursor(GdkWaylandSeat* self) {
+  return ((struct _GdkWaylandSeat_v3_22_16*)self)->grab_cursor;
+}
+
 #endif // GDK_WAYLAND_SEAT_ESPIONAGE_H

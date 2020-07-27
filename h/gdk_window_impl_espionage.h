@@ -29,4 +29,8 @@ struct _GdkWindowImpl_v3_22_0
   GObject parent;
 };
 
+GObject gdk_window_impl_extract_parent(GdkWindowImpl* self) {
+  return ((struct _GdkWindowImpl_v3_22_0*)self)->parent;
+}
+
 #endif // GDK_WINDOW_IMPL_ESPIONAGE_H

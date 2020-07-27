@@ -43,4 +43,64 @@ struct _GdkWaylandTabletData_v3_22_0
   gdouble *axes;
 };
 
+struct zwp_tablet_v2 * gdk_wayland_tablet_data_extract_wp_tablet(GdkWaylandTabletData* self) {
+  return ((struct _GdkWaylandTabletData_v3_22_0*)self)->wp_tablet;
+}
+
+gchar * gdk_wayland_tablet_data_extract_name(GdkWaylandTabletData* self) {
+  return ((struct _GdkWaylandTabletData_v3_22_0*)self)->name;
+}
+
+gchar * gdk_wayland_tablet_data_extract_path(GdkWaylandTabletData* self) {
+  return ((struct _GdkWaylandTabletData_v3_22_0*)self)->path;
+}
+
+uint32_t gdk_wayland_tablet_data_extract_vid(GdkWaylandTabletData* self) {
+  return ((struct _GdkWaylandTabletData_v3_22_0*)self)->vid;
+}
+
+uint32_t gdk_wayland_tablet_data_extract_pid(GdkWaylandTabletData* self) {
+  return ((struct _GdkWaylandTabletData_v3_22_0*)self)->pid;
+}
+
+GdkDevice * gdk_wayland_tablet_data_extract_master(GdkWaylandTabletData* self) {
+  return ((struct _GdkWaylandTabletData_v3_22_0*)self)->master;
+}
+
+GdkDevice * gdk_wayland_tablet_data_extract_stylus_device(GdkWaylandTabletData* self) {
+  return ((struct _GdkWaylandTabletData_v3_22_0*)self)->stylus_device;
+}
+
+GdkDevice * gdk_wayland_tablet_data_extract_eraser_device(GdkWaylandTabletData* self) {
+  return ((struct _GdkWaylandTabletData_v3_22_0*)self)->eraser_device;
+}
+
+GdkDevice * gdk_wayland_tablet_data_extract_current_device(GdkWaylandTabletData* self) {
+  return ((struct _GdkWaylandTabletData_v3_22_0*)self)->current_device;
+}
+
+GdkSeat * gdk_wayland_tablet_data_extract_seat(GdkWaylandTabletData* self) {
+  return ((struct _GdkWaylandTabletData_v3_22_0*)self)->seat;
+}
+
+GdkWaylandPointerData gdk_wayland_tablet_data_extract_pointer_info(GdkWaylandTabletData* self) {
+  return ((struct _GdkWaylandTabletData_v3_22_0*)self)->pointer_info;
+}
+
+GList * gdk_wayland_tablet_data_extract_pads(GdkWaylandTabletData* self) {
+  return ((struct _GdkWaylandTabletData_v3_22_0*)self)->pads;
+}
+
+GdkWaylandTabletToolData * gdk_wayland_tablet_data_extract_current_tool(GdkWaylandTabletData* self) {
+  return ((struct _GdkWaylandTabletData_v3_22_0*)self)->current_tool;
+}
+
+gint* gdk_wayland_tablet_data_extract_axis_indices(GdkWaylandTabletData* self) {
+  return ((struct _GdkWaylandTabletData_v3_22_0*)self)->axis_indices;
+}
+
+gdouble * gdk_wayland_tablet_data_extract_axes(GdkWaylandTabletData* self) {
+  return ((struct _GdkWaylandTabletData_v3_22_0*)self)->axes;
+}
+
 #endif // GDK_WAYLAND_TABLET_DATA_ESPIONAGE_H
