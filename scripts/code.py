@@ -97,16 +97,6 @@ class ResolveContext:
         self.project = project
         self.struct = struct
         self.version = version
-        # If we are behind at least one layer of indirection (such as a pointer) and thus can use undefined types
-        self.indirect = False
-
-    def get_indirect(self):
-        if self.indirect:
-            return self
-        else:
-            ctx = ResolveContext(self.project, self.struct, self.version)
-            ctx.indirect = True
-            return ctx
 
 class StructVersion:
     def __init__(self, code_path, project, struct, version):

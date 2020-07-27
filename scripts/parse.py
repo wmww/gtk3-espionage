@@ -43,9 +43,9 @@ def is_std_type(name):
 
 class CType:
     def __str__(self):
-        return self.str_left() + self.str_right()
+        return self.str_left(False) + self.str_right(False)
 
-    def str_right(self):
+    def str_right(self, resolved):
         return ''
 
     def __eq__(self, other):
@@ -60,10 +60,10 @@ class StdType(CType):
     def resolve(self, ctx):
         pass
 
-    def str_left(self):
+    def str_left(self, resolved):
         return self.name
 
-class UnresolvedCustomType(CType):
+class CustomType(CType):
     def __init__(self, name):
         assert isinstance(name, str)
         self.explicit_struct = False
@@ -75,53 +75,33 @@ class UnresolvedCustomType(CType):
             name = name[4:].strip()
             self.explicit_enum = True
         self.name = name
+        self.version = None
+        self.resolved_struct = None
 
     def resolve(self, ctx):
-        pass
-
-    def str_left(self):
-        result = ''
-        if self.explicit_struct:
-            result += 'struct '
         if self.explicit_enum:
-            result += 'enum '
-        result += self.name
-        return result
+            struct = None
+        elif self.explicit_struct:
+            struct = ctx.project.lookup_struct_name(self.name)
+        else:
+            struct = ctx.project.lookup_typedef(self.name)
 
-class StructCustomType(CType):
-    def __init__(self, struct, version):
-        assert isinstance(version, Version)
-        self.struct = struct
-        self.version = version
+        if struct:
+            self.resolved_struct = struct
+            self.version = ctx.version
 
-    def resolve(self, ctx):
-        pass
-
-    def str_left(self):
-        v = self.struct.lookup_version(self.version)
-        return 'struct ' + v.versioned_struct_name()
-
-class CustomTypeWrapper(CType):
-    def __init__(self, name):
-        self.wrapped = UnresolvedCustomType(name)
-
-    def resolve(self, ctx):
-        if (not ctx.indirect and
-            isinstance(self.wrapped, UnresolvedCustomType) and
-            not self.wrapped.explicit_enum):
-            if self.wrapped.explicit_struct:
-                struct = ctx.project.lookup_struct_name(self.wrapped.name)
-            else:
-                struct = ctx.project.lookup_typedef(self.wrapped.name)
-            if struct:
-                self.wrapped = StructCustomType(struct, ctx.version)
-        self.wrapped.resolve(ctx)
-
-    def str_left(self):
-        return self.wrapped.str_left()
-
-    def str_right(self):
-        return self.wrapped.str_right()
+    def str_left(self, resolved):
+        if self.resolved_struct and resolved:
+            v = self.resolved_struct.lookup_version(self.version)
+            return 'struct ' + v.versioned_struct_name()
+        else:
+            result = ''
+            if self.explicit_struct:
+                result += 'struct '
+            if self.explicit_enum:
+                result += 'enum '
+            result += self.name
+            return result
 
 class PtrType(CType):
     def __init__(self, inner):
@@ -129,18 +109,17 @@ class PtrType(CType):
         self.inner = inner
 
     def resolve(self, ctx):
-        ctx = ctx.get_indirect()
         self.inner.resolve(ctx)
 
-    def str_left(self):
-        result = self.inner.str_left()
+    def str_left(self, resolved):
+        result = self.inner.str_left(False)
         if not isinstance(self.inner, PtrType):
             result += ' '
         result += '*'
         return result
 
-    def str_right(self):
-        return self.inner.str_right()
+    def str_right(self, resolved):
+        return self.inner.str_right(False)
 
 class ConstType(CType):
     def __init__(self, inner):
@@ -150,11 +129,11 @@ class ConstType(CType):
     def resolve(self, ctx):
         self.inner.resolve(ctx)
 
-    def str_left(self):
-        return 'const ' + self.inner.str_left()
+    def str_left(self, resolved):
+        return 'const ' + self.inner.str_left(resolved)
 
-    def str_right(self):
-        return self.inner.str_right()
+    def str_right(self, resolved):
+        return self.inner.str_right(resolved)
 
 # Note the first (and usually only) layer of "pointer" is consumed by this type
 # Do not wrap in a PtrType in most cases
@@ -168,15 +147,14 @@ class FpType(CType):
         self.arg_list = arg_list
 
     def resolve(self, ctx):
-        ctx = ctx.get_indirect()
         self.return_type.resolve(ctx)
         for arg in self.arg_list:
             arg.resolve(ctx)
 
-    def str_left(self):
+    def str_left(self, resolved):
         return str(self.return_type) + ' (*'
 
-    def str_right(self):
+    def str_right(self, resolved):
         return ') (' + str(', '.join([str(t) for t in self.arg_list])) + ')'
 
 class ArrayType(CType):
@@ -189,11 +167,11 @@ class ArrayType(CType):
     def resolve(self, ctx):
         self.inner.resolve(ctx)
 
-    def str_left(self):
-        return self.inner.str_left()
+    def str_left(self, resolved):
+        return self.inner.str_left(resolved)
 
-    def str_right(self):
-        return '[' + self.size + ']' + self.inner.str_right()
+    def str_right(self, resolved):
+        return '[' + self.size + ']' + self.inner.str_right(resolved)
 
 class AstNode:
     def __eq__(self, other):
@@ -212,12 +190,12 @@ class PropertyNode(AstNode):
         self.c_type.resolve(ctx)
 
     def __str__(self):
-        result = self.c_type.str_left()
+        result = self.c_type.str_left(True)
         if self.name:
             if not isinstance(self.c_type, PtrType):
                 result += ' '
             result += self.name
-        result += self.c_type.str_right()
+        result += self.c_type.str_right(True)
         if self.bit_field:
             result += ' : ' + str(self.bit_field)
         return result
@@ -263,7 +241,7 @@ def parse_type(code):
     elif is_std_type(code):
         return StdType(code)
     elif re.search(r'^((struct|enum)\s+)?\w+$', code):
-        return CustomTypeWrapper(code)
+        return CustomType(code)
     else:
         assert False, 'Unknown type `' + code + '`'
 
