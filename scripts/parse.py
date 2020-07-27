@@ -33,6 +33,12 @@ std_types = set([
     'long',
     'float',
     'double',
+    'uint32_t',
+    'gint',
+    'guint',
+    'gchar',
+    'gboolean',
+    'gpointer',
 ])
 
 def is_std_type(name):

@@ -92,6 +92,18 @@ def camel_case_to_words(name):
         result.append(word)
     return result
 
+def c_function(return_type, name, arg_list, body):
+    result = ''
+    result += return_type.str_left(False)
+    result += ' ' + name + '('
+    arg_strs = [c_type.str_left(False) + ' ' + name + c_type.str_right(False) for c_type, name in arg_list]
+    result += ', '.join(arg_strs)
+    result += ')' + return_type.str_right(False) + ' {\n'
+    for line in body.strip().splitlines():
+        result += parse.INDENT + line + '\n'
+    result += '}\n'
+    return result
+
 class ResolveContext:
     def __init__(self, project, struct, version):
         self.project = project
@@ -161,13 +173,48 @@ class Property:
         self.name = name
         self.unsupported_versions = unsupported_versions
 
-    def emit_getter(self):
-        fn_name = '_'.join(camel_case_to_words(self.struct.typedef)) + '_extract_' + self.name.replace('.', '_')
+    def get_id_name(self):
+        return self.name.replace('.', '_')
+
+    def get_fn_name(self, action):
+        return (
+            '_'.join(camel_case_to_words(self.struct.typedef)) +
+            '_espionage_' + action + '_' +
+            self.get_id_name())
+
+    def emit_ptr_getter(self):
+        return_type = parse.PtrType(self.c_type)
+        fn_name = self.get_fn_name('get') + '_ptr'
+        arg_list = [(self.struct.get_ptr_type(), 'self')]
         versioned_name = 'struct ' + self.struct.versions[-1].versioned_struct_name()
+        body = 'return (' + str(return_type) + ')&((' + versioned_name + '*)self)->' + self.name + ';\n'
+        return c_function(return_type, fn_name, arg_list, body)
+
+    def emit_getter(self):
+        return_type = self.c_type
+        fn_name = self.get_fn_name('get')
+        arg_list = [(self.struct.get_ptr_type(), 'self')]
+        versioned_name = 'struct ' + self.struct.versions[-1].versioned_struct_name()
+        body = 'return ((' + versioned_name + '*)self)->' + self.name + ';\n'
+        return c_function(return_type, fn_name, arg_list, body)
+
+    def emit_setter(self):
+        return_type = parse.StdType('void')
+        fn_name = self.get_fn_name('set')
+        arg_list = [(self.struct.get_ptr_type(), 'self'), (self.c_type, self.get_id_name())]
+        versioned_name = 'struct ' + self.struct.versions[-1].versioned_struct_name()
+        body = '((' + versioned_name + '*)self)->' + self.name + ' = ' + self.get_id_name() + ';\n'
+        return c_function(return_type, fn_name, arg_list, body)
+
+    def emit_functions(self):
         result = ''
-        result += str(self.c_type) + ' ' + fn_name + '(' + self.struct.typedef + '* self) {\n'
-        result += parse.INDENT + 'return ((' + versioned_name + '*)self)->' + self.name + ';\n'
-        result += '}\n'
+        result += '// ' + self.struct.typedef + '::' + self.name + '\n\n'
+        if isinstance(self.c_type, parse.CustomType) or isinstance(self.c_type, parse.ArrayType):
+            result += self.emit_ptr_getter()
+        else:
+            result += self.emit_getter()
+            result += '\n'
+            result += self.emit_setter()
         return result
 
 class Struct:
@@ -188,6 +235,9 @@ class Struct:
             return self.versions[-1].get_code_path()
         else:
             return None
+
+    def get_ptr_type(self):
+        return parse.PtrType(parse.CustomType(self.typedef))
 
     def header_name(self):
         return '_'.join(camel_case_to_words(self.typedef)) + '_espionage.h'
@@ -239,7 +289,7 @@ class Struct:
             result += i.emit_definition(generated)
             result += '\n'
         for p in self.properties:
-            result += p.emit_getter()
+            result += p.emit_functions()
             result += '\n'
         result += '#endif // ' + self.macro_name() + '\n'
         return result
