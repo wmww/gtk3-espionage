@@ -18,8 +18,11 @@ import re
 import mmap
 
 import parse
+from ast import *
 
 logger = logging.getLogger(__name__)
+
+INDENT = '  ' # used for generating code
 
 LGPL3_HEADER = '''
 This program is free software; you can redistribute it and/or
@@ -100,7 +103,7 @@ def c_function(return_type, name, arg_list, body):
     result += ', '.join(arg_strs)
     result += ')' + return_type.str_right(False) + ' {\n'
     for line in body.strip().splitlines():
-        result += parse.INDENT + line + '\n'
+        result += INDENT + line + '\n'
     result += '}\n'
     return result
 
@@ -141,8 +144,8 @@ class StructVersion:
         result += 'struct ' + str(self) + '\n{'
         if generated:
             result += (
-                '\n' + parse.INDENT +
-                ('\n' + parse.INDENT).join(str(self.ast).splitlines()) +
+                '\n' + INDENT +
+                ('\n' + INDENT).join(str(self.ast).splitlines()) +
                 '\n')
         else:
             result += self.body
@@ -165,7 +168,7 @@ class StructVersion:
 class Property:
     def __init__(self, struct, c_type, name, unsupported_versions):
         assert isinstance(struct, Struct)
-        assert isinstance(c_type, parse.CType)
+        assert isinstance(c_type, CType)
         assert isinstance(name, str)
         assert isinstance(unsupported_versions, list)
         self.struct = struct
@@ -183,7 +186,7 @@ class Property:
             self.get_id_name())
 
     def emit_ptr_getter(self):
-        return_type = parse.PtrType(self.c_type)
+        return_type = PtrType(self.c_type)
         fn_name = self.get_fn_name('get') + '_ptr'
         arg_list = [(self.struct.get_ptr_type(), 'self')]
         versioned_name = 'struct ' + self.struct.versions[-1].versioned_struct_name()
@@ -199,7 +202,7 @@ class Property:
         return c_function(return_type, fn_name, arg_list, body)
 
     def emit_setter(self):
-        return_type = parse.StdType('void')
+        return_type = StdType('void')
         fn_name = self.get_fn_name('set')
         arg_list = [(self.struct.get_ptr_type(), 'self'), (self.c_type, self.get_id_name())]
         versioned_name = 'struct ' + self.struct.versions[-1].versioned_struct_name()
@@ -209,7 +212,7 @@ class Property:
     def emit_functions(self):
         result = ''
         result += '// ' + self.struct.typedef + '::' + self.name + '\n\n'
-        if isinstance(self.c_type, parse.CustomType) or isinstance(self.c_type, parse.ArrayType):
+        if isinstance(self.c_type, CustomType) or isinstance(self.c_type, ArrayType):
             result += self.emit_ptr_getter()
         else:
             result += self.emit_getter()
@@ -237,7 +240,7 @@ class Struct:
             return None
 
     def get_ptr_type(self):
-        return parse.PtrType(parse.CustomType(self.typedef))
+        return PtrType(CustomType(self.typedef))
 
     def header_name(self):
         return '_'.join(camel_case_to_words(self.typedef)) + '_espionage.h'
