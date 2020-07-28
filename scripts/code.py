@@ -392,6 +392,7 @@ class Struct:
         my_copyright_line = 'Copyright © ' + str(datetime.now().year) + ' ' + me
         for line in list(self.copyright_lines) + [my_copyright_line]:
             result += ' * ' + line + '\n'
+        result += ' *'
         result += '\n * '.join(LGPL3_HEADER.splitlines())
         result += '\n */\n'
         result += '\n'
