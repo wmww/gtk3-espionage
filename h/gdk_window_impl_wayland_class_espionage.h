@@ -2,7 +2,7 @@
  *
  * Copyright © 2010 Intel Corporation
  * Copyright © 2020 gtk3-espionage/scripts/code.py
-
+ *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
