@@ -43,7 +43,7 @@ along with this program; if not, write to the Free Software Foundation,
 Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 '''
 
-CODE_EXTENSIONS = set(['h', 'hpp', 'c', 'cpp', 'cc'])
+CODE_EXTENSIONS = set(['.h', '.hpp', '.c', '.cpp', '.cc'])
 
 def typdef_to_struct_name(typedef):
     return '_' + typedef
@@ -54,7 +54,7 @@ def get_all_source_files(search_dir):
         p = path.join(search_dir, item)
         if path.isdir(p):
             result += get_all_source_files(p)
-        elif p.rsplit('.', 1)[-1] in CODE_EXTENSIONS:
+        elif path.splitext(p)[1] in CODE_EXTENSIONS:
             result.append(p)
     return result
 
@@ -62,7 +62,7 @@ def remove_headers_from_dir(header_dir):
     logger.info('Clearing header files out of ' + header_dir)
     for item in os.listdir(header_dir):
         p = path.join(header_dir, item)
-        if p.rsplit('.', 1)[-1] == 'h':
+        if path.splitext(p)[1] == '.h':
             os.remove(p)
 
 def struct_regex_string(struct_name):
