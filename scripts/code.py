@@ -16,6 +16,7 @@ import os
 from os import path
 import re
 import mmap
+from collections import OrderedDict
 
 import parse
 from ast import *
@@ -168,52 +169,98 @@ class StructVersion:
         return self.ast == other.ast
 
 class Property:
-    def __init__(self, struct, c_type, name, unsupported_versions):
+    def __init__(self, struct, c_type, name, version_ids):
         assert isinstance(struct, Struct)
         assert isinstance(c_type, CType)
         assert isinstance(name, str)
-        assert isinstance(unsupported_versions, list)
+        assert isinstance(version_ids, list)
+        for i in version_ids:
+            assert isinstance(i, bool) # If this property is supported for each version ID
         self.struct = struct
         self.c_type = c_type
         self.name = name
-        self.unsupported_versions = unsupported_versions
+        self.version_ids = version_ids
+
+    def all_versions_supported(self):
+        for i in self.version_ids:
+            if not i:
+                return False
+        return True
 
     def get_id_name(self):
         return self.name.replace('.', '_')
 
-    def get_fn_name(self, action):
-        return (
-            '_'.join(camel_case_to_words(self.struct.typedef)) +
-            '_espionage_' + action + '_' +
-            self.get_id_name())
+    def get_fn_name(self, action, suffix):
+        result = ''
+        result += '_'.join(camel_case_to_words(self.struct.typedef))
+        result += '_espionage_'
+        if action:
+            result += action + '_'
+        result += self.get_id_name()
+        if suffix:
+            result += '_' + suffix
+        return result
+
+    def emit_version_id_switch(self, on_supported, on_unsupported):
+        result = ''
+        result += 'switch (' + self.struct.get_version_id_fn_name() + '()) {\n'
+        for i, supported in enumerate(self.version_ids):
+            result += INDENT + 'case ' + str(i) + ': '
+            type_name = 'struct ' + self.struct.versions[i].versioned_struct_name()
+            if supported:
+                result += on_supported(type_name)
+            else:
+                result += on_unsupported(type_name)
+            result += '\n'
+        result += INDENT + 'default: g_error("Invalid version ID"); g_abort();\n'
+        result += '}'
+        return result
 
     def emit_ptr_getter(self):
-        return_type = PtrType(self.c_type)
-        fn_name = self.get_fn_name('get') + '_ptr'
+        ret_type = PtrType(self.c_type)
+        suffix = 'ptr' if self.all_versions_supported() else 'ptr_or_null'
+        fn_name = self.get_fn_name('get', suffix)
         arg_list = [(self.struct.get_ptr_type(), 'self')]
-        versioned_name = 'struct ' + self.struct.versions[-1].versioned_struct_name()
-        body = 'return (' + str(return_type) + ')&((' + versioned_name + '*)self)->' + self.name + ';\n'
-        return c_function(return_type, fn_name, arg_list, body)
+        body = self.emit_version_id_switch(
+            lambda type_name: 'return (' + str(ret_type) + ')&((' + type_name + '*)self)->' + self.name + ';',
+            lambda type_name: 'return NULL;')
+        return c_function(ret_type, fn_name, arg_list, body)
+
+    def emit_is_supported(self):
+        ret_type = StdType('gboolean')
+        fn_name = self.get_fn_name('get', 'supported')
+        body = self.emit_version_id_switch(
+            lambda type_name: 'return TRUE;',
+            lambda type_name: 'return FALSE;')
+        return c_function(ret_type, fn_name, [], body)
 
     def emit_getter(self):
-        return_type = self.c_type
-        fn_name = self.get_fn_name('get')
+        ret_type = self.c_type
+        suffix = '' if self.all_versions_supported() else 'or_abort'
+        fn_name = self.get_fn_name('get', suffix)
         arg_list = [(self.struct.get_ptr_type(), 'self')]
-        versioned_name = 'struct ' + self.struct.versions[-1].versioned_struct_name()
-        body = 'return ((' + versioned_name + '*)self)->' + self.name + ';\n'
-        return c_function(return_type, fn_name, arg_list, body)
+        error_msg = '"' + self.struct.typedef + '::' + self.name + ' not supported on this GTK"'
+        body = self.emit_version_id_switch(
+            lambda type_name: 'return ((' + type_name + '*)self)->' + self.name + ';',
+            lambda type_name: 'g_error(' + error_msg + '); g_abort();')
+        return c_function(ret_type, fn_name, arg_list, body)
 
     def emit_setter(self):
-        return_type = StdType('void')
-        fn_name = self.get_fn_name('set')
+        ret_type = StdType('void')
+        suffix = '' if self.all_versions_supported() else 'or_ignore'
+        fn_name = self.get_fn_name('set', suffix)
         arg_list = [(self.struct.get_ptr_type(), 'self'), (self.c_type, self.get_id_name())]
-        versioned_name = 'struct ' + self.struct.versions[-1].versioned_struct_name()
-        body = '((' + versioned_name + '*)self)->' + self.name + ' = ' + self.get_id_name() + ';\n'
-        return c_function(return_type, fn_name, arg_list, body)
+        body = self.emit_version_id_switch(
+            lambda type_name: '((' + type_name + '*)self)->' + self.name + ' = ' + self.get_id_name() + '; break;',
+            lambda type_name: 'break;')
+        return c_function(ret_type, fn_name, arg_list, body)
 
     def emit_functions(self):
         result = ''
         result += '// ' + self.struct.typedef + '::' + self.name + '\n\n'
+        if not self.all_versions_supported():
+            result += self.emit_is_supported()
+            result += '\n'
         if isinstance(self.c_type, CustomType) or isinstance(self.c_type, ArrayType):
             result += self.emit_ptr_getter()
         else:
@@ -245,6 +292,9 @@ class Struct:
     def get_ptr_type(self):
         return PtrType(CustomType(self.typedef))
 
+    def get_version_id_fn_name(self):
+        return '_'.join(camel_case_to_words(self.typedef)) + '_espionage_get_version_id'
+
     def header_name(self):
         return '_'.join(camel_case_to_words(self.typedef)) + '_espionage.h'
 
@@ -272,13 +322,29 @@ class Struct:
         return dropped_versions > 0
 
     def setup_properties(self):
+        prop_dict = OrderedDict()
+        for i, v in enumerate(self.versions):
+            for c_type, name in v.get_property_list():
+                if name in prop_dict and not (prop_dict[name][0] == c_type):
+                    logger.warning(
+                        'Property ' + name +
+                        ' changes type from ' + str(prop_dict[name][0]) +
+                        ' to ' + str(c_type) +
+                        ', ignoring old type')
+                    del prop_dict[name]
+                if name in prop_dict:
+                    assert prop_dict[name][0] == c_type
+                    prop_dict[name][1].add(i)
+                else:
+                    prop_dict[name] = (c_type, set([i]))
         self.properties = []
-        for c_type, name in self.versions[-1].get_property_list():
-            self.properties.append(Property(self, c_type, name, []))
+        for name, (c_type, supported_ids) in prop_dict.items():
+            versions_ids = [bool(i in supported_ids) for i in range(len(self.versions))]
+            self.properties.append(Property(self, c_type, name, versions_ids))
 
     def emit_get_version_id_fn(self):
         return_type = StdType('int')
-        fn_name = '_'.join(camel_case_to_words(self.typedef)) + '_espionage_get_version_id'
+        fn_name = self.get_version_id_fn_name()
         body = ''
         body += 'static int version_id = -1;\n'
         body += '\n'
