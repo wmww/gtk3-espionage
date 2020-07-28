@@ -125,53 +125,83 @@ int gdk_wayland_touch_data_espionage_get_version_id() {
 // GdkWaylandTouchData::id
 
 uint32_t gdk_wayland_touch_data_espionage_get_id(GdkWaylandTouchData * self) {
-  return ((struct _GdkWaylandTouchData_v3_22_0*)self)->id;
+  switch (gdk_wayland_touch_data_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWaylandTouchData_v3_22_0*)self)->id;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_wayland_touch_data_espionage_set_id(GdkWaylandTouchData * self, uint32_t id) {
-  ((struct _GdkWaylandTouchData_v3_22_0*)self)->id = id;
+  switch (gdk_wayland_touch_data_espionage_get_version_id()) {
+    case 0: ((struct _GdkWaylandTouchData_v3_22_0*)self)->id = id; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWaylandTouchData::x
 
 gdouble * gdk_wayland_touch_data_espionage_get_x_ptr(GdkWaylandTouchData * self) {
-  return (gdouble *)&((struct _GdkWaylandTouchData_v3_22_0*)self)->x;
+  switch (gdk_wayland_touch_data_espionage_get_version_id()) {
+    case 0: return (gdouble *)&((struct _GdkWaylandTouchData_v3_22_0*)self)->x;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWaylandTouchData::y
 
 gdouble * gdk_wayland_touch_data_espionage_get_y_ptr(GdkWaylandTouchData * self) {
-  return (gdouble *)&((struct _GdkWaylandTouchData_v3_22_0*)self)->y;
+  switch (gdk_wayland_touch_data_espionage_get_version_id()) {
+    case 0: return (gdouble *)&((struct _GdkWaylandTouchData_v3_22_0*)self)->y;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWaylandTouchData::window
 
 GdkWindow * gdk_wayland_touch_data_espionage_get_window(GdkWaylandTouchData * self) {
-  return ((struct _GdkWaylandTouchData_v3_22_0*)self)->window;
+  switch (gdk_wayland_touch_data_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWaylandTouchData_v3_22_0*)self)->window;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_wayland_touch_data_espionage_set_window(GdkWaylandTouchData * self, GdkWindow * window) {
-  ((struct _GdkWaylandTouchData_v3_22_0*)self)->window = window;
+  switch (gdk_wayland_touch_data_espionage_get_version_id()) {
+    case 0: ((struct _GdkWaylandTouchData_v3_22_0*)self)->window = window; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWaylandTouchData::touch_down_serial
 
 uint32_t gdk_wayland_touch_data_espionage_get_touch_down_serial(GdkWaylandTouchData * self) {
-  return ((struct _GdkWaylandTouchData_v3_22_0*)self)->touch_down_serial;
+  switch (gdk_wayland_touch_data_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWaylandTouchData_v3_22_0*)self)->touch_down_serial;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_wayland_touch_data_espionage_set_touch_down_serial(GdkWaylandTouchData * self, uint32_t touch_down_serial) {
-  ((struct _GdkWaylandTouchData_v3_22_0*)self)->touch_down_serial = touch_down_serial;
+  switch (gdk_wayland_touch_data_espionage_get_version_id()) {
+    case 0: ((struct _GdkWaylandTouchData_v3_22_0*)self)->touch_down_serial = touch_down_serial; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWaylandTouchData::initial_touch
 
 guint gdk_wayland_touch_data_espionage_get_initial_touch(GdkWaylandTouchData * self) {
-  return ((struct _GdkWaylandTouchData_v3_22_0*)self)->initial_touch;
+  switch (gdk_wayland_touch_data_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWaylandTouchData_v3_22_0*)self)->initial_touch;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_wayland_touch_data_espionage_set_initial_touch(GdkWaylandTouchData * self, guint initial_touch) {
-  ((struct _GdkWaylandTouchData_v3_22_0*)self)->initial_touch = initial_touch;
+  switch (gdk_wayland_touch_data_espionage_get_version_id()) {
+    case 0: ((struct _GdkWaylandTouchData_v3_22_0*)self)->initial_touch = initial_touch; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 #endif // GDK_WAYLAND_TOUCH_DATA_ESPIONAGE_H

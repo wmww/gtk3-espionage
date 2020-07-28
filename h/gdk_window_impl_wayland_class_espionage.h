@@ -120,7 +120,10 @@ int gdk_window_impl_wayland_class_espionage_get_version_id() {
 // GdkWindowImplWaylandClass::parent_class
 
 GdkWindowImplClass * gdk_window_impl_wayland_class_espionage_get_parent_class_ptr(GdkWindowImplWaylandClass * self) {
-  return (GdkWindowImplClass *)&((struct _GdkWindowImplWaylandClass_v3_22_0*)self)->parent_class;
+  switch (gdk_window_impl_wayland_class_espionage_get_version_id()) {
+    case 0: return (GdkWindowImplClass *)&((struct _GdkWindowImplWaylandClass_v3_22_0*)self)->parent_class;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 #endif // GDK_WINDOW_IMPL_WAYLAND_CLASS_ESPIONAGE_H

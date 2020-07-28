@@ -374,721 +374,1473 @@ int gdk_window_espionage_get_version_id() {
 // GdkWindow::parent_instance
 
 GObject * gdk_window_espionage_get_parent_instance_ptr(GdkWindow * self) {
-  return (GObject *)&((struct _GdkWindow_v3_24_11*)self)->parent_instance;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return (GObject *)&((struct _GdkWindow_v3_22_0*)self)->parent_instance;
+    case 1: return (GObject *)&((struct _GdkWindow_v3_22_19*)self)->parent_instance;
+    case 2: return (GObject *)&((struct _GdkWindow_v3_24_11*)self)->parent_instance;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::impl
 
 GdkWindowImpl * gdk_window_espionage_get_impl(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->impl;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->impl;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->impl;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->impl;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_impl(GdkWindow * self, GdkWindowImpl * impl) {
-  ((struct _GdkWindow_v3_24_11*)self)->impl = impl;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->impl = impl; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->impl = impl; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->impl = impl; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::parent
 
 GdkWindow * gdk_window_espionage_get_parent(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->parent;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->parent;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->parent;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->parent;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_parent(GdkWindow * self, GdkWindow * parent) {
-  ((struct _GdkWindow_v3_24_11*)self)->parent = parent;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->parent = parent; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->parent = parent; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->parent = parent; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::transient_for
 
 GdkWindow * gdk_window_espionage_get_transient_for(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->transient_for;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->transient_for;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->transient_for;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->transient_for;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_transient_for(GdkWindow * self, GdkWindow * transient_for) {
-  ((struct _GdkWindow_v3_24_11*)self)->transient_for = transient_for;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->transient_for = transient_for; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->transient_for = transient_for; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->transient_for = transient_for; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::visual
 
 GdkVisual * gdk_window_espionage_get_visual(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->visual;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->visual;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->visual;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->visual;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_visual(GdkWindow * self, GdkVisual * visual) {
-  ((struct _GdkWindow_v3_24_11*)self)->visual = visual;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->visual = visual; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->visual = visual; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->visual = visual; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::user_data
 
 gpointer gdk_window_espionage_get_user_data(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->user_data;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->user_data;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->user_data;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->user_data;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_user_data(GdkWindow * self, gpointer user_data) {
-  ((struct _GdkWindow_v3_24_11*)self)->user_data = user_data;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->user_data = user_data; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->user_data = user_data; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->user_data = user_data; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::x
 
 gint gdk_window_espionage_get_x(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->x;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->x;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->x;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->x;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_x(GdkWindow * self, gint x) {
-  ((struct _GdkWindow_v3_24_11*)self)->x = x;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->x = x; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->x = x; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->x = x; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::y
 
 gint gdk_window_espionage_get_y(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->y;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->y;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->y;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->y;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_y(GdkWindow * self, gint y) {
-  ((struct _GdkWindow_v3_24_11*)self)->y = y;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->y = y; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->y = y; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->y = y; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::event_mask
 
 GdkEventMask * gdk_window_espionage_get_event_mask_ptr(GdkWindow * self) {
-  return (GdkEventMask *)&((struct _GdkWindow_v3_24_11*)self)->event_mask;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return (GdkEventMask *)&((struct _GdkWindow_v3_22_0*)self)->event_mask;
+    case 1: return (GdkEventMask *)&((struct _GdkWindow_v3_22_19*)self)->event_mask;
+    case 2: return (GdkEventMask *)&((struct _GdkWindow_v3_24_11*)self)->event_mask;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::window_type
 
 guint8 * gdk_window_espionage_get_window_type_ptr(GdkWindow * self) {
-  return (guint8 *)&((struct _GdkWindow_v3_24_11*)self)->window_type;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return (guint8 *)&((struct _GdkWindow_v3_22_0*)self)->window_type;
+    case 1: return (guint8 *)&((struct _GdkWindow_v3_22_19*)self)->window_type;
+    case 2: return (guint8 *)&((struct _GdkWindow_v3_24_11*)self)->window_type;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::depth
 
 guint8 * gdk_window_espionage_get_depth_ptr(GdkWindow * self) {
-  return (guint8 *)&((struct _GdkWindow_v3_24_11*)self)->depth;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return (guint8 *)&((struct _GdkWindow_v3_22_0*)self)->depth;
+    case 1: return (guint8 *)&((struct _GdkWindow_v3_22_19*)self)->depth;
+    case 2: return (guint8 *)&((struct _GdkWindow_v3_24_11*)self)->depth;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::resize_count
 
 guint8 * gdk_window_espionage_get_resize_count_ptr(GdkWindow * self) {
-  return (guint8 *)&((struct _GdkWindow_v3_24_11*)self)->resize_count;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return (guint8 *)&((struct _GdkWindow_v3_22_0*)self)->resize_count;
+    case 1: return (guint8 *)&((struct _GdkWindow_v3_22_19*)self)->resize_count;
+    case 2: return (guint8 *)&((struct _GdkWindow_v3_24_11*)self)->resize_count;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::toplevel_window_type
 
 gint8 * gdk_window_espionage_get_toplevel_window_type_ptr(GdkWindow * self) {
-  return (gint8 *)&((struct _GdkWindow_v3_24_11*)self)->toplevel_window_type;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return (gint8 *)&((struct _GdkWindow_v3_22_0*)self)->toplevel_window_type;
+    case 1: return (gint8 *)&((struct _GdkWindow_v3_22_19*)self)->toplevel_window_type;
+    case 2: return (gint8 *)&((struct _GdkWindow_v3_24_11*)self)->toplevel_window_type;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::filters
 
 GList * gdk_window_espionage_get_filters(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->filters;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->filters;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->filters;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->filters;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_filters(GdkWindow * self, GList * filters) {
-  ((struct _GdkWindow_v3_24_11*)self)->filters = filters;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->filters = filters; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->filters = filters; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->filters = filters; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::children
 
 GList * gdk_window_espionage_get_children(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->children;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->children;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->children;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->children;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_children(GdkWindow * self, GList * children) {
-  ((struct _GdkWindow_v3_24_11*)self)->children = children;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->children = children; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->children = children; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->children = children; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::children_list_node
 
 GList * gdk_window_espionage_get_children_list_node_ptr(GdkWindow * self) {
-  return (GList *)&((struct _GdkWindow_v3_24_11*)self)->children_list_node;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return (GList *)&((struct _GdkWindow_v3_22_0*)self)->children_list_node;
+    case 1: return (GList *)&((struct _GdkWindow_v3_22_19*)self)->children_list_node;
+    case 2: return (GList *)&((struct _GdkWindow_v3_24_11*)self)->children_list_node;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::native_children
 
 GList * gdk_window_espionage_get_native_children(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->native_children;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->native_children;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->native_children;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->native_children;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_native_children(GdkWindow * self, GList * native_children) {
-  ((struct _GdkWindow_v3_24_11*)self)->native_children = native_children;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->native_children = native_children; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->native_children = native_children; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->native_children = native_children; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::background
 
 cairo_pattern_t * gdk_window_espionage_get_background(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->background;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->background;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->background;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->background;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_background(GdkWindow * self, cairo_pattern_t * background) {
-  ((struct _GdkWindow_v3_24_11*)self)->background = background;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->background = background; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->background = background; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->background = background; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::current_paint.surface
 
 cairo_surface_t * gdk_window_espionage_get_current_paint_surface(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->current_paint.surface;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->current_paint.surface;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->current_paint.surface;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->current_paint.surface;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_current_paint_surface(GdkWindow * self, cairo_surface_t * current_paint_surface) {
-  ((struct _GdkWindow_v3_24_11*)self)->current_paint.surface = current_paint_surface;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->current_paint.surface = current_paint_surface; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->current_paint.surface = current_paint_surface; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->current_paint.surface = current_paint_surface; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::current_paint.region
 
 cairo_region_t * gdk_window_espionage_get_current_paint_region(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->current_paint.region;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->current_paint.region;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->current_paint.region;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->current_paint.region;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_current_paint_region(GdkWindow * self, cairo_region_t * current_paint_region) {
-  ((struct _GdkWindow_v3_24_11*)self)->current_paint.region = current_paint_region;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->current_paint.region = current_paint_region; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->current_paint.region = current_paint_region; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->current_paint.region = current_paint_region; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::current_paint.flushed_region
 
 cairo_region_t * gdk_window_espionage_get_current_paint_flushed_region(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->current_paint.flushed_region;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->current_paint.flushed_region;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->current_paint.flushed_region;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->current_paint.flushed_region;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_current_paint_flushed_region(GdkWindow * self, cairo_region_t * current_paint_flushed_region) {
-  ((struct _GdkWindow_v3_24_11*)self)->current_paint.flushed_region = current_paint_flushed_region;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->current_paint.flushed_region = current_paint_flushed_region; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->current_paint.flushed_region = current_paint_flushed_region; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->current_paint.flushed_region = current_paint_flushed_region; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::current_paint.need_blend_region
 
 cairo_region_t * gdk_window_espionage_get_current_paint_need_blend_region(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->current_paint.need_blend_region;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->current_paint.need_blend_region;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->current_paint.need_blend_region;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->current_paint.need_blend_region;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_current_paint_need_blend_region(GdkWindow * self, cairo_region_t * current_paint_need_blend_region) {
-  ((struct _GdkWindow_v3_24_11*)self)->current_paint.need_blend_region = current_paint_need_blend_region;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->current_paint.need_blend_region = current_paint_need_blend_region; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->current_paint.need_blend_region = current_paint_need_blend_region; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->current_paint.need_blend_region = current_paint_need_blend_region; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::current_paint.surface_needs_composite
 
 gboolean gdk_window_espionage_get_current_paint_surface_needs_composite(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->current_paint.surface_needs_composite;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->current_paint.surface_needs_composite;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->current_paint.surface_needs_composite;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->current_paint.surface_needs_composite;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_current_paint_surface_needs_composite(GdkWindow * self, gboolean current_paint_surface_needs_composite) {
-  ((struct _GdkWindow_v3_24_11*)self)->current_paint.surface_needs_composite = current_paint_surface_needs_composite;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->current_paint.surface_needs_composite = current_paint_surface_needs_composite; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->current_paint.surface_needs_composite = current_paint_surface_needs_composite; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->current_paint.surface_needs_composite = current_paint_surface_needs_composite; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::current_paint.use_gl
 
 gboolean gdk_window_espionage_get_current_paint_use_gl(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->current_paint.use_gl;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->current_paint.use_gl;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->current_paint.use_gl;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->current_paint.use_gl;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_current_paint_use_gl(GdkWindow * self, gboolean current_paint_use_gl) {
-  ((struct _GdkWindow_v3_24_11*)self)->current_paint.use_gl = current_paint_use_gl;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->current_paint.use_gl = current_paint_use_gl; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->current_paint.use_gl = current_paint_use_gl; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->current_paint.use_gl = current_paint_use_gl; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::gl_paint_context
 
 GdkGLContext * gdk_window_espionage_get_gl_paint_context(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->gl_paint_context;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->gl_paint_context;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->gl_paint_context;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->gl_paint_context;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_gl_paint_context(GdkWindow * self, GdkGLContext * gl_paint_context) {
-  ((struct _GdkWindow_v3_24_11*)self)->gl_paint_context = gl_paint_context;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->gl_paint_context = gl_paint_context; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->gl_paint_context = gl_paint_context; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->gl_paint_context = gl_paint_context; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::update_area
 
 cairo_region_t * gdk_window_espionage_get_update_area(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->update_area;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->update_area;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->update_area;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->update_area;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_update_area(GdkWindow * self, cairo_region_t * update_area) {
-  ((struct _GdkWindow_v3_24_11*)self)->update_area = update_area;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->update_area = update_area; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->update_area = update_area; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->update_area = update_area; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::update_freeze_count
 
 guint gdk_window_espionage_get_update_freeze_count(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->update_freeze_count;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->update_freeze_count;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->update_freeze_count;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->update_freeze_count;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_update_freeze_count(GdkWindow * self, guint update_freeze_count) {
-  ((struct _GdkWindow_v3_24_11*)self)->update_freeze_count = update_freeze_count;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->update_freeze_count = update_freeze_count; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->update_freeze_count = update_freeze_count; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->update_freeze_count = update_freeze_count; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::active_update_area
 
 cairo_region_t * gdk_window_espionage_get_active_update_area(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->active_update_area;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->active_update_area;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->active_update_area;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->active_update_area;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_active_update_area(GdkWindow * self, cairo_region_t * active_update_area) {
-  ((struct _GdkWindow_v3_24_11*)self)->active_update_area = active_update_area;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->active_update_area = active_update_area; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->active_update_area = active_update_area; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->active_update_area = active_update_area; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::old_updated_area
 
 cairo_region_t ** * gdk_window_espionage_get_old_updated_area_ptr(GdkWindow * self) {
-  return (cairo_region_t ** *)&((struct _GdkWindow_v3_24_11*)self)->old_updated_area;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return (cairo_region_t ** *)&((struct _GdkWindow_v3_22_0*)self)->old_updated_area;
+    case 1: return (cairo_region_t ** *)&((struct _GdkWindow_v3_22_19*)self)->old_updated_area;
+    case 2: return (cairo_region_t ** *)&((struct _GdkWindow_v3_24_11*)self)->old_updated_area;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::old_state
 
 GdkWindowState * gdk_window_espionage_get_old_state_ptr(GdkWindow * self) {
-  return (GdkWindowState *)&((struct _GdkWindow_v3_24_11*)self)->old_state;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return (GdkWindowState *)&((struct _GdkWindow_v3_22_0*)self)->old_state;
+    case 1: return (GdkWindowState *)&((struct _GdkWindow_v3_22_19*)self)->old_state;
+    case 2: return (GdkWindowState *)&((struct _GdkWindow_v3_24_11*)self)->old_state;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::state
 
 GdkWindowState * gdk_window_espionage_get_state_ptr(GdkWindow * self) {
-  return (GdkWindowState *)&((struct _GdkWindow_v3_24_11*)self)->state;
-}
-
-// GdkWindow::synthesized_crossing_event_id
-
-guint gdk_window_espionage_get_synthesized_crossing_event_id(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->synthesized_crossing_event_id;
-}
-
-void gdk_window_espionage_set_synthesized_crossing_event_id(GdkWindow * self, guint synthesized_crossing_event_id) {
-  ((struct _GdkWindow_v3_24_11*)self)->synthesized_crossing_event_id = synthesized_crossing_event_id;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return (GdkWindowState *)&((struct _GdkWindow_v3_22_0*)self)->state;
+    case 1: return (GdkWindowState *)&((struct _GdkWindow_v3_22_19*)self)->state;
+    case 2: return (GdkWindowState *)&((struct _GdkWindow_v3_24_11*)self)->state;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::alpha
 
 guint8 * gdk_window_espionage_get_alpha_ptr(GdkWindow * self) {
-  return (guint8 *)&((struct _GdkWindow_v3_24_11*)self)->alpha;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return (guint8 *)&((struct _GdkWindow_v3_22_0*)self)->alpha;
+    case 1: return (guint8 *)&((struct _GdkWindow_v3_22_19*)self)->alpha;
+    case 2: return (guint8 *)&((struct _GdkWindow_v3_24_11*)self)->alpha;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::fullscreen_mode
 
 guint8 * gdk_window_espionage_get_fullscreen_mode_ptr(GdkWindow * self) {
-  return (guint8 *)&((struct _GdkWindow_v3_24_11*)self)->fullscreen_mode;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return (guint8 *)&((struct _GdkWindow_v3_22_0*)self)->fullscreen_mode;
+    case 1: return (guint8 *)&((struct _GdkWindow_v3_22_19*)self)->fullscreen_mode;
+    case 2: return (guint8 *)&((struct _GdkWindow_v3_24_11*)self)->fullscreen_mode;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::input_only
 
 guint gdk_window_espionage_get_input_only(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->input_only;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->input_only;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->input_only;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->input_only;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_input_only(GdkWindow * self, guint input_only) {
-  ((struct _GdkWindow_v3_24_11*)self)->input_only = input_only;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->input_only = input_only; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->input_only = input_only; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->input_only = input_only; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::pass_through
 
 guint gdk_window_espionage_get_pass_through(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->pass_through;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->pass_through;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->pass_through;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->pass_through;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_pass_through(GdkWindow * self, guint pass_through) {
-  ((struct _GdkWindow_v3_24_11*)self)->pass_through = pass_through;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->pass_through = pass_through; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->pass_through = pass_through; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->pass_through = pass_through; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::modal_hint
 
 guint gdk_window_espionage_get_modal_hint(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->modal_hint;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->modal_hint;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->modal_hint;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->modal_hint;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_modal_hint(GdkWindow * self, guint modal_hint) {
-  ((struct _GdkWindow_v3_24_11*)self)->modal_hint = modal_hint;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->modal_hint = modal_hint; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->modal_hint = modal_hint; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->modal_hint = modal_hint; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::composited
 
 guint gdk_window_espionage_get_composited(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->composited;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->composited;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->composited;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->composited;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_composited(GdkWindow * self, guint composited) {
-  ((struct _GdkWindow_v3_24_11*)self)->composited = composited;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->composited = composited; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->composited = composited; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->composited = composited; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::has_alpha_background
 
 guint gdk_window_espionage_get_has_alpha_background(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->has_alpha_background;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->has_alpha_background;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->has_alpha_background;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->has_alpha_background;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_has_alpha_background(GdkWindow * self, guint has_alpha_background) {
-  ((struct _GdkWindow_v3_24_11*)self)->has_alpha_background = has_alpha_background;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->has_alpha_background = has_alpha_background; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->has_alpha_background = has_alpha_background; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->has_alpha_background = has_alpha_background; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::destroyed
 
 guint gdk_window_espionage_get_destroyed(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->destroyed;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->destroyed;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->destroyed;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->destroyed;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_destroyed(GdkWindow * self, guint destroyed) {
-  ((struct _GdkWindow_v3_24_11*)self)->destroyed = destroyed;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->destroyed = destroyed; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->destroyed = destroyed; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->destroyed = destroyed; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::accept_focus
 
 guint gdk_window_espionage_get_accept_focus(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->accept_focus;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->accept_focus;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->accept_focus;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->accept_focus;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_accept_focus(GdkWindow * self, guint accept_focus) {
-  ((struct _GdkWindow_v3_24_11*)self)->accept_focus = accept_focus;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->accept_focus = accept_focus; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->accept_focus = accept_focus; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->accept_focus = accept_focus; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::focus_on_map
 
 guint gdk_window_espionage_get_focus_on_map(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->focus_on_map;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->focus_on_map;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->focus_on_map;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->focus_on_map;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_focus_on_map(GdkWindow * self, guint focus_on_map) {
-  ((struct _GdkWindow_v3_24_11*)self)->focus_on_map = focus_on_map;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->focus_on_map = focus_on_map; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->focus_on_map = focus_on_map; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->focus_on_map = focus_on_map; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::shaped
 
 guint gdk_window_espionage_get_shaped(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->shaped;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->shaped;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->shaped;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->shaped;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_shaped(GdkWindow * self, guint shaped) {
-  ((struct _GdkWindow_v3_24_11*)self)->shaped = shaped;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->shaped = shaped; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->shaped = shaped; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->shaped = shaped; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::support_multidevice
 
 guint gdk_window_espionage_get_support_multidevice(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->support_multidevice;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->support_multidevice;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->support_multidevice;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->support_multidevice;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_support_multidevice(GdkWindow * self, guint support_multidevice) {
-  ((struct _GdkWindow_v3_24_11*)self)->support_multidevice = support_multidevice;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->support_multidevice = support_multidevice; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->support_multidevice = support_multidevice; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->support_multidevice = support_multidevice; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
+}
+
+// GdkWindow::synthesize_crossing_event_queued
+
+gboolean gdk_window_espionage_get_synthesize_crossing_event_queued_supported() {
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return TRUE;
+    case 1: return TRUE;
+    case 2: return FALSE;
+    default: g_error("Invalid version ID"); g_abort();
+  }
+}
+
+guint gdk_window_espionage_get_synthesize_crossing_event_queued_or_abort(GdkWindow * self) {
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->synthesize_crossing_event_queued;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->synthesize_crossing_event_queued;
+    case 2: g_error("GdkWindow::synthesize_crossing_event_queued not supported on this GTK"); g_abort();
+    default: g_error("Invalid version ID"); g_abort();
+  }
+}
+
+void gdk_window_espionage_set_synthesize_crossing_event_queued_or_ignore(GdkWindow * self, guint synthesize_crossing_event_queued) {
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->synthesize_crossing_event_queued = synthesize_crossing_event_queued; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->synthesize_crossing_event_queued = synthesize_crossing_event_queued; break;
+    case 2: break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::effective_visibility
 
 guint gdk_window_espionage_get_effective_visibility(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->effective_visibility;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->effective_visibility;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->effective_visibility;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->effective_visibility;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_effective_visibility(GdkWindow * self, guint effective_visibility) {
-  ((struct _GdkWindow_v3_24_11*)self)->effective_visibility = effective_visibility;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->effective_visibility = effective_visibility; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->effective_visibility = effective_visibility; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->effective_visibility = effective_visibility; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::visibility
 
 guint gdk_window_espionage_get_visibility(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->visibility;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->visibility;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->visibility;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->visibility;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_visibility(GdkWindow * self, guint visibility) {
-  ((struct _GdkWindow_v3_24_11*)self)->visibility = visibility;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->visibility = visibility; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->visibility = visibility; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->visibility = visibility; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::native_visibility
 
 guint gdk_window_espionage_get_native_visibility(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->native_visibility;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->native_visibility;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->native_visibility;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->native_visibility;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_native_visibility(GdkWindow * self, guint native_visibility) {
-  ((struct _GdkWindow_v3_24_11*)self)->native_visibility = native_visibility;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->native_visibility = native_visibility; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->native_visibility = native_visibility; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->native_visibility = native_visibility; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::viewable
 
 guint gdk_window_espionage_get_viewable(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->viewable;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->viewable;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->viewable;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->viewable;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_viewable(GdkWindow * self, guint viewable) {
-  ((struct _GdkWindow_v3_24_11*)self)->viewable = viewable;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->viewable = viewable; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->viewable = viewable; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->viewable = viewable; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::applied_shape
 
 guint gdk_window_espionage_get_applied_shape(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->applied_shape;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->applied_shape;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->applied_shape;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->applied_shape;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_applied_shape(GdkWindow * self, guint applied_shape) {
-  ((struct _GdkWindow_v3_24_11*)self)->applied_shape = applied_shape;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->applied_shape = applied_shape; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->applied_shape = applied_shape; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->applied_shape = applied_shape; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::in_update
 
 guint gdk_window_espionage_get_in_update(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->in_update;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->in_update;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->in_update;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->in_update;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_in_update(GdkWindow * self, guint in_update) {
-  ((struct _GdkWindow_v3_24_11*)self)->in_update = in_update;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->in_update = in_update; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->in_update = in_update; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->in_update = in_update; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::geometry_dirty
 
 guint gdk_window_espionage_get_geometry_dirty(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->geometry_dirty;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->geometry_dirty;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->geometry_dirty;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->geometry_dirty;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_geometry_dirty(GdkWindow * self, guint geometry_dirty) {
-  ((struct _GdkWindow_v3_24_11*)self)->geometry_dirty = geometry_dirty;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->geometry_dirty = geometry_dirty; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->geometry_dirty = geometry_dirty; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->geometry_dirty = geometry_dirty; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::event_compression
 
 guint gdk_window_espionage_get_event_compression(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->event_compression;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->event_compression;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->event_compression;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->event_compression;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_event_compression(GdkWindow * self, guint event_compression) {
-  ((struct _GdkWindow_v3_24_11*)self)->event_compression = event_compression;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->event_compression = event_compression; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->event_compression = event_compression; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->event_compression = event_compression; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::frame_clock_events_paused
 
 guint gdk_window_espionage_get_frame_clock_events_paused(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->frame_clock_events_paused;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->frame_clock_events_paused;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->frame_clock_events_paused;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->frame_clock_events_paused;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_frame_clock_events_paused(GdkWindow * self, guint frame_clock_events_paused) {
-  ((struct _GdkWindow_v3_24_11*)self)->frame_clock_events_paused = frame_clock_events_paused;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->frame_clock_events_paused = frame_clock_events_paused; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->frame_clock_events_paused = frame_clock_events_paused; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->frame_clock_events_paused = frame_clock_events_paused; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::impl_window
 
 GdkWindow * gdk_window_espionage_get_impl_window(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->impl_window;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->impl_window;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->impl_window;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->impl_window;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_impl_window(GdkWindow * self, GdkWindow * impl_window) {
-  ((struct _GdkWindow_v3_24_11*)self)->impl_window = impl_window;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->impl_window = impl_window; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->impl_window = impl_window; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->impl_window = impl_window; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::update_and_descendants_freeze_count
 
 guint gdk_window_espionage_get_update_and_descendants_freeze_count(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->update_and_descendants_freeze_count;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->update_and_descendants_freeze_count;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->update_and_descendants_freeze_count;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->update_and_descendants_freeze_count;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_update_and_descendants_freeze_count(GdkWindow * self, guint update_and_descendants_freeze_count) {
-  ((struct _GdkWindow_v3_24_11*)self)->update_and_descendants_freeze_count = update_and_descendants_freeze_count;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->update_and_descendants_freeze_count = update_and_descendants_freeze_count; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->update_and_descendants_freeze_count = update_and_descendants_freeze_count; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->update_and_descendants_freeze_count = update_and_descendants_freeze_count; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::abs_x
 
 gint gdk_window_espionage_get_abs_x(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->abs_x;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->abs_x;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->abs_x;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->abs_x;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_abs_x(GdkWindow * self, gint abs_x) {
-  ((struct _GdkWindow_v3_24_11*)self)->abs_x = abs_x;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->abs_x = abs_x; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->abs_x = abs_x; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->abs_x = abs_x; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::abs_y
 
 gint gdk_window_espionage_get_abs_y(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->abs_y;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->abs_y;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->abs_y;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->abs_y;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_abs_y(GdkWindow * self, gint abs_y) {
-  ((struct _GdkWindow_v3_24_11*)self)->abs_y = abs_y;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->abs_y = abs_y; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->abs_y = abs_y; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->abs_y = abs_y; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::width
 
 gint gdk_window_espionage_get_width(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->width;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->width;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->width;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->width;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_width(GdkWindow * self, gint width) {
-  ((struct _GdkWindow_v3_24_11*)self)->width = width;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->width = width; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->width = width; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->width = width; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::height
 
 gint gdk_window_espionage_get_height(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->height;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->height;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->height;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->height;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_height(GdkWindow * self, gint height) {
-  ((struct _GdkWindow_v3_24_11*)self)->height = height;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->height = height; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->height = height; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->height = height; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::shadow_top
 
 gint gdk_window_espionage_get_shadow_top(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->shadow_top;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->shadow_top;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->shadow_top;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->shadow_top;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_shadow_top(GdkWindow * self, gint shadow_top) {
-  ((struct _GdkWindow_v3_24_11*)self)->shadow_top = shadow_top;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->shadow_top = shadow_top; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->shadow_top = shadow_top; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->shadow_top = shadow_top; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::shadow_left
 
 gint gdk_window_espionage_get_shadow_left(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->shadow_left;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->shadow_left;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->shadow_left;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->shadow_left;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_shadow_left(GdkWindow * self, gint shadow_left) {
-  ((struct _GdkWindow_v3_24_11*)self)->shadow_left = shadow_left;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->shadow_left = shadow_left; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->shadow_left = shadow_left; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->shadow_left = shadow_left; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::shadow_right
 
 gint gdk_window_espionage_get_shadow_right(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->shadow_right;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->shadow_right;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->shadow_right;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->shadow_right;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_shadow_right(GdkWindow * self, gint shadow_right) {
-  ((struct _GdkWindow_v3_24_11*)self)->shadow_right = shadow_right;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->shadow_right = shadow_right; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->shadow_right = shadow_right; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->shadow_right = shadow_right; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::shadow_bottom
 
 gint gdk_window_espionage_get_shadow_bottom(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->shadow_bottom;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->shadow_bottom;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->shadow_bottom;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->shadow_bottom;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_shadow_bottom(GdkWindow * self, gint shadow_bottom) {
-  ((struct _GdkWindow_v3_24_11*)self)->shadow_bottom = shadow_bottom;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->shadow_bottom = shadow_bottom; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->shadow_bottom = shadow_bottom; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->shadow_bottom = shadow_bottom; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::num_offscreen_children
 
 guint gdk_window_espionage_get_num_offscreen_children(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->num_offscreen_children;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->num_offscreen_children;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->num_offscreen_children;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->num_offscreen_children;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_num_offscreen_children(GdkWindow * self, guint num_offscreen_children) {
-  ((struct _GdkWindow_v3_24_11*)self)->num_offscreen_children = num_offscreen_children;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->num_offscreen_children = num_offscreen_children; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->num_offscreen_children = num_offscreen_children; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->num_offscreen_children = num_offscreen_children; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::clip_region
 
 cairo_region_t * gdk_window_espionage_get_clip_region(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->clip_region;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->clip_region;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->clip_region;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->clip_region;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_clip_region(GdkWindow * self, cairo_region_t * clip_region) {
-  ((struct _GdkWindow_v3_24_11*)self)->clip_region = clip_region;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->clip_region = clip_region; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->clip_region = clip_region; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->clip_region = clip_region; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::cursor
 
 GdkCursor * gdk_window_espionage_get_cursor(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->cursor;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->cursor;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->cursor;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->cursor;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_cursor(GdkWindow * self, GdkCursor * cursor) {
-  ((struct _GdkWindow_v3_24_11*)self)->cursor = cursor;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->cursor = cursor; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->cursor = cursor; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->cursor = cursor; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::device_cursor
 
 GHashTable * gdk_window_espionage_get_device_cursor(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->device_cursor;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->device_cursor;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->device_cursor;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->device_cursor;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_device_cursor(GdkWindow * self, GHashTable * device_cursor) {
-  ((struct _GdkWindow_v3_24_11*)self)->device_cursor = device_cursor;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->device_cursor = device_cursor; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->device_cursor = device_cursor; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->device_cursor = device_cursor; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::shape
 
 cairo_region_t * gdk_window_espionage_get_shape(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->shape;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->shape;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->shape;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->shape;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_shape(GdkWindow * self, cairo_region_t * shape) {
-  ((struct _GdkWindow_v3_24_11*)self)->shape = shape;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->shape = shape; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->shape = shape; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->shape = shape; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::input_shape
 
 cairo_region_t * gdk_window_espionage_get_input_shape(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->input_shape;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->input_shape;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->input_shape;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->input_shape;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_input_shape(GdkWindow * self, cairo_region_t * input_shape) {
-  ((struct _GdkWindow_v3_24_11*)self)->input_shape = input_shape;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->input_shape = input_shape; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->input_shape = input_shape; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->input_shape = input_shape; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::devices_inside
 
 GList * gdk_window_espionage_get_devices_inside(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->devices_inside;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->devices_inside;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->devices_inside;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->devices_inside;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_devices_inside(GdkWindow * self, GList * devices_inside) {
-  ((struct _GdkWindow_v3_24_11*)self)->devices_inside = devices_inside;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->devices_inside = devices_inside; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->devices_inside = devices_inside; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->devices_inside = devices_inside; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::device_events
 
 GHashTable * gdk_window_espionage_get_device_events(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->device_events;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->device_events;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->device_events;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->device_events;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_device_events(GdkWindow * self, GHashTable * device_events) {
-  ((struct _GdkWindow_v3_24_11*)self)->device_events = device_events;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->device_events = device_events; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->device_events = device_events; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->device_events = device_events; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::source_event_masks
 
 GHashTable * gdk_window_espionage_get_source_event_masks(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->source_event_masks;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->source_event_masks;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->source_event_masks;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->source_event_masks;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_source_event_masks(GdkWindow * self, GHashTable * source_event_masks) {
-  ((struct _GdkWindow_v3_24_11*)self)->source_event_masks = source_event_masks;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->source_event_masks = source_event_masks; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->source_event_masks = source_event_masks; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->source_event_masks = source_event_masks; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::device_added_handler_id
 
 gulong * gdk_window_espionage_get_device_added_handler_id_ptr(GdkWindow * self) {
-  return (gulong *)&((struct _GdkWindow_v3_24_11*)self)->device_added_handler_id;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return (gulong *)&((struct _GdkWindow_v3_22_0*)self)->device_added_handler_id;
+    case 1: return (gulong *)&((struct _GdkWindow_v3_22_19*)self)->device_added_handler_id;
+    case 2: return (gulong *)&((struct _GdkWindow_v3_24_11*)self)->device_added_handler_id;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::device_changed_handler_id
 
 gulong * gdk_window_espionage_get_device_changed_handler_id_ptr(GdkWindow * self) {
-  return (gulong *)&((struct _GdkWindow_v3_24_11*)self)->device_changed_handler_id;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return (gulong *)&((struct _GdkWindow_v3_22_0*)self)->device_changed_handler_id;
+    case 1: return (gulong *)&((struct _GdkWindow_v3_22_19*)self)->device_changed_handler_id;
+    case 2: return (gulong *)&((struct _GdkWindow_v3_24_11*)self)->device_changed_handler_id;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::frame_clock
 
 GdkFrameClock * gdk_window_espionage_get_frame_clock(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->frame_clock;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->frame_clock;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->frame_clock;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->frame_clock;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_frame_clock(GdkWindow * self, GdkFrameClock * frame_clock) {
-  ((struct _GdkWindow_v3_24_11*)self)->frame_clock = frame_clock;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->frame_clock = frame_clock; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->frame_clock = frame_clock; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->frame_clock = frame_clock; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::invalidate_handler
 
 GdkWindowInvalidateHandlerFunc * gdk_window_espionage_get_invalidate_handler_ptr(GdkWindow * self) {
-  return (GdkWindowInvalidateHandlerFunc *)&((struct _GdkWindow_v3_24_11*)self)->invalidate_handler;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return (GdkWindowInvalidateHandlerFunc *)&((struct _GdkWindow_v3_22_0*)self)->invalidate_handler;
+    case 1: return (GdkWindowInvalidateHandlerFunc *)&((struct _GdkWindow_v3_22_19*)self)->invalidate_handler;
+    case 2: return (GdkWindowInvalidateHandlerFunc *)&((struct _GdkWindow_v3_24_11*)self)->invalidate_handler;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::drawing_context
 
 GdkDrawingContext * gdk_window_espionage_get_drawing_context(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->drawing_context;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWindow_v3_22_0*)self)->drawing_context;
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->drawing_context;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->drawing_context;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_window_espionage_set_drawing_context(GdkWindow * self, GdkDrawingContext * drawing_context) {
-  ((struct _GdkWindow_v3_24_11*)self)->drawing_context = drawing_context;
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: ((struct _GdkWindow_v3_22_0*)self)->drawing_context = drawing_context; break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->drawing_context = drawing_context; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->drawing_context = drawing_context; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWindow::opaque_region
 
-cairo_region_t * gdk_window_espionage_get_opaque_region(GdkWindow * self) {
-  return ((struct _GdkWindow_v3_24_11*)self)->opaque_region;
+gboolean gdk_window_espionage_get_opaque_region_supported() {
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return FALSE;
+    case 1: return TRUE;
+    case 2: return TRUE;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
-void gdk_window_espionage_set_opaque_region(GdkWindow * self, cairo_region_t * opaque_region) {
-  ((struct _GdkWindow_v3_24_11*)self)->opaque_region = opaque_region;
+cairo_region_t * gdk_window_espionage_get_opaque_region_or_abort(GdkWindow * self) {
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: g_error("GdkWindow::opaque_region not supported on this GTK"); g_abort();
+    case 1: return ((struct _GdkWindow_v3_22_19*)self)->opaque_region;
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->opaque_region;
+    default: g_error("Invalid version ID"); g_abort();
+  }
+}
+
+void gdk_window_espionage_set_opaque_region_or_ignore(GdkWindow * self, cairo_region_t * opaque_region) {
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: break;
+    case 1: ((struct _GdkWindow_v3_22_19*)self)->opaque_region = opaque_region; break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->opaque_region = opaque_region; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
+}
+
+// GdkWindow::synthesized_crossing_event_id
+
+gboolean gdk_window_espionage_get_synthesized_crossing_event_id_supported() {
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: return FALSE;
+    case 1: return FALSE;
+    case 2: return TRUE;
+    default: g_error("Invalid version ID"); g_abort();
+  }
+}
+
+guint gdk_window_espionage_get_synthesized_crossing_event_id_or_abort(GdkWindow * self) {
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: g_error("GdkWindow::synthesized_crossing_event_id not supported on this GTK"); g_abort();
+    case 1: g_error("GdkWindow::synthesized_crossing_event_id not supported on this GTK"); g_abort();
+    case 2: return ((struct _GdkWindow_v3_24_11*)self)->synthesized_crossing_event_id;
+    default: g_error("Invalid version ID"); g_abort();
+  }
+}
+
+void gdk_window_espionage_set_synthesized_crossing_event_id_or_ignore(GdkWindow * self, guint synthesized_crossing_event_id) {
+  switch (gdk_window_espionage_get_version_id()) {
+    case 0: break;
+    case 1: break;
+    case 2: ((struct _GdkWindow_v3_24_11*)self)->synthesized_crossing_event_id = synthesized_crossing_event_id; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 #endif // GDK_WINDOW_ESPIONAGE_H

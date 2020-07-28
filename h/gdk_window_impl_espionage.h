@@ -120,7 +120,10 @@ int gdk_window_impl_espionage_get_version_id() {
 // GdkWindowImpl::parent
 
 GObject * gdk_window_impl_espionage_get_parent_ptr(GdkWindowImpl * self) {
-  return (GObject *)&((struct _GdkWindowImpl_v3_22_0*)self)->parent;
+  switch (gdk_window_impl_espionage_get_version_id()) {
+    case 0: return (GObject *)&((struct _GdkWindowImpl_v3_22_0*)self)->parent;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 #endif // GDK_WINDOW_IMPL_ESPIONAGE_H

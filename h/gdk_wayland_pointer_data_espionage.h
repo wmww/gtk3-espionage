@@ -136,163 +136,259 @@ int gdk_wayland_pointer_data_espionage_get_version_id() {
 // GdkWaylandPointerData::focus
 
 GdkWindow * gdk_wayland_pointer_data_espionage_get_focus(GdkWaylandPointerData * self) {
-  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->focus;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWaylandPointerData_v3_22_0*)self)->focus;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_wayland_pointer_data_espionage_set_focus(GdkWaylandPointerData * self, GdkWindow * focus) {
-  ((struct _GdkWaylandPointerData_v3_22_0*)self)->focus = focus;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: ((struct _GdkWaylandPointerData_v3_22_0*)self)->focus = focus; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWaylandPointerData::surface_x
 
 double gdk_wayland_pointer_data_espionage_get_surface_x(GdkWaylandPointerData * self) {
-  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->surface_x;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWaylandPointerData_v3_22_0*)self)->surface_x;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_wayland_pointer_data_espionage_set_surface_x(GdkWaylandPointerData * self, double surface_x) {
-  ((struct _GdkWaylandPointerData_v3_22_0*)self)->surface_x = surface_x;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: ((struct _GdkWaylandPointerData_v3_22_0*)self)->surface_x = surface_x; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWaylandPointerData::surface_y
 
 double gdk_wayland_pointer_data_espionage_get_surface_y(GdkWaylandPointerData * self) {
-  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->surface_y;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWaylandPointerData_v3_22_0*)self)->surface_y;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_wayland_pointer_data_espionage_set_surface_y(GdkWaylandPointerData * self, double surface_y) {
-  ((struct _GdkWaylandPointerData_v3_22_0*)self)->surface_y = surface_y;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: ((struct _GdkWaylandPointerData_v3_22_0*)self)->surface_y = surface_y; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWaylandPointerData::button_modifiers
 
 GdkModifierType * gdk_wayland_pointer_data_espionage_get_button_modifiers_ptr(GdkWaylandPointerData * self) {
-  return (GdkModifierType *)&((struct _GdkWaylandPointerData_v3_22_0*)self)->button_modifiers;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: return (GdkModifierType *)&((struct _GdkWaylandPointerData_v3_22_0*)self)->button_modifiers;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWaylandPointerData::time
 
 uint32_t gdk_wayland_pointer_data_espionage_get_time(GdkWaylandPointerData * self) {
-  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->time;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWaylandPointerData_v3_22_0*)self)->time;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_wayland_pointer_data_espionage_set_time(GdkWaylandPointerData * self, uint32_t time) {
-  ((struct _GdkWaylandPointerData_v3_22_0*)self)->time = time;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: ((struct _GdkWaylandPointerData_v3_22_0*)self)->time = time; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWaylandPointerData::enter_serial
 
 uint32_t gdk_wayland_pointer_data_espionage_get_enter_serial(GdkWaylandPointerData * self) {
-  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->enter_serial;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWaylandPointerData_v3_22_0*)self)->enter_serial;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_wayland_pointer_data_espionage_set_enter_serial(GdkWaylandPointerData * self, uint32_t enter_serial) {
-  ((struct _GdkWaylandPointerData_v3_22_0*)self)->enter_serial = enter_serial;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: ((struct _GdkWaylandPointerData_v3_22_0*)self)->enter_serial = enter_serial; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWaylandPointerData::press_serial
 
 uint32_t gdk_wayland_pointer_data_espionage_get_press_serial(GdkWaylandPointerData * self) {
-  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->press_serial;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWaylandPointerData_v3_22_0*)self)->press_serial;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_wayland_pointer_data_espionage_set_press_serial(GdkWaylandPointerData * self, uint32_t press_serial) {
-  ((struct _GdkWaylandPointerData_v3_22_0*)self)->press_serial = press_serial;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: ((struct _GdkWaylandPointerData_v3_22_0*)self)->press_serial = press_serial; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWaylandPointerData::grab_window
 
 GdkWindow * gdk_wayland_pointer_data_espionage_get_grab_window(GdkWaylandPointerData * self) {
-  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->grab_window;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWaylandPointerData_v3_22_0*)self)->grab_window;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_wayland_pointer_data_espionage_set_grab_window(GdkWaylandPointerData * self, GdkWindow * grab_window) {
-  ((struct _GdkWaylandPointerData_v3_22_0*)self)->grab_window = grab_window;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: ((struct _GdkWaylandPointerData_v3_22_0*)self)->grab_window = grab_window; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWaylandPointerData::grab_time
 
 uint32_t gdk_wayland_pointer_data_espionage_get_grab_time(GdkWaylandPointerData * self) {
-  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->grab_time;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWaylandPointerData_v3_22_0*)self)->grab_time;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_wayland_pointer_data_espionage_set_grab_time(GdkWaylandPointerData * self, uint32_t grab_time) {
-  ((struct _GdkWaylandPointerData_v3_22_0*)self)->grab_time = grab_time;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: ((struct _GdkWaylandPointerData_v3_22_0*)self)->grab_time = grab_time; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWaylandPointerData::pointer_surface
 
 struct wl_surface * gdk_wayland_pointer_data_espionage_get_pointer_surface(GdkWaylandPointerData * self) {
-  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->pointer_surface;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWaylandPointerData_v3_22_0*)self)->pointer_surface;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_wayland_pointer_data_espionage_set_pointer_surface(GdkWaylandPointerData * self, struct wl_surface * pointer_surface) {
-  ((struct _GdkWaylandPointerData_v3_22_0*)self)->pointer_surface = pointer_surface;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: ((struct _GdkWaylandPointerData_v3_22_0*)self)->pointer_surface = pointer_surface; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWaylandPointerData::cursor
 
 GdkCursor * gdk_wayland_pointer_data_espionage_get_cursor(GdkWaylandPointerData * self) {
-  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->cursor;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWaylandPointerData_v3_22_0*)self)->cursor;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_wayland_pointer_data_espionage_set_cursor(GdkWaylandPointerData * self, GdkCursor * cursor) {
-  ((struct _GdkWaylandPointerData_v3_22_0*)self)->cursor = cursor;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: ((struct _GdkWaylandPointerData_v3_22_0*)self)->cursor = cursor; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWaylandPointerData::cursor_timeout_id
 
 guint gdk_wayland_pointer_data_espionage_get_cursor_timeout_id(GdkWaylandPointerData * self) {
-  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->cursor_timeout_id;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWaylandPointerData_v3_22_0*)self)->cursor_timeout_id;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_wayland_pointer_data_espionage_set_cursor_timeout_id(GdkWaylandPointerData * self, guint cursor_timeout_id) {
-  ((struct _GdkWaylandPointerData_v3_22_0*)self)->cursor_timeout_id = cursor_timeout_id;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: ((struct _GdkWaylandPointerData_v3_22_0*)self)->cursor_timeout_id = cursor_timeout_id; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWaylandPointerData::cursor_image_index
 
 guint gdk_wayland_pointer_data_espionage_get_cursor_image_index(GdkWaylandPointerData * self) {
-  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->cursor_image_index;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWaylandPointerData_v3_22_0*)self)->cursor_image_index;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_wayland_pointer_data_espionage_set_cursor_image_index(GdkWaylandPointerData * self, guint cursor_image_index) {
-  ((struct _GdkWaylandPointerData_v3_22_0*)self)->cursor_image_index = cursor_image_index;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: ((struct _GdkWaylandPointerData_v3_22_0*)self)->cursor_image_index = cursor_image_index; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWaylandPointerData::cursor_image_delay
 
 guint gdk_wayland_pointer_data_espionage_get_cursor_image_delay(GdkWaylandPointerData * self) {
-  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->cursor_image_delay;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWaylandPointerData_v3_22_0*)self)->cursor_image_delay;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_wayland_pointer_data_espionage_set_cursor_image_delay(GdkWaylandPointerData * self, guint cursor_image_delay) {
-  ((struct _GdkWaylandPointerData_v3_22_0*)self)->cursor_image_delay = cursor_image_delay;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: ((struct _GdkWaylandPointerData_v3_22_0*)self)->cursor_image_delay = cursor_image_delay; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWaylandPointerData::current_output_scale
 
 guint gdk_wayland_pointer_data_espionage_get_current_output_scale(GdkWaylandPointerData * self) {
-  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->current_output_scale;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWaylandPointerData_v3_22_0*)self)->current_output_scale;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_wayland_pointer_data_espionage_set_current_output_scale(GdkWaylandPointerData * self, guint current_output_scale) {
-  ((struct _GdkWaylandPointerData_v3_22_0*)self)->current_output_scale = current_output_scale;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: ((struct _GdkWaylandPointerData_v3_22_0*)self)->current_output_scale = current_output_scale; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWaylandPointerData::pointer_surface_outputs
 
 GSList * gdk_wayland_pointer_data_espionage_get_pointer_surface_outputs(GdkWaylandPointerData * self) {
-  return ((struct _GdkWaylandPointerData_v3_22_0*)self)->pointer_surface_outputs;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: return ((struct _GdkWaylandPointerData_v3_22_0*)self)->pointer_surface_outputs;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 void gdk_wayland_pointer_data_espionage_set_pointer_surface_outputs(GdkWaylandPointerData * self, GSList * pointer_surface_outputs) {
-  ((struct _GdkWaylandPointerData_v3_22_0*)self)->pointer_surface_outputs = pointer_surface_outputs;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: ((struct _GdkWaylandPointerData_v3_22_0*)self)->pointer_surface_outputs = pointer_surface_outputs; break;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 // GdkWaylandPointerData::frame
 
 GdkWaylandPointerFrameData * gdk_wayland_pointer_data_espionage_get_frame_ptr(GdkWaylandPointerData * self) {
-  return (GdkWaylandPointerFrameData *)&((struct _GdkWaylandPointerData_v3_22_0*)self)->frame;
+  switch (gdk_wayland_pointer_data_espionage_get_version_id()) {
+    case 0: return (GdkWaylandPointerFrameData *)&((struct _GdkWaylandPointerData_v3_22_0*)self)->frame;
+    default: g_error("Invalid version ID"); g_abort();
+  }
 }
 
 #endif // GDK_WAYLAND_POINTER_DATA_ESPIONAGE_H
