@@ -19,10 +19,12 @@ import mmap
 
 import parse
 from ast import *
+from version import COMBO_FACTOR, Version
 
 logger = logging.getLogger(__name__)
 
 INDENT = '  ' # used for generating code
+PROJECT_NAME = 'gtk3-espionage'
 
 LGPL3_HEADER = '''
 This program is free software; you can redistribute it and/or
@@ -225,6 +227,7 @@ class Struct:
         self.typedef = typedef
         self.struct_name = typdef_to_struct_name(typedef)
         self.versions = []
+        self.supported_versions = []
         self.copyright_lines = set()
         self.search_regex = re.compile(bytes(struct_regex_string(self.struct_name), 'utf-8'))
 
@@ -250,6 +253,7 @@ class Struct:
 
     def add_version(self, new):
         self.versions.append(new)
+        self.supported_versions.append(new.first_version)
         self.copyright_lines = self.copyright_lines.union(new.copyright_lines)
 
     # Returns if any changes were made
@@ -272,9 +276,51 @@ class Struct:
         for c_type, name in self.versions[-1].get_property_list():
             self.properties.append(Property(self, c_type, name, []))
 
+    def emit_get_version_id_fn(self):
+        return_type = StdType('int')
+        fn_name = '_'.join(camel_case_to_words(self.typedef)) + '_espionage_get_version_id'
+        body = ''
+        body += 'static int version_id = -1;\n'
+        body += '\n'
+        body += 'if (version_id == -1) {\n'
+        body += INDENT + 'if (gtk_get_major_version() != 3) {\n'
+        body += INDENT * 2 + 'g_error("' + PROJECT_NAME + ' only supports GTK3");\n'
+        body += INDENT * 2 + 'g_abort();\n'
+        body += INDENT + '}\n'
+        body += '\n'
+        body += INDENT + 'int combo = gtk_get_minor_version() * 1000 + gtk_get_micro_version();\n'
+        body += '\n'
+        body += INDENT + 'switch (combo) {\n'
+        for v in self.supported_versions:
+            body += INDENT * 2 + 'case ' + str(v.get_combo()) + ':\n'
+        body += INDENT * 3 + 'break;\n'
+        body += '\n'
+        body += INDENT * 2 + 'default:\n'
+        body += INDENT * 3 + 'g_warning(\n'
+        body += INDENT * 4 + '"' + PROJECT_NAME + ' was not compiled with support for GTK v%d.%d.%d, program may crash",\n'
+        body += INDENT * 4 + 'gtk_get_major_version(),\n'
+        body += INDENT * 4 + 'gtk_get_minor_version(),\n'
+        body += INDENT * 4 + 'gtk_get_micro_version());\n'
+        body += INDENT + '}\n'
+        body += '\n'
+        body += INDENT
+        for i in range(len(self.versions) - 1, -1, -1):
+            if i > 0:
+                body += 'if (combo >= ' + str(self.versions[i].first_version.get_combo()) + ') '
+            body += '{\n'
+            body += INDENT * 2 + 'version_id = ' + str(i) + ';\n'
+            body += INDENT + '}'
+            if i > 0:
+                body += ' else '
+        body += '\n'
+        body += '}\n'
+        body += '\n'
+        body += 'return version_id;\n'
+        return c_function(return_type, fn_name, [], body)
+
     def emit_header(self, generated):
         result = ''
-        result += '/* This file is part of gtk3-espionage\n'
+        result += '/* This file is part of ' + PROJECT_NAME + '\n'
         result += ' *\n'
         me = path.relpath(__file__, path.dirname(path.dirname(path.dirname(__file__))))
         my_copyright_line = 'Copyright © ' + str(datetime.now().year) + ' ' + me
@@ -288,9 +334,13 @@ class Struct:
         result += '\n'
         result += 'typedef struct ' + self.struct_name + ' ' + self.typedef + ';\n'
         result += '\n'
-        for i in self.versions:
-            result += i.emit_definition(generated)
+        for i, struct in enumerate(self.versions):
+            result += '// Version ID ' + str(i) + '\n'
+            result += struct.emit_definition(generated)
             result += '\n'
+        result += '// For internal use only\n'
+        result += self.emit_get_version_id_fn()
+        result += '\n'
         for p in self.properties:
             result += p.emit_functions()
             result += '\n'

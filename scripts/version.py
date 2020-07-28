@@ -18,6 +18,8 @@ from config import MIN_SUPPORTED_GTK, MAX_SUPPORTED_GTK
 
 logger = logging.getLogger(__name__)
 
+COMBO_FACTOR = 1000
+
 @functools.total_ordering # implement all comparisons with just eq and lt
 class Version:
     def __init__(self, tag):
@@ -25,16 +27,16 @@ class Version:
         match = re.search(r'^3\.(\d+)\.(\d+)$', tag)
         if match:
             self.minor = int(match.group(1))
-            self.patch = int(match.group(2))
+            self.micro = int(match.group(2))
         else:
             raise RuntimeError(tag + ' is not a valid version')
 
     def __eq__(self, other):
-        return self.minor == other.minor and self.patch == other.patch
+        return self.minor == other.minor and self.micro == other.micro
 
     def __lt__(self, other):
         if self.minor == other.minor:
-            return self.patch < other.patch
+            return self.micro < other.micro
         else:
             return self.minor < other.minor
 
@@ -45,12 +47,15 @@ class Version:
             self <= max_supported_version and
             self != bad_release_3_24_19)
 
+    def get_combo(self):
+        return self.minor * 1000 + self.micro
+
     def __str__(self):
         return 'v' + self.tag
 
     def c_id(self):
         '''a string suitable for a C identifier'''
-        return 'v3_' + str(self.minor) + '_' + str(self.patch)
+        return 'v3_' + str(self.minor) + '_' + str(self.micro)
 
 min_supported_version = Version(MIN_SUPPORTED_GTK)
 max_supported_version = Version(MAX_SUPPORTED_GTK)
